@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?><localEntry xmlns="http://ws.apache.org/ns/synapse" key="f4a86177-4034-4c05-ab68-3d84e6176928">{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "way-tracker",
+    "version" : "v1"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "security" : [ {
+    "default" : [ ]
+  } ],
+  "paths" : {
+    "/tracker-models" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers/{trackerId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers/{trackerId}/status/{statusId}" : {
+      "put" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "statusId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers?statusId={statusId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "statusId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/tags" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/tags/{id}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/status/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers/{trackerId}/comments" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers/{trackerId}/comments/{commentId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "commentId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "commentId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "commentId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/people" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/attribute/{attributeId}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "attributeId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/checklists" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/checklists/{checklistId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "checklistId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "checklistId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "checklistId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "parameters" : [ {
+          "name" : "checklistId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/checklist/{checklistId}/item/{checklistItemId}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "checklistId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "checklistItemId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/transitions" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/people/{peopleId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/status/custom/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/attribute/custom/{id}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/tracker-models/{trackerModelId}/tags/all" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerModelId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/trackers/{trackerId}/comments/count" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "trackerId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "default" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "https://test.com",
+            "scopes" : { }
+          }
+        }
+      }
+    }
+  }
+}</localEntry>

@@ -1,0 +1,76 @@
+<div class="filters-list-container d-flex mb-3 px-2"
+     [ngClass]="filters?.length ? 'justify-content-between' : 'justify-content-center'">
+    <div *ngIf="filters?.length;else noFilters" [ngClass]="filters?.length > 5 ? 'filters-list' : 'filters-list-full'"
+         class="row row-cols-5">
+        <div id="filters" class="filters col cursor-pointer px-1 py-2"
+             *ngFor="let filter of filters | slice:0:5; let i = index"
+             (click)="onSelectFilter(filter)">
+            <div id="filter" class="filter d-flex"
+                 [ngClass]="appliedFilter?.id === filter?.id ? 'selected-filter' : ''">
+                <div class="col fav-option" *ngIf="filter?.isFavourite">
+                    <i class="material-icons">{{filter?.isFavourite | favoriteIcon}}</i>
+                </div>
+                <div class="d-flex align-items-center justify-content-start"
+                     [ngClass]="filter?.isFavourite ? 'col-9' : 'col-10'">
+                    <label id="filter-name" class="filter-item cursor-pointer text-truncate">{{filter.name}}</label>
+                </div>
+                <div id="more-options" class="col-2 d-flex align-items-center justify-content-end">
+                    <div class="dropdown">
+                        <span class="material-icons-outlined more-icon">more_vert</span>
+                        <ul class="dropdown-menu dropdown-menu-list p-0" aria-labelledby="more-options">
+                            <li id="fav-option" class="dropdown-item fav-option"
+                                (click)="$event.stopPropagation(); setFavorite(filter)">
+                                <i class="material-icons">{{filter?.isFavourite | favoriteIcon}}</i>
+                                <label class="cursor-pointer">{{'system.favorite' | translate}}</label>
+                            </li>
+                            <li id="delete-option" class="dropdown-item delete-option"
+                                (click)="$event.stopPropagation(); remove(filter.id)">
+                                <i class="material-icons">delete</i>
+                                <label class="cursor-pointer">{{'system.delete' | translate}}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="more-filters" *ngIf="numberFilters > 5"
+         class="other-list d-flex align-items-center justify-content-end">
+        <div class="dropdown">
+            <div class="more-filters d-flex align-items-center justify-content-center">
+                <label id="count-filters" class="cursor-pointer">+ {{numberFilters - 5}}</label>
+            </div>
+            <div infiniteScroll class="dropdown-menu dropdown-menu-more p-0" aria-labelledby="more-filters"
+                 [infiniteScrollDistance]="1"
+                 [infiniteScrollThrottle]="50"
+                 [scrollWindow]="false"
+                 [fromRoot]="true"
+                 (scrolled)="onScroll()">
+                <div class="dropdown-item p-0" *ngFor="let filter of filters; let i = index"
+                     (click)="onSelectFilter(filter)">
+                    <div class="filter filter-more m-2">
+                        <label id="filter-name-more"
+                               class="filter-item cursor-pointer text-truncate pe-2">{{filter.name}}</label>
+                        <div class="filter-options">
+                            <div id="fav-option-more" class="fav-option d-flex align-items-center cursor-pointer"
+                                 (click)="$event.stopPropagation(); setFavorite(filter)">
+                                <i class="material-icons">{{filter?.isFavourite | favoriteIcon}}</i>
+                            </div>
+                            <div id="delete-option-more" class="delete-option d-flex align-items-center cursor-pointer"
+                                 (click)="$event.stopPropagation(); remove(filter.id)">
+                                <i class="material-icons">delete</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noFilters>
+    <div id="no-filters" class="no-filters ps-1 gap-1">
+        <label id="no-filters-label">{{'tracker-manager.no-filters' | translate}}</label>
+        <label id="add-new-filter-label" class="cursor-pointer">{{'tracker-manager.add-new-filter' | translate}}</label>
+    </div>
+</ng-template>

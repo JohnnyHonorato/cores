@@ -1,0 +1,165 @@
+.expand_less, .expand_more {
+    line-height: 1.5;
+}
+
+.card-header {
+    border-bottom-width: 0 !important;
+    background-color: transparent;
+}
+
+div[aria-expanded="false"] .expand_less {
+    display: none;
+}
+
+div[aria-expanded="true"] .expand_more {
+    display: none;
+}
+
+.card-header-files:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+hr {
+    margin-top: 11px;
+    margin-bottom: 0;
+}
+
+.p-16 {
+    padding: 16px;
+}
+
+#fileDropRef {
+    pointer-events: none;
+}
+
+.container-drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 110px;
+    padding: 2rem;
+    text-align: center;
+    border: dashed 2px #eaeaf3;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+
+    input {
+        opacity: 0;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    input[disabled] {
+        cursor: not-allowed !important;
+    }
+
+    input[disabled="false"] {
+        cursor: pointer !important;
+    }
+
+    label {
+        color: #ffffff;
+        width: 110px;
+        border-radius: 3px;
+        background-color: #142263;
+        padding: 8px 16px;
+        margin-left: 4px;
+        margin-bottom: 0;
+    }
+}
+
+.files-list-content {
+    margin-bottom:0.75rem;
+    overflow-y: auto;
+    height: 180px;
+}
+
+.content-file {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+.single-file {
+    padding: 0.5rem 0;
+    border: none;
+    margin-bottom: 0.5rem;
+}
+
+.single-file:not(:last-child) {
+    border-bottom: solid 1px #eaeaf3;
+}
+
+.info {
+    margin: 0;
+    max-width: 80%;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+}
+
+.card-no-attachment {
+    padding: 8px 0;
+}
+
+.delete,
+.download {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.delete, .files-extensions {
+    color: #cb2d2d;
+}
+
+.download {
+    color: #4d66d3;
+}
+
+.name {
+    font-size: 13px;
+    color: #4d66d3;
+    margin: 6px 0 0 0;
+}
+
+.size {
+    font-size: 12px;
+    color: #a4a4a4;
+    margin: 0;
+}
+
+.dnd-description {
+    color: #969aa3;
+    font-size: 13px;
+}
+
+.title {
+    font-size: 20px;
+    color: #142263;
+    font-weight: 500;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #F0F0F8;
+}

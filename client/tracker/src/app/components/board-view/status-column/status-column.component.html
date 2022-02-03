@@ -1,0 +1,86 @@
+<div id="status-column" [ngClass]="isExpanded ? 'open-column' : 'close-column'">
+    <div class="status-column-content" *ngIf="isExpanded;else closedColumn">
+        <div class="row">
+            <div class="status-column-header center p-0">
+                <div class="col-1 center">
+                    <span id="show-status-column" class="material-icons-outlined cursor-pointer custom-icon-column"
+                          (click)="toggleStatusColumn(); $event.stopPropagation();"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top" title="{{'tracker-manager.close-column' | translate}}">first_page
+                    </span>
+                </div>
+                <div class="col-1 center">
+                    <span id="board-status-order-icon"
+                          class="material-icons-outlined cursor-pointer"
+                          [ngClass]="dueDateOrder === 'ASC' ? 'rotate-icon' : ''"
+                          (click)="toggleOrder(); $event.stopPropagation();"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top" title="{{orderByTitle('due-date')}}">sort
+                    </span>
+                </div>
+                <div class="col-5 p-1 d-flex align-items-start">
+                    <label id="status-name" class="text-truncate"
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="top"
+                           title="{{status.name}}">{{status.name}}
+                    </label>
+                </div>
+                <div class="col-auto center cursor-default">
+                    <div id="attribute-type-board-status-label" [ngSwitch]="attributeType">
+                        <span id="attribute-type-board-status-currency-label" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="{{metricName | translate}}" *ngSwitchCase="'CURRENCY'">
+                            ( {{metric |currency:valueComplement}} )
+                        </span>
+                        <span id="attribute-type-board-status-decimal-label" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="{{metricName | translate}}" *ngSwitchCase="'DECIMAL'">
+                            ( {{metric |number:'.0' }} )
+                        </span>
+                        <span id="attribute-type-board-status-integer-label" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="{{metricName | translate}}" *ngSwitchCase="'INTEGER'">
+                            ( {{metric |number:'.0' }} )
+                        </span>
+                        <span id="attribute-type-board-status-default-label" data-bs-toggle="tooltip"
+                              data-bs-placement="top"
+                              title="{{metricName | translate}}" *ngSwitchDefault>
+                            ( {{metric}} )
+                        </span>
+                    </div>
+                </div>
+                <div class="col-3 center" *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/insert-tracker']">
+                    <button id="add-card-btn" type="button" class="btn btn-sm btn-next add-btn d-flex"
+                            (click)="createCard(); $event.stopPropagation();"
+                            data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="{{'tracker.add-card' | translate}}">
+                        <span id="add-icon" class="material-icons-outlined add-icon pe-1">add</span>
+                        <span id="add-card-label" class="text-uppercase" translate>tracker.card.title</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <common-loading [loading]="loading"></common-loading>
+        <div class="card-content" *ngIf="!loading" id="{{status.id}}"
+             [dragula]="'CARDS'"
+             [(dragulaModel)]="status.items">
+            <tracker-card *ngFor="let item of status.items" [setItem]="item"
+                          (filterCard)="filter($event)" [boardName]="boardName">
+            </tracker-card>
+        </div>
+    </div>
+    <ng-template #closedColumn>
+        <div class="content-status-column-close cursor-pointer"
+             (click)="toggleStatusColumn(); $event.stopPropagation();">
+            <div class="status-column-header-close center">
+                <span id="column-icon" class="material-icons-outlined custom-icon-column"
+                      data-bs-toggle=" tooltip"
+                      data-bs-placement="top" title="{{'tracker-manager.open-column' | translate}}">last_page
+                </span>
+            </div>
+            <div class="status-column-body-close center">
+                <label id="status-column-name" class="expanded-title cursor-pointer">{{status.name}}</label>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,49 @@
+version: '2.1'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7.31
+    ports:
+      - 3306
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: "root"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 200s
+      retries: 10
+    volumes:
+      - ./wso2/conf/mysql/scripts:/docker-entrypoint-initdb.d
+      - ./wso2/conf/mysql/conf/my.cnf:/etc/mysql/my.cnf
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+    command: [--ssl=0]
+    network_mode: "host"
+  wso2:
+    build:
+      context: ./wso2/dockerfiles/apim
+      args:
+        BUILD_ENV: ${BUILD_ENV:-}
+        LDAP_USERNAME: ${LDAP_USERNAME}
+        LDAP_PASSWORD: ${LDAP_PASSWORD}
+    container_name: wso2
+    healthcheck:
+      test: ["CMD", "nc", "-z","localhost", "9443"]
+      interval: 10s
+      retries: 20
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./wso2/conf/apim:/home/wso2carbon/wso2-config-volume
+    ports:
+      - 9443
+      - 8280
+      - 8243
+    network_mode: "host"
+    environment:
+      - DOMAIN_NAME=localhost
+    

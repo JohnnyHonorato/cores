@@ -1,0 +1,50 @@
+<common-loading [loading]="loading"></common-loading>
+<div class="row row-align" *ngIf="!loading">
+    <div class="d-flex flex-row justify-content-center flex-wrap">
+        <ng-container *ngIf="items.length > 0">
+            <ng-container *ngFor="let item of items">
+                <div class="card-custom align-custom cursor-pointer" [routerLink]="item.id"
+                     *ngxPermissionsOnly="['TRACKER/read-*', 'TRACKER/read-tracker-model']">
+                    <div class="row text-center">
+                        <div class="d-block col-sm-12 p-0">
+                            <span id="dashboard-icon" class="material-icons board-icon-font d-block">dashboard</span>
+                        </div>
+                        <div class="board-name col-sm-12 pb-0"
+                             data-bs-toggle="tooltip" data-placement="top" title="{{item.name}}">
+                            <label id="name-label" class="text-truncate mw-100">
+                                {{item.name}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="background-options d-flex justify-content-center"
+                             *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-tracker-model']">
+                            <button id="update-board-btn" type="button" class="btn-muted"
+                                    [routerLink]="'edit/' + item.id">
+                                <i id="edit-icon" class="material-icons-outlined icon-size">edit</i>
+                            </button>
+                        </div>
+                        <div class="background-options d-flex justify-content-center"
+                             *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/delete-tracker-model']">
+                            <button id="delete-board-btn" type="button" class="btn-muted text-danger"
+                                    (click)="remove(item); $event.stopPropagation();" data-bs-toggle="modal"
+                                    data-bs-target="#modal-delete">
+                                <i id="delete-icon" class="material-icons-outlined icon-size">delete</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <common-delete-confirmation (ok)="deleteTrackerModel()" target="modal-delete">
+                </common-delete-confirmation>
+            </ng-container>
+        </ng-container>
+        <div id="new-board" class="card-custom align-custom custom-border text-color cursor-pointer"
+             [routerLink]="'create'"
+             *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/insert-tracker-model']">
+            <i id="add-icon" class="material-icons-outlined icon"> add_circle_outline </i>
+            <div id="add-board-label" class="board-name" translate>
+                tracker-manager.add-tracker
+            </div>
+        </div>
+    </div>
+</div>

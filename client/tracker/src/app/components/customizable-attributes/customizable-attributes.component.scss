@@ -1,0 +1,72 @@
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    filter: invert(15%) sepia(14%) saturate(4222%) hue-rotate(225deg)
+        brightness(87%) contrast(102%);
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+.form-control::placeholder {
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0;
+    color: #969aa3;
+    opacity: 0.83;
+}
+
+.control-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-control:disabled:not([type="checkbox"]) {
+    background-color: #ffffff !important;
+    border: 1px solid #eaeaf3 !important;
+    opacity: 1;
+}
+
+.ng-select.box-shadow-none ::ng-deep .ng-select-container {
+    box-shadow: none;
+}
+
+.input-group-text {
+    background: #ffffff;
+    border-radius: 0 4px 4px 0;
+    opacity: 1;
+    padding: 9px 12px;
+}
+
+.input-group-text.not-allowed {
+    border: 1px solid #eaeaf3 !important;
+}
+
+.text-area-height {
+    height: 80px !important;
+}
+
+.fs-5 {
+    font-size: 1.17rem !important;
+}
+
+.form-control {
+    box-shadow: none;
+    height: 38px;
+}
+
+::ng-deep .border-warning .ng-select > .ng-select-container {
+    border-color: #ff9933;
+}
+
+.toggle-mt {
+    margin-top: 8px;
+}
+
+.select-preview .ng-select.ng-select-disabled > .ng-select-container {
+    background-color: white !important;
+}
+

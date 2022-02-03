@@ -1,0 +1,65 @@
+.btn {
+    width: auto !important;
+    height: auto !important;
+    margin-left: auto;
+}
+
+.checklists {
+    display: flex;
+    justify-self: flex-start;
+    padding: 15px 0;
+}
+
+.checklists .page-title {
+    align-self: center;
+    margin-left: 16px;
+}
+
+#add-checklist {
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+.checklists .not-allowed {
+    cursor: not-allowed;
+}
+
+.icon-size {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.separator {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.popover-label {
+    color: #2a1b4d;
+}
+
+.card-icon {
+    font-size: 18px;
+}
+
+.upper-case {
+    text-transform: uppercase;
+}
+
+.btn-save {
+    width: 120px !important;
+    height: 39px !important;
+    font-size: 14px!important;
+}
+
+.span-size {
+    margin-left: 2px;
+    font-size: 13px;
+    align-items: center;
+}
+
+.edit-icon {
+    color: #142263;
+}

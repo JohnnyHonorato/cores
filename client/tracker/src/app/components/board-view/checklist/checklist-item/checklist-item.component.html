@@ -1,0 +1,21 @@
+<div id="checklist-item" class="row item-border">
+    <div class="col-sm-12 custom-check">
+        <div class="col-sm-10 truncate-long-text">
+            <mat-checkbox id="checkbox-{{checklistIndex}}-{{itemIndex}}" [disabled]="isView" color="primary"
+                          [(ngModel)]="item.done" (change)=itemValueChanged()>
+            </mat-checkbox>
+            <span id="span" class="pl-2">{{item.name}}</span>
+        </div>
+        <div *ngIf="!isView" class="col-sm-2 d-flex">
+            <i class="material-icons-outlined pull-right first-icon" id="edit" (click)="update()"
+               *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-checklist-item']">
+                edit
+            </i>
+            <i class="material-icons-outlined pull-right second-icon" id="delete" (click)="delete()"
+               data-bs-target="#modal-delete-checklist-item" data-bs-toggle="modal"
+               *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/delete-checklist-item']">
+                delete
+            </i>
+        </div>
+    </div>
+</div>

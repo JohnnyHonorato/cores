@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: johnny
+Build-Jdk: 15.0.1
+Implementation-Title: tracker
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: br.edu.ufcg.virtus
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/virtus-way/tracker
+Created-By: Maven Integration for Eclipse
+

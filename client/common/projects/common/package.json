@@ -1,0 +1,16 @@
+{
+    "name": "common",
+    "version": "0.0.2",
+    "peerDependencies": {
+        "@angular/animations": "10.2.1",
+        "@angular/cdk": "10.2.1",
+        "@angular/common": "10.2.1",
+        "@angular/core": "10.2.1",
+        "@angular/material": "10.2.1",
+        "jquery": "3.4.1",
+        "jquery-mask-plugin": "^1.14.16"
+    },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    }
+}

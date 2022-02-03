@@ -1,0 +1,187 @@
+<common-loading id="loading" [loading]="loading"></common-loading>
+<div id="tracker-edit" class="card tracker">
+    <div class="card-body pb-0">
+        <div class="col-12 padding-form px-3">
+            <div id="title" class="row page-title-wizard m-0" translate>
+                tracker.card.title-modal
+            </div>
+            <div id="description" class="row page-description-wizard m-0" translate>
+                tracker-manager.preview-do-card-description
+            </div>
+        </div>
+        <div *ngIf="!loading && trackerModel">
+            <form [formGroup]="editForm" id="form" (change)="initDraft()">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group required">
+                            <label id="card-name-label" class="control-label text-truncate w-100" translate>tracker.card.name</label>
+                            <input id="card-name-input" type="text" class="form-control" formControlName="title"
+                                   [ngClass]="hasError(editForm.get('title'))">
+                            <common-control-message id="title-control-message" [control]="editForm.get('title')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label id="due-date-label" class="control-label text-truncate w-100" translate>tracker.card.due-date</label>
+                            <div class="input-group date">
+                                <input id="due-date" class="form-control" data-mask="00/00/0000"
+                                       [matDatepicker]="pickerDueDate" formControlName="dueDate"
+                                       [ngClass]="hasError(editForm.get('dueDate'))"
+                                       (dateChange)="initDraft()">
+                                <div class="input-group-prepend">
+                                    <div id="open-date" class="input-group-text cursor-pointer"
+                                         (click)="pickerDueDate.open()">
+                                        <i id="date-icon" class="material-icons fs-5"> event </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-datepicker id="picker-due-date" #pickerDueDate></mat-datepicker>
+                            <common-control-message id="due-date-control-message" [control]="editForm.get('dueDate')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label id="card-description-label" class="control-label text-truncate w-100"
+                                   translate>tracker.card.description</label>
+                            <textarea id="card-description-text-area" rows="4" cols="4" maxlength="400"
+                                      class="form-control text-area-height" formControlName="description"
+                                      [ngClass]="hasError(editForm.get('description'))"></textarea>
+                            <common-control-message id="description-control-message" [control]="editForm.get('description')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-1 mb-3">
+                    <div class="col-6">
+                        <label id="card-tag-title-label" class="control-label text-truncate w-100">
+                            {{'tracker.card.tags.title' | translate}}
+                        </label>
+                        <div class="tags-content row">
+                            <div *ngIf="editForm.get('tags').value?.length" class="col-sm-9 px-0">
+                                <label id="tag-label-{{i}}"
+                                       *ngFor="let tag of editForm.get('tags').value; let i = index"
+                                       class="tag text-truncate mw-50 px-2"
+                                       [ngStyle]="{'background': tag.color}">
+                                    {{tag.name}}
+                                </label>
+                            </div>
+                            <div *ngIf="!editForm.get('tags').value?.length" class="col-sm-9"></div>
+                            <div class="pull-right col-sm-3 pr-0">
+                                <div class="input-group-tag d-flex justify-content-center">
+                                    <tracker-popover-tags id="tracker-popover-tags" [trackerModel]="trackerModel" [tracker]="item"
+                                                          (selectedTag)="addTag($event)"
+                                                          (removedTag)="removedTag($event);">
+                                    </tracker-popover-tags>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label id="members-title-label" class="control-label text-truncate w-100">
+                            {{'tracker.card.members' | translate}}
+                        </label>
+                        <div class="modal-members-content">
+                            <ng-select id="select-tracker-edit" appendTo="#tracker-edit" class="custom-color-border"
+                                       [items]="searchItems | async" bindLabel="name" [loading]="searchLoading"
+                                       [typeahead]="subjects" [multiple]="true" [(ngModel)]="members"
+                                       [ngModelOptions]="{standalone: true}" (change)="initDraft()">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option text-muted" id="no-result">
+                                        {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-2 link-padding">
+                        <label id="tracker-link-label" class="control-label text-truncate w-100">
+                            {{'tracker.links' | translate}}
+                        </label>
+                        <div class="modal-members-content">
+                            <ng-select id="select-tracker-link-edit" appendTo="#tracker-edit" class="custom-color-border"
+                                       placeholder="{{'tracker.placeholder.tracker-link' | translate}}"
+                                       [items]="searchCards | async" bindLabel="title" [loading]="searchCardsLoading"
+                                       [typeahead]="cardsSubjects"
+                                       [multiple]="true" [(ngModel)]="cards" [ngModelOptions]="{standalone: true}" change>
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option text-muted">
+                                        {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3" *ngIf="status">
+                    <tracker-customizable-attributes id="tracker-customizable-attributes" [setLitAttributes]="trackerModel.attributes"
+                                                     [attributeValues]="item.attributesValue"
+                                                     [transition]="item.transition ? item.transition : getTransitionByStatus()"
+                                                     [isPreview]="false"
+                                                     [draftValue]="customAttributesDraft"
+                                                     (attributeAdded)="setAttributesValue($event);"
+                                                     (formStatusChanged)="setCustomAttFormStatus($event)">
+                    </tracker-customizable-attributes>
+                </div>
+                <hr class="mb-0 mt-0">
+                <div class="pr-5 pl-5">
+                    <tracker-popover-checklist id="tracker-popover-checklist" [isPreview]="false"
+                                               (checklistAdded)="createChecklist($event)">
+                    </tracker-popover-checklist>
+                    <div class="col-12 checklist-padding" *ngFor="let checklist of checklists; let i = index">
+                        <tracker-checklist id="tracker-checklist" [checklist]="checklist" [checklistIndex]="i"
+                                           [checklistItemRemovedEvent]="removeChecklistItemSubject.asObservable()"
+                                           (checklistAdded)="updateChecklist($event)"
+                                           (checklistItemAdded)="addChecklistItem($event)"
+                                           (checklistItemValueChangedAdded)="changeChecklistItemValue($event)"
+                                           (updateChecklistItem)="updateChecklistItem($event)"
+                                           (deleteChecklist)="setChecklistIndexToDelete($event)"
+                                           (deleteChecklistItem)="setChecklistItemIndexesToDelete($event)">
+                        </tracker-checklist>
+                    </div>
+                </div>
+                <hr class="mb-0 mt-0">
+                <tracker-upload-multiple-files id="upload-multiple-files" [setFiles]="item.attachments"
+                                               [setFileTypesRestrictions]="trackerModel?.fileTypesRestrictions"
+                                               (successPostingFiles)="receiveFiles($event)"
+                                               (setRemovedFilesList)="removeFromAttachmentsList($event)">
+                </tracker-upload-multiple-files>
+            </form>
+        </div>
+    </div>
+    <div class="card-footer" *ngIf="editForm && !loading">
+        <div class="col-sm-12 p-0 buttons-footer d-flex justify-content-end">
+            <div *ngIf="item?.id" class="me-auto">
+                <button type="button" id="btn-clear" class="btn btn-w-m btn-danger justify-content-start" data-bs-toggle="modal"
+                        data-bs-target="#modal-delete-tracker"
+                        *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/delete-tracker']">
+                    <span id="text-clear" translate>system.delete</span>
+                </button>
+            </div>
+            <button id="btn-cancel" type="button" class="btn btn-back"
+                    (click)="startFlowToDiscardDataFromDraft()" translate>
+                system.cancel
+            </button>
+            <button id="btn-save-continue" *ngIf="!item?.id" type="button" class="btn btn-w-m btn-primary ms-2 w-auto"
+                    (click)="onSubmit(true)"
+                    [ladda]="submittingSaveAndContinue" [disabled]="(editForm.invalid || !validAttributesValue)">
+                <span id="text-save-continue" translate>system.save-and-continue</span>
+            </button>
+            <button id="btn-generate" type="button" class="btn btn-w-m btn-primary ms-2" (click)="onSubmit()"
+                    [ladda]="submitting" [disabled]="(editForm.invalid || !validAttributesValue)">
+                <span id="text-save" translate>system.save</span>
+            </button>
+        </div>
+    </div>
+</div>
+<common-delete-confirmation id="checklist-delete-confirmation" (ok)="deleteChecklist()"
+                            target="modal-delete-checklist"></common-delete-confirmation>
+<common-delete-confirmation id="checklist-item-delete-confirmation" (ok)="deleteChecklistItem()" target="modal-delete-checklist-item">
+</common-delete-confirmation>
+<common-delete-confirmation id="tracker-delete-confirmation" (ok)="deleteTracker()"
+                            target="modal-delete-tracker"></common-delete-confirmation>

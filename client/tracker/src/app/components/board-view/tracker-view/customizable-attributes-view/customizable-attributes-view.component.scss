@@ -1,0 +1,26 @@
+.row {
+    margin-top: 2px;
+}
+
+.value {
+    text-align: left;
+    font-size: 16px;
+    color: #142263;
+    opacity: 0.83;
+
+    &.deleted {
+        color: darkred
+    }
+}
+
+.title {
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: #969AA3;
+    opacity: 0.83;
+    text-transform: capitalize;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

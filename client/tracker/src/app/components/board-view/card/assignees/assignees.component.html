@@ -1,0 +1,36 @@
+<div *ngIf="assignees && assignees.length > 0" class="d-flex m-0 p-0">
+    <span *ngFor="let member of assignees.slice(0, maxAssigneesToDisplay); let i = index" (click)="filterByMember($event, member)"
+          id="filter-cards-button-{{i}}"
+          class="material-icons-round"
+          data-toggle="tooltip" data-placement="top"
+          title="{{'system.filter' | translate}}: {{member.name }}">
+        account_circle
+    </span>
+    <div class="background-options" *ngIf="assignees.length > maxAssigneesToDisplay">
+        <button id="show-all-members-button" type="button" class="btn-muted align-center p-0"
+                data-bs-toggle="dropdown"
+                aria-expanded="false" (click)="$event.stopPropagation();">
+            <span class="size-count-members" id="count-members"
+                  *ngIf="assignees.length < 102; else elseAssignees">+{{assignees.length - maxAssigneesToDisplay}}</span>
+            <ng-template #elseAssignees>
+                <span id="count-members-102" class="size-count-members">+</span>
+            </ng-template>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="show-all-members-button">
+            <div class="header-dropdown" (click)="$event.stopPropagation()">
+                <label id="member-list-title" class="col-sm-10 member-list-title" translate>tracker.card.members</label>
+                <div class="col-sm-2 line-icon-close">
+                    <span id="close-icon" class="material-icons-outlined custom-icon-close">close</span>
+                </div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="body-dropdown">
+                <div id="filter-cards-by-member" class="item-members cursor-pointer" *ngFor="let member of assignees" (click)="filterByMember($event, member)">
+                    <span id="member-icon" class="material-icons-round custom-icon-circle cursor-pointer">account_circle</span>
+                    <label id="member-name" class="text-truncate cursor-pointer custom-name-member">{{member.name}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

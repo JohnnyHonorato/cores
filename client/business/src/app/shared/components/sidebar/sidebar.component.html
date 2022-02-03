@@ -1,0 +1,24 @@
+<div class="container-sidebar cursor-pointer">
+    <a id="to-homepage" class="options-sidebar cursor-pointer" routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">
+        <span class="material-icons custom-icon cursor-pointer">home</span>
+        <label id="to-homepage-label" class="cursor-pointer" translate>system.home</label>
+    </a>
+
+    <a id="to-business-op" class="options-sidebar cursor-pointer" routerLink="/business-oportunities" routerLinkActive="active"
+       *ngxPermissionsOnly="['BUSINESS/read-*',  'BUSINESS/read-business-opportunity']">
+        <span class="material-icons custom-icon cursor-pointer">badge</span>
+        <label id="to-business-op-label" class="cursor-pointer text-truncate" translate>business-opportunity.title.plural</label>
+    </a>
+
+    <a id="to-organization" class="options-sidebar cursor-pointer" routerLink="/organizations" routerLinkActive="active"
+       *ngxPermissionsOnly="['BUSINESS/read-*',  'BUSINESS/read-organization']">
+        <span class="material-icons custom-icon cursor-pointer">business</span>
+        <label id="to-organization-label" class="cursor-pointer" translate>organization.title.plural</label>
+    </a>
+
+    <a id="to-tracker" class="options-sidebar cursor-pointer" routerLink="/tracker" routerLinkActive="active">
+        <span class="material-icons custom-icon cursor-pointer">dashboard_customize</span>
+        <label id="to-tracker-label" class="cursor-pointer" translate>tracker.title.singular</label>
+    </a>
+</div>

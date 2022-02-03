@@ -1,0 +1,156 @@
+<form [formGroup]="form" id="form-customizable-attributes" (change)="changeForm()">
+    <div class="row" *ngFor="let in of arrayTotalLine(); let line = index">
+        <ng-container *ngFor="let item of lineItems(line); let i = index">
+            <div [ngClass]="getColumnClass(item)" class="px-0" formArrayName="attributesValue"
+                 *ngIf="!item.value.attribute.deleted">
+                <div *ngIf="item.value['attribute'].type !== 'DATE_TIME'"
+                     [ngClass]="item.value['attribute'].needsValueComplement && item.value['attribute'].type!='CURRENCY' ? ['col-sm-10', 'pr-0'] : ['col-sm-12', 'p-0']">
+                    <div class="form-group"
+                         [ngClass]="{'required': item.get('attribute').get('required')?.value, 'initial-element': i === 0, 'final-element': (i + 1) === lineItems(line).length}">
+                        <label #attributeTitleLabel id="attribute-title-label" *ngIf="item.value['attribute'].type !== 'DATE_TIME'"
+                               class="control-label text-truncate w-100" data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="{{attributeTitleLabel.offsetWidth < attributeTitleLabel.scrollWidth?item.value['attribute'].title:''}}">
+                            {{item.value['attribute'].title}}
+                        </label>
+                        <div [formGroupName]="indexItem(item)" [ngSwitch]="item.value['attribute'].type"
+                             [ngClass]="{'border-warning': item.get('value').warnings?.deleted, 'not-allowed': isPreview}"
+                             (change)="changeForm()">
+                            <input id="integer-input" *ngSwitchCase="'INTEGER'" type="text" thousandSeparator="."
+                                   [allowNegativeNumbers]="true"
+                                   mask="separator.0" class="form-control" formControlName="value">
+
+                            <input id="decimal-input" *ngSwitchCase="'DECIMAL'" type="text" thousandSeparator="."
+                                   [allowNegativeNumbers]="true"
+                                   [decimalMarker]="','" mask="separator.2" formControlName="value"
+                                   appFormattingDecimalField
+                                   (receive)="setDecimalField($event, i)" class="form-control">
+
+                            <input id="currency-input" currencyMask *ngSwitchCase="'CURRENCY'" type="text"
+                                   [options]="{ allowNegative: false, prefix: item.value['attribute'].currency+' ',thousands: '.', decimal: ','}"
+                                   formControlName="value" class="form-control" (ngModelChange)="changeForm()">
+
+                            <textarea id="string-text-area" *ngSwitchCase="'STRING'" rows="4" cols="4" maxlength="400"
+                                      class="form-control text-area-height" formControlName="value"></textarea>
+
+                            <label id="boolean-label" *ngSwitchCase="'BOOLEAN'" class="ios7-switch">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" formControlName="value" type="checkbox" id="flexSwitchCheckDefault">
+                                </div>
+                            </label>
+
+                            <ng-select id="list-select" *ngSwitchCase="'LIST'" formControlName="value"
+                                       [items]="item.value['attribute'].listOptions" change
+                                       [ngClass]="{'select-preview': isPreview}"
+                                       (change)="changeForm()">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div id="no-result-search-list" class="ng-option text-muted">
+                                        {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+
+                            <ng-template let-peopleSearch
+                                         [ngTemplateOutletContext]="{ $implicit: peopleSearchMap.get(item.value['attribute'].id) }"
+                                         [ngTemplateOutlet]="self" #self>
+                                <ng-select id="people-select" [ngClass]="{'select-preview': isPreview}"
+                                           *ngSwitchCase="'PEOPLE'" appendTo="#tracker-edit"
+                                           (change)="changeForm()"
+                                           bindLabel="name" [formControlName]="'value'" change
+                                           [items]="(peopleSearch?.searchItems | async) || []"
+                                           [loading]="peopleSearch?.loading || false"
+                                           [typeahead]="peopleSearch?.subjects">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div id="no-result-search-people" class="ng-option text-muted">
+                                            {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </ng-template>
+                            <ng-select id="organization-select" [ngClass]="{'select-preview': isPreview}"
+                                       *ngSwitchCase="'ORGANIZATION'" appendTo="#tracker-edit" class="box-shadow-none"
+                                       (change)="changeForm()" [items]="searchItemsOrganization | async"
+                                       bindLabel="fantasyName"
+                                       [loading]="loadingOrganizationSearch" [typeahead]="subjectsOrganization"
+                                       formControlName="value" change>
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div id="no-result-search-organization" class="ng-option text-muted">
+                                        {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                            <ng-container *ngSwitchCase="'DATE'">
+                                <div class="input-group px-0">
+                                    <input id="custom-date" class="form-control" [matDatepicker]="pickerCustomDate"
+                                           formControlName='value' (dateChange)="changeForm()"
+                                           [min]="returnDateFromTimestamp(item.value['attribute'].minDate)"
+                                           [max]="returnDateFromTimestamp(item.value['attribute'].maxDate)"
+                                           placeholder="DD/MM/AAAA" data-mask="00/00/0000">
+                                    <div class="input-group-prepend cursor-pointer">
+                                        <div id="open-data-picker"
+                                             [ngClass]=" isPreview ? 'input-group-text not-allowed': 'input-group-text pointer'"
+                                             (click)="pickerCustomDate.open()">
+                                            <i id="date-icon" class="material-icons pull-right fs-5"> event </i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <mat-datepicker id="picker-custom-date" #pickerCustomDate></mat-datepicker>
+                            </ng-container>
+                            <common-control-message id="date-control-message" *ngIf="item.value['attribute'].type !== 'DATE_TIME'"
+                                                    [control]="item.get('value')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="item.value['attribute'].type === 'DATE_TIME'" [formGroupName]="indexItem(item)"
+                     class="d-flex">
+
+                    <div [ngClass]="{'required': item.get('attribute').get('required')?.value, 'ps-0': i === 0 }"
+                         class="col-sm-6 no-padding-left form-group">
+                        <label #dateTimeTitle id="date-time-title" class="control-label text-truncate w-100" data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="{{dateTimeTitle.offsetWidth < dateTimeTitle.scrollWidth ? item.value['attribute'].title :''}}">
+                            {{item.value['attribute'].title}} ({{'tracker-manager.attribute.date' | translate}})
+                        </label>
+                        <div class="form-group px-0"
+                             [ngClass]="{'required': item.get('attribute').get('required')?.value}">
+                            <div class="input-group cursor-pointer">
+                                <input id="custom-date-{{i}}" class="form-control" [matDatepicker]="pickerCustomDate"
+                                       formControlName='value' (dateChange)="changeForm()"
+                                       [min]="returnDateFromTimestamp(item.value['attribute'].minDate)"
+                                       [max]="returnDateFromTimestamp(item.value['attribute'].maxDate)"
+                                       data-mask="00/00/0000"
+                                       placeholder="DD/MM/AAAA">
+                                <div class="input-group-prepend">
+                                    <div
+                                        [ngClass]=" isPreview ? 'input-group-text not-allowed': 'input-group-text pointer'"
+                                        (click)="pickerCustomDate.open()">
+                                        <i id="date-time-icon" class="material-icons pull-right fs-5"> event </i>
+                                    </div>
+                                </div>
+                                <mat-datepicker id="picker-custom-date-time" #pickerCustomDate></mat-datepicker>
+                            </div>
+                            <common-control-message id="date-time-control-message" *ngIf="item.value['attribute'].type === 'DATE_TIME'"
+                                                    [control]="item.get('value')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 form-group no-padding-right form-group"
+                         [ngClass]="{'required': item.get('attribute').get('required')?.value, 'pe-0': (i + 1) === lineItems(line).length}">
+                        <label #attributeTimeTitle id="attribute-time-title" class="control-label text-truncate w-100"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="{{attributeTimeTitle.offsetWidth < attributeTimeTitle.scrollWidth ? item.value['attribute'].title:''}}">
+                            {{item.value['attribute'].title}} ({{'tracker-manager.attribute.time' | translate}})
+                        </label>
+                        <div class="input-group">
+                            <input id="time-input" matInput type="time" class="form-control pl-2" formControlName="time"
+                                   (change)="changeForm()">
+                        </div>
+                        <common-control-message id="time-control-message" *ngIf="item.value['attribute'].type === 'DATE_TIME'"
+                                                [control]="item.get('time')">
+                        </common-control-message>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</form>

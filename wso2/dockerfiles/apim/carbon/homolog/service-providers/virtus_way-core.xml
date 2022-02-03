@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><ServiceProvider>
+  <ApplicationName>virtus_way-core</ApplicationName>
+  <Description>Service Provider for application virtus_way-core</Description>
+  <JwksUri/>
+  <InboundAuthenticationConfig>
+    <InboundAuthenticationRequestConfigs>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>Core Way</InboundAuthKey>
+        <InboundAuthType>passivests</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>Core Way</InboundAuthKey>
+        <InboundAuthType>openid</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>sRM2Nt3_A5XhCbXMBBSEq4HP3jwa</InboundAuthKey>
+        <InboundAuthType>oauth2</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <inboundConfiguration><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oAuthAppDO>
+    <oauthConsumerKey>sRM2Nt3_A5XhCbXMBBSEq4HP3jwa</oauthConsumerKey>
+    <oauthConsumerSecret>HCclN7VxnBEa0gF74IRKqu7OT4Aa</oauthConsumerSecret>
+    <applicationName>virtus_way-core</applicationName>
+    <callbackUrl>regexp=(https://demo-core.virtus-way.org|https://demo-core.virtus-way.org/.*)</callbackUrl>
+    <oauthVersion>OAuth-2.0</oauthVersion>
+    <grantTypes>refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer implicit password client_credentials iwa:ntlm urn:ietf:params:oauth:grant-type:device_code authorization_code urn:ietf:params:oauth:grant-type:jwt-bearer </grantTypes>
+    <scopeValidators/>
+    <pkceSupportPlain>true</pkceSupportPlain>
+    <pkceMandatory>false</pkceMandatory>
+    <state>ACTIVE</state>
+    <userAccessTokenExpiryTime>3600</userAccessTokenExpiryTime>
+    <applicationAccessTokenExpiryTime>3600</applicationAccessTokenExpiryTime>
+    <refreshTokenExpiryTime>86400</refreshTokenExpiryTime>
+    <idTokenExpiryTime>3600</idTokenExpiryTime>
+    <audiences/>
+    <bypassClientCredentials>false</bypassClientCredentials>
+    <renewRefreshTokenEnabled>true</renewRefreshTokenEnabled>
+    <requestObjectSignatureValidationEnabled>false</requestObjectSignatureValidationEnabled>
+    <idTokenEncryptionEnabled>false</idTokenEncryptionEnabled>
+    <idTokenEncryptionAlgorithm>null</idTokenEncryptionAlgorithm>
+    <idTokenEncryptionMethod>null</idTokenEncryptionMethod>
+    <tokenType>Default</tokenType>
+</oAuthAppDO>
+]]></inboundConfiguration>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+    </InboundAuthenticationRequestConfigs>
+  </InboundAuthenticationConfig>
+  <LocalAndOutBoundAuthenticationConfig>
+    <AuthenticationSteps/>
+    <AuthenticationType>default</AuthenticationType>
+    <alwaysSendBackAuthenticatedListOfIdPs>false</alwaysSendBackAuthenticatedListOfIdPs>
+    <UseTenantDomainInUsername>false</UseTenantDomainInUsername>
+    <UseUserstoreDomainInRoles>true</UseUserstoreDomainInRoles>
+    <UseUserstoreDomainInUsername>false</UseUserstoreDomainInUsername>
+    <SkipConsent>true</SkipConsent>
+    <skipLogoutConsent>true</skipLogoutConsent>
+    <EnableAuthorization>false</EnableAuthorization>
+  </LocalAndOutBoundAuthenticationConfig>
+  <RequestPathAuthenticatorConfigs/>
+  <InboundProvisioningConfig>
+    <ProvisioningUserStore/>
+    <IsProvisioningEnabled>false</IsProvisioningEnabled>
+    <IsDumbModeEnabled>false</IsDumbModeEnabled>
+  </InboundProvisioningConfig>
+  <OutboundProvisioningConfig>
+    <ProvisioningIdentityProviders/>
+  </OutboundProvisioningConfig>
+  <ClaimConfig>
+    <RoleClaimURI/>
+    <LocalClaimDialect>true</LocalClaimDialect>
+    <IdpClaim/>
+    <ClaimMappings/>
+    <AlwaysSendMappedLocalSubjectId>false</AlwaysSendMappedLocalSubjectId>
+    <SPClaimDialects>
+      <SPClaimDialect>http://wso2.org/claims</SPClaimDialect>
+    </SPClaimDialects>
+  </ClaimConfig>
+  <PermissionAndRoleConfig>
+    <Permissions/>
+    <RoleMappings/>
+    <IdpRoles/>
+  </PermissionAndRoleConfig>
+  <IsSaaSApp>false</IsSaaSApp>
+  <ImageUrl/>
+  <AccessUrl/>
+  <IsDiscoverable>false</IsDiscoverable>
+</ServiceProvider>

@@ -1,0 +1,30 @@
+<gridster id="grid-resize" [options]="options">
+    <gridster-item [item]="item" *ngFor="let item of grid">
+        <div class="grid-item" [ngSwitch]="item.type">
+            <div *ngSwitchDefault>
+                <label id="title-default-label"
+                       class="control-label disabled-color text-truncate">{{item.title}}</label>
+                <input id="title-default" type="text" class="form-control" disabled>
+            </div>
+            <div *ngSwitchCase="'BOOLEAN'">
+                <label id="title-boolean-label"
+                       class="control-label disabled-color text-truncate">{{item.title}}</label>
+                <div class="form-check form-switch">
+                    <input id="title-boolean" class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled"
+                           disabled>
+                </div>
+            </div>
+            <div *ngSwitchCase="'DATE_TIME'">
+                <label id="title-date-time-label" class="control-label disabled-color text-truncate">{{item.title}}</label>
+                <div class="row m-0 p-0">
+                    <div class="col-md-6 pl-0">
+                        <input id="title-input-0" type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-6 pr-0">
+                        <input id="title-input-1" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </gridster-item>
+</gridster>

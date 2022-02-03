@@ -1,0 +1,18 @@
+<ng-template #popContent>
+    <tracker-popover-tags-list id="tracker-popover-tags-list" *ngIf="page==1 && !loading" (openEditTag)="openPage(2, $event)"
+                               (openRemoveTag)="openPage(3, $event)" [editedTag]="tag" (selectedTag)="selectTag($event)"
+                               [trackerModel]="trackerModel" [tracker]="tracker"></tracker-popover-tags-list>
+
+    <tracker-popover-tags-edit id="tracker-popover-tags-edit" *ngIf="page==2 && !loading" (openListTags)="openPage(1, $event)"
+                               [selectedTag]="tag" [trackerModel]="trackerModel">
+    </tracker-popover-tags-edit>
+
+    <tracker-popover-tags-remove id="tracker-popover-tags-remove" *ngIf="page==3 && !loading" (removedTag)="removedTag.emit($event)"
+                                 (openListTags)="openPage(1)"
+                                 [selectedTag]="tag" [trackerModel]="trackerModel">
+    </tracker-popover-tags-remove>
+</ng-template>
+<button id="pop-tags-open" class="btn-clear tag-button" placement="bottom" [ngbPopover]="popContent"
+        [autoClose]="'outside'" triggers="manual" #p="ngbPopover" (click)="p.open()">
+    <i id="tag-icon" class="material-icons"> local_offer </i>
+</button>

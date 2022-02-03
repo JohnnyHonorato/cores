@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UserStoreManager class="org.wso2.custom.user.store.manager.CustomJDBCUserStoreManager">
+      <Property name="driverName">org.postgresql.Driver</Property>
+      <Property name="url">jdbc:postgresql://db:5432/virtus_way?currentSchema=core</Property>
+      <Property name="userName">virtus</Property>
+      <Property name="password">master</Property>
+      <Property name="Disabled">false</Property>
+      <Property name="ReadOnly">true</Property>
+      <Property name="SelectUserSQL">SELECT id, username, password FROM user_account WHERE username = ? AND external = true</Property>
+      <Property name="UserFilterSQL">SELECT username FROM user_account WHERE username LIKE ? AND external = true ORDER BY id</Property>
+      <Property name="DomainName">EXTERNAL</Property>
+      <Property name="Description"/>
+</UserStoreManager>

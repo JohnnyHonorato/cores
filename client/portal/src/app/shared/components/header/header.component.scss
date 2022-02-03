@@ -1,0 +1,44 @@
+.custom-navbar {
+    background: #142263;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+}
+
+.content-left {
+    height: 100%;
+}
+
+.hamburger-button {
+    background-color: #0E1846;
+    width: 70px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-toggle {
+    padding: 0;
+    text-decoration: none;
+}
+
+.custom-icon {
+    color: #FFFFFF;
+    font-size: 32px;
+}
+
+.pr-2 {
+    padding-right: 27px;
+}
+
+.img {
+    padding-left: 10px;
+    height: 32px;
+}
+
+.pr {
+    padding-right: 6px;
+}
+
+

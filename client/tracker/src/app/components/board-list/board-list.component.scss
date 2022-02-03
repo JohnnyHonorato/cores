@@ -1,0 +1,78 @@
+.card-custom {
+    min-width: 255px;
+    min-height: 211px;
+    width: 255px;
+    height: 211px;
+    padding-top: 20px;
+    margin: 12px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    transition: box-shadow .15s ease-in;
+    border: 1px solid #EAEAF3;
+    box-shadow: 0 3px 20px #0000000D;
+}
+
+.align-custom {
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;
+}
+
+.row-align {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.custom-border {
+    background: #FFFFFF;
+    border: 2px dashed #4D66D3;
+    border-radius: 8px;
+    opacity: 1;
+}
+
+.icon {
+    font-size: 50px !important;
+    color: #4D66D3 !important;
+}
+
+.board-icon-font {
+    font-size: 60px;
+    color: #132565 !important;
+}
+
+button {
+    line-height: normal !important;
+    font-size: x-small !important;
+}
+
+i {
+    cursor: pointer;
+}
+
+.icon-size {
+    font-size: 20px;
+}
+
+.background-options {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: #f1f1f8;
+    margin: 0 3px;
+}
+
+.board-name {
+    padding: 16px 32px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    width: 250px;
+}
+
+.text-color {
+    color: #4D66D3 !important;
+}

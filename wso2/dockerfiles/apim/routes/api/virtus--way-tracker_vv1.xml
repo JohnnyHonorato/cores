@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?><api xmlns="http://ws.apache.org/ns/synapse" name="virtus--way-tracker" context="/tracker/v1" version="v1" version-type="context">
+    <resource methods="GET" url-mapping="/tracker-models" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" url-mapping="/tracker-models" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/tracker-models/{trackerModelId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/tracker-models/{trackerModelId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PATCH" uri-template="/tracker-models/{trackerModelId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" url-mapping="/trackers" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" url-mapping="/trackers" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/trackers/{trackerId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/trackers/{trackerId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/trackers/{trackerId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PATCH" uri-template="/trackers/{trackerId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/trackers/{trackerId}/status/{statusId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/trackers?statusId={statusId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/tracker-models/{trackerModelId}/tags" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" uri-template="/tracker-models/{trackerModelId}/tags" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/tracker-models/{trackerModelId}/tags/{id}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}/tags/{id}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}/status/{id}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/trackers/{trackerId}/comments" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" uri-template="/trackers/{trackerId}/comments" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/trackers/{trackerId}/comments/{commentId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/trackers/{trackerId}/comments/{commentId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/trackers/{trackerId}/comments/{commentId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" url-mapping="/people" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}/attribute/{attributeId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" url-mapping="/checklists" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" url-mapping="/checklists" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/checklists/{checklistId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/checklists/{checklistId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/checklists/{checklistId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PATCH" uri-template="/checklists/{checklistId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/checklist/{checklistId}/item/{checklistItemId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" url-mapping="/transitions" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="PUT" url-mapping="/transitions" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="POST" url-mapping="/transitions" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" url-mapping="/transitions" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/people/{peopleId}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}/status/custom/{id}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/tracker-models/{trackerModelId}/attribute/custom/{id}" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/tracker-models/{trackerModelId}/tags/all" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <resource methods="GET" uri-template="/trackers/{trackerId}/comments/count" faultSequence="fault">
+        <inSequence>
+            <property name="api.ut.backendRequestTime" expression="get-property('SYSTEM_TIME')"/>
+            <filter source="$ctx:AM_KEY_TYPE" regex="PRODUCTION">
+                <then>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIproductionEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <send>
+                        <endpoint key="way-tracker--vv1_APIsandboxEndpoint"/>
+                    </send>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <class name="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtResponseHandler"/>
+            <send/>
+        </outSequence>
+    </resource>
+    <handlers>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.common.APIMgtLatencyStatsHandler">
+            <property name="apiUUID" value="f4a86177-4034-4c05-ab68-3d84e6176928"/>
+        </handler>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.security.CORSRequestHandler">
+            <property name="apiImplementationType" value="ENDPOINT"/>
+            <property name="allowHeaders" value="authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction,apikey"/>
+            <property name="allowedOrigins" value="*"/>
+            <property name="AuthorizationHeader" value="apikey"/>
+            <property name="allowedMethods" value="GET,PUT,POST,DELETE,PATCH,OPTIONS"/>
+            <property name="allowCredentials" value="true"/>
+        </handler>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.security.APIAuthenticationHandler">
+            <property name="RemoveOAuthHeadersFromOutMessage" value="true"/>
+            <property name="APILevelPolicy" value=""/>
+            <property name="provider" value="virtus"/>
+            <property name="AuthorizationHeader" value="apikey"/>
+            <property name="keyManagers" value="all"/>
+            <property name="CertificateInformation" value="{}"/>
+            <property name="APISecurity" value="oauth_basic_auth_api_key_mandatory,api_key"/>
+            <property name="apiUUID" value="f4a86177-4034-4c05-ab68-3d84e6176928"/>
+        </handler>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.throttling.ThrottleHandler"/>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtUsageHandler"/>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.analytics.APIMgtGoogleAnalyticsTrackingHandler">
+            <property name="configKey" value="ga-config-key"/>
+        </handler>
+        <handler class="org.wso2.carbon.apimgt.gateway.handlers.ext.APIManagerExtensionHandler"/>
+    </handlers>
+</api>

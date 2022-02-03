@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  exported-variables:
+    - MODULE
+    - S3_BUCKET
+    - AWS_CLOUDFRONT_DIST_ID
+phases:
+  pre_build:
+    on-failure: ABORT
+    commands:
+      # reading cloudfront distribution variable
+      - AWS_CLOUDFRONT_DIST_ID=$(eval "echo \${$AWS_CLOUDFRONT_DIST_ID}")
+  build:
+    on-failure: ABORT
+    commands:
+      - echo ${BUILD_ENV} deploy started on `date`
+  post_build:
+    on-failure: ABORT
+    commands:
+      - echo '###############' Updating s3 buckets from client '###############'
+      - aws s3 rm s3://${S3_BUCKET}/${BUILD_ENV} --recursive
+      - aws s3 cp ./client/${MODULE}/dist/${MODULE} s3://${S3_BUCKET}/${BUILD_ENV}/ --recursive
+
+      - echo '###############' Invalidate CloudFront cache for \'${MODULE}\' '###############'
+      - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_DIST_ID}  --paths "/*"

@@ -1,0 +1,17 @@
+<div id="modal-header" class="modal-header">
+    <h3 id="modal-title" class="modal-title col-sm-11 no-padding" translate>system.confirm</h3>
+    <button id='btn-close' type="button" class="btn-close" aria-label="Close" (click)="closeModal.emit(false)">
+    </button>
+</div>
+<div id="modal-body" class="modal-body">
+    <p id="modal-body-content" translate>operations.edit.confirmation</p>
+</div>
+
+<div id="modal-footer" class="modal-footer">
+    <button id="no-btn" type="button" class="btn btn-default" (click)="closeModal.emit(false)">
+        <span id="no-btn-content" translate>system.no</span>
+    </button>
+    <button id="yes-btn" type="button" class="btn btn-primary" (click)="confirmation()">
+        <span id="yes-btn-content" translate>system.yes</span>
+    </button>
+</div>

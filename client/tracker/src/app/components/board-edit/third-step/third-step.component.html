@@ -1,0 +1,134 @@
+<div id="third-step" class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="d-flex justify-content-between px-1 mb-3">
+                <div class="col-8 m-0">
+                    <div id="status-label" class="page-title-wizard" translate>
+                        tracker-manager.matrix-status
+                    </div>
+                    <div *ngIf="!openChangePosition" id="description-label-0" class="page-description-wizard" translate>
+                        tracker-manager.matrix-status-description
+                    </div>
+                    <div *ngIf="openChangePosition" id="description-label-1" class="page-description-wizard" translate>
+                        tracker-manager.change-status-description
+                    </div>
+                </div>
+                <div class="m-0 my-1" *ngIf="!openChangePosition">
+                    <div
+                        *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/update-*', 'TRACKER/insert-tracker-model', 'TRACKER/update-tracker-model']">
+                        <button id="open-close-modal" type="button" class="btn btn-primary add-att-btn"
+                                (click)="openEditStatusModal()">
+                            <span translate>tracker.add-status</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 px-1" *ngIf="openChangePosition">
+                <tracker-drag-drop-status-changes
+                    [setList]="statusList"
+                    [control]="'orderStatus'"
+                    [showType]="false"
+                    (updateList)="updateStatusList($event)">
+                </tracker-drag-drop-status-changes>
+            </div>
+            <div class="col-12 table-responsive custom-position-table px-1"
+                 *ngIf="returnAmountOfValidStatus() > 0 && !openChangePosition">
+                <table class="table card-table table-vcenter table-bordered">
+                    <thead class="color-head">
+                    <tr>
+                        <th *ngIf="!openChangePosition">
+                            <div id="show-change-position" role="button" class="order-by fw-normal"
+                                 *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/insert-*', 'TRACKER/update-tracker-model', 'TRACKER/insert-tracker-model']"
+                                 (click)="showChangePosition(true)" translate>
+                                <span id="reorder-icon"
+                                      class="material-icons-outlined format"> format_line_spacing </span>
+                                tracker-manager.status.reorder
+                            </div>
+                        </th>
+                        <ng-container *ngFor="let item of statusList">
+                            <th id="status-list-item" *ngIf="item.deleted === false"
+                                class="text-center custom-th cursor-default cut-text fw-normal"
+                                data-toggle="tooltip" title={{item.name}}>
+                                {{item.name}}
+                            </th>
+                        </ng-container>
+                    </tr>
+                    </thead>
+                    <tbody id="status-list-table">
+                    <ng-container *ngFor="let itemTR of statusList; let i = index">
+                        <tr *ngIf="itemTR.deleted === false">
+                            <th id="item-tr-name-tooltip-{{i+1}}" scope="row" class="text-center cursor-default"
+                                data-toggle="tooltip"
+                                title={{itemTR.name}}>
+                                <div class="d-sm-flex m-0 th-first-child custom-tr fw-normal">
+                                    <p id="item-tr-name-{{i+1}}" class="cut-text">{{itemTR.name}}</p>
+                                    <div class="ms-auto text-right">
+                                        <div
+                                            *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/insert-*', 'TRACKER/update-tracker-model', 'TRACKER/insert-tracker-model']">
+                                            <button id="edit-btn-{{i+1}}"
+                                                    class="material-icons-outlined cursor-pointer btn-muted"
+                                                    (click)="editStatus(itemTR, i)">
+                                                edit
+                                            </button>
+                                        </div>
+                                        <div
+                                            *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/insert-*', 'TRACKER/delete-status', 'TRACKER/delete-tracker-model', 'TRACKER/insert-tracker-model']">
+                                            <button id="delete-btn-{{i+1}}"
+                                                    class="material-icons-outlined btn-muted cursor-pointer text-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#modal-delete-item"
+                                                    (click)="deleteStatus(itemTR, i)">
+                                                delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <ng-container *ngFor="let itemTH of statusList; let i = index">
+                                <th id="status-list-item-th-{{i+1}}" class="text-center" *ngIf="itemTH.deleted === false"
+                                    [ngClass]="{'change-color-table' : itemTR.name === itemTH.name}">
+                                    <div *ngIf="itemTR.name !== itemTH.name" class="custom-option-table">
+                                        <div></div>
+                                        <span id="{{itemTR.position}}{{itemTH.position}}"
+                                              class="material-icons-outlined wkf-inactive"
+                                              [ngClass]="selectClass(itemTR, itemTH)"
+                                              (click)="changeTransition(itemTR, itemTH)"> remove_circle </span>
+
+                                        <span id="{{itemTR.position}}{{itemTH.position}}-{{i}}"
+                                              *ngIf="selectClass(itemTR, itemTH) === 'btn-add'"
+                                              class="material-icons-outlined custom-icon-settings wkf-inactive"
+                                              data-toggle="modal" data-target="#setting-modal"
+                                              (click)="selectTransition(itemTR, itemTH)"> settings </span>
+                                    </div>
+                                    <span id="settings-icon" *ngIf="itemTR.name === itemTH.name"
+                                          (click)="selectTransition(itemTR, itemTH)"
+                                          class="material-icons-outlined custom-icon-settings"
+                                          data-toggle="modal" data-target="#setting-modal"> settings </span>
+                                </th>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center cursor-default" *ngIf="returnAmountOfValidStatus() === 0">
+                <strong id="no-record-span" translate>system.no-record</strong>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" *ngIf="!openChangePosition">
+        <button id="previous-btn" type="button" class="btn btn-back" awPreviousStep>
+            <span id="previous-icon" class="material-icons-outlined previous"> keyboard_arrow_left </span>
+            <span id="previous-label" translate>system.previous</span>
+        </button>
+
+        <button id="next-btn" type="button" class="btn btn-next" [disabled]="!nextStep"
+                (click)="goToFourthStep.emit()" awNextStep>
+            <span id="next-label" translate>system.next</span>
+            <span id="next-icon" class="material-icons-outlined next">keyboard_arrow_right</span>
+        </button>
+    </div>
+</div>
+
+<common-delete-confirmation (ok)="confirmDeletionStatus()" target="modal-delete-item">
+</common-delete-confirmation>
+

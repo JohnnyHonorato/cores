@@ -1,0 +1,39 @@
+.custom-thead {
+    background: #FAFAFA;
+    border: 1px solid #E0E0E0;
+}
+
+.custom-th {
+    border-bottom-width: 0 !important;
+    color: #1A2266;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.btn-muted {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-muted:focus, .btn-muted:hover, .btn-muted:active, .btn-muted:active:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.btn-muted:disabled {
+    cursor: not-allowed;
+
+    i.fe {
+        color: lightgray;
+    }
+}
+
+.color-red {
+    color: #BA2A2F;
+}
+
+.btn-add {
+    margin-left: 10px !important;
+}

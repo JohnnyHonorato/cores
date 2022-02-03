@@ -1,0 +1,227 @@
+<div id="modal-header" class="modal-header">
+    <h4 id="modal-title-add" class="modal-title col-lg-11 no-padding" *ngIf="!isEditMode">
+        {{'system.add' | translate}} {{'tracker-manager.attribute.label' | translate}}
+    </h4>
+    <h4 id="modal-title-edit" class="modal-title col-lg-11 no-padding" *ngIf="isEditMode">
+        {{'system.edit' | translate}} {{'tracker-manager.attribute.label' | translate}}
+    </h4>
+    <button id="cancel" type="button" (click)="close()" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    </button>
+</div>
+<div id="modal-body" class="modal-body">
+    <form [formGroup]="editForm" role="form">
+        <div class="row">
+            <div id="common-name-content" class="form-group required col-xs-12">
+                <label id="common-name" class="control-label" translate>common.name</label>
+                <input id="title" type="text" formControlName="title" class="form-control"
+                       [ngClass]="hasError(editForm.controls.title)"/>
+                <common-control-message id="att-title-ctrl-msg" [control]="editForm.controls.title">
+                </common-control-message>
+            </div>
+
+            <div id="attribute-type-content" class="form-group required col-xs-12">
+                <label id="attribute-type" class="control-label" translate>tracker-manager.attribute.type.title</label>
+                <ng-select id="select-att-type" formControlName="type" [items]="attributeTypes" [multiple]="false"
+                           bindValue="value" (change)="resetForm()" translate>
+                    <ng-template id="attribute-type-label" ng-label-tmp let-item="item">
+                        {{item.label | translate}}
+                    </ng-template>
+                    <ng-template id="attribute-type-option" ng-option-tmp let-item="item" let-search="searchTerm"
+                                 let-index="index">
+                        <span id="attribute-type-option-item">{{ item.label | translate }}</span>
+                    </ng-template>
+                    <ng-template id="attribute-type-not-found" ng-notfound-tmp let-searchTerm="searchTerm">
+                        <div id="attribute-type-not-found-item" class="ng-option text-muted">
+                            {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                        </div>
+                    </ng-template>
+                </ng-select>
+                <common-control-message id="att-type-ctrl-msg" [control]="editForm.get('type')"></common-control-message>
+            </div>
+
+            <div class="form-group row col-xs-12 ml-0 mr-0">
+                <div class="d-flex p-0">
+                    <div class="form-check me-3">
+                        <input color="primary" class="form-check-input" type="checkbox"
+                               [checked]="editForm.controls.showOnCard.value"
+                               [value]="editForm.controls.showOnCard.value"
+                               id="show-card" (change)="isShowOnCardField($event.target?.checked)">
+                        <label id="show-card-label" class="form-check-label" for="show-card" translate>
+                            tracker-manager.attribute.show-on-card
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="attribute-required" color="primary"
+                               (change)="isRequiredField($event.target?.checked)"
+                               [checked]="editForm.controls.required.value" [value]="editForm.controls.required.value">
+                        <label id="attribute-required-label" class="form-check-label" for="attribute-required"
+                               translate>
+                            tracker-manager.attribute.required
+                        </label>
+                    </div>
+                </div>
+
+                <div class="p-0 d-flex align-items-center" *ngIf="showInput('PEOPLE')">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="add-filter" color="primary"
+                               (change)="isNeedsValue($event.target?.checked)"
+                               [checked]="editForm.controls.needsValueComplement.value"
+                               [value]="editForm.controls.needsValueComplement.value">
+                        <label id="add-filter-label" class="form-check-label" for="add-filter" translate>
+                            tracker-manager.attribute.add-filter
+                        </label>
+                    </div>
+
+                    <i id="hint-help" class="material-icons-outlined" data-bs-toggle="tooltip" data-bs-placement="top"
+                       title="{{'tracker-manager.attribute.hint.functionality-filter' | translate}}">
+                        help_outline
+                    </i>
+                </div>
+                <common-control-message id="att-required-ctrl-msg" [control]="editForm.get('required')">
+                </common-control-message>
+            </div>
+            <div class="d-flex p-0">
+                <div *ngIf="showInput('INTEGER')" class="form-group col-xs-6">
+                    <label id="min-value-label" class="control-label"
+                           translate>tracker-manager.attribute.min-value</label>
+                    <input id="min-value" type="text" thousandSeparator="." [allowNegativeNumbers]="true"
+                           mask="separator.0" formControlName="minValue" class="form-control"
+                           [ngClass]="hasError(editForm.controls.minValue)"/>
+                    <common-control-message id="int-min-ctrl-msg" [control]="editForm.get('minValue')">
+                    </common-control-message>
+                </div>
+
+                <div *ngIf="showInput('INTEGER')" class="form-group col-xs-6">
+                    <label id="max-value-label" class="control-label"
+                           translate>tracker-manager.attribute.max-value</label>
+                    <input id="max-value" type="text" thousandSeparator="." [allowNegativeNumbers]="true"
+                           mask="separator.0" formControlName="maxValue" class="form-control"
+                           [ngClass]="hasError(editForm.controls.maxValue)"/>
+                    <common-control-message id="int-max-ctrl-msg" [control]="editForm.get('maxValue')">
+                    </common-control-message>
+                </div>
+            </div>
+            <div class="d-flex p-0">
+                <div *ngIf="showInput('DECIMAL')" class="form-group col-xs-6">
+                    <label id="min-value-decimal-label" class="control-label"
+                           translate>tracker-manager.attribute.min-value</label>
+                    <input id="min-value-decimal" type="text" trackerFormattingDecimalField
+                           (receive)="setDecimalField($event, 'minValue')" [allowNegativeNumbers]="true"
+                           thousandSeparator="." [decimalMarker]="','" mask="separator.2" formControlName="minValue"
+                           class="form-control" [ngClass]="hasError(editForm.controls.minValue)"/>
+                    <common-control-message id="decimal-min-ctrl-msg" [control]="editForm.get('minValue')">
+                    </common-control-message>
+                </div>
+
+                <div *ngIf="showInput('DECIMAL')" class="form-group col-xs-6">
+                    <label id="max-value-decimal-label" class="control-label"
+                           translate>tracker-manager.attribute.max-value</label>
+                    <input id="max-value-decimal" type="text" trackerFormattingDecimalField
+                           (receive)="setDecimalField($event, 'maxValue')" [allowNegativeNumbers]="true"
+                           thousandSeparator="." [decimalMarker]="','" mask="separator.2" formControlName="maxValue"
+                           class="form-control" [ngClass]="hasError(editForm.controls.maxValue)"/>
+                    <common-control-message id="decimal-max-ctrl-msg" [control]="editForm.get('maxValue')">
+                    </common-control-message>
+                </div>
+            </div>
+            <div *ngIf="showInput('STRING')" class="form-group required col-xs-12">
+                <label id="max-length-label" class="control-label"
+                       translate>tracker-manager.attribute.max-length</label>
+                <input id="max-length" type="number" formControlName="maxLength"
+                       onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control"
+                       [ngClass]="hasError(editForm.controls.maxLength)"/>
+                <common-control-message id="txt-max-length-ctrl-msg" [control]="editForm.get('maxLength')">
+                </common-control-message>
+            </div>
+            <div *ngIf="showInput('CURRENCY')" class="form-group required col-xs-12">
+                <label id="currency-label" class="control-label" translate>tracker-manager.attribute.currency</label>
+                <ng-select id="currency" [items]="currencyUnitsBuffer" [virtualScroll]="true"
+                           [loading]="loadingItems" [clearable]="false" [searchable]="true"
+                           bindLabel="symbol" bindValue="symbol" (scroll)="onScroll($event)"
+                           (scrollToEnd)="onScrollToEnd()" formControlName="currency"
+                           (change)="onChangeMonetary()">
+                    <ng-template id="currency-option-item" ng-option-tmp let-item="item" let-index="index">
+                        {{item.symbol}}
+                    </ng-template>
+                </ng-select>
+            </div>
+            <div *ngIf="showInput('LIST')" class="form-group col-xs-12">
+                <label id="list-options-label" class="control-label"
+                       translate>tracker-manager.attribute.list-options</label>
+                <tag-input id="tag-input" formControlName="listValues" [theme]="'bootstrap'"
+                           [modelAsStrings]="true" [validators]="listValidators"
+                           [errorMessages]="listValidatorsMsg"
+                           [secondaryPlaceholder]="'Pressione \'Enter\' para adicionar'"
+                           placeholder=" + {{'tracker-manager.attribute.list-options' | translate}}">
+                </tag-input>
+                <common-control-message id="list-ctrl-msg" [control]="editForm.get('listValues')">
+                </common-control-message>
+            </div>
+            <ng-container *ngIf="showInput('DATE')">
+                <div class="form-group col-sm-6">
+                    <label id="min-date-label" class="control-label"
+                           translate>tracker-manager.attribute.min-date</label>
+                    <div class="input-group date">
+                        <input id="min-date" class="form-control" [matDatepicker]="pickerMinDate"
+                               formControlName="minDate" data-mask="00/00/0000">
+                        <div class="input-group-prepend">
+                            <div id="picker-min-date" class="input-group-text cursor-pointer"
+                                 (click)="pickerMinDate.open()">
+                                <span id="min-date-icon" class="material-icons-outlined">event</span>
+                            </div>
+                        </div>
+                    </div>
+                    <common-control-message id="att-min-date-ctrl-msg" [control]="editForm.get('minDate')">
+                    </common-control-message>
+                    <mat-datepicker #pickerMinDate></mat-datepicker>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label id="max-date-label" class="control-label"
+                           translate>tracker-manager.attribute.max-date</label>
+                    <div class="input-group date">
+                        <input id="max-date" class="form-control" [matDatepicker]="pickerMaxDate"
+                               formControlName="maxDate" data-mask="00/00/0000">
+                        <div class="input-group-prepend">
+                            <div id="picker-max-date" class="input-group-text cursor-pointer"
+                                 (click)="pickerMaxDate.open()">
+                                <span id="max-date-icon" class="material-icons-outlined">event</span>
+                            </div>
+                        </div>
+                    </div>
+                    <common-control-message id="att-max-date-ctrl-msg" [control]="editForm.get('maxDate')">
+                    </common-control-message>
+                    <mat-datepicker #pickerMaxDate></mat-datepicker>
+                </div>
+            </ng-container>
+
+            <div *ngIf="showInput('PEOPLE') && editForm.get('needsValueComplement').value"
+                 class="form-group col-xs-12">
+                <label id="people-label" class="control-label" translate>tracker-manager.filter</label>
+                <ng-select id="people-select" formControlName="relatedAttribute"
+                           [items]="organizationFields" bindLabel="title">
+                </ng-select>
+                <common-control-message id="att-related-ctrl-msg" [control]="editForm.get('relatedAttribute')">
+                </common-control-message>
+                <label id="no-organization-registered" class="title d-block text-center no-value"
+                       *ngIf="!(organizationFields.length > 0)">
+                    {{'tracker-manager.no-organization-registered' | translate}}
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="modal-footer" class="modal-footer">
+    <div class="row">
+        <div class="d-flex col-xs-12">
+            <button id="cancel-modal" type="button" class="btn btn-back me-2" (click)="close()"
+                    translate>
+                system.cancel
+            </button>
+            <button id="submit-modal" type="button" class="btn btn-w-m btn-primary" [disabled]="editForm.invalid"
+                    (click)="add()" [ladda]="addingItem">
+                <span translate>system.save</span>
+            </button>
+        </div>
+    </div>
+</div>

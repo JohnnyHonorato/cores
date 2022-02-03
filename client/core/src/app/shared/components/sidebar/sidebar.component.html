@@ -1,0 +1,22 @@
+<div class="container-sidebar cursor-pointer">
+    <a id="dashboard" class="options-sidebar cursor-pointer" routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">
+        <span class="material-icons custom-icon cursor-pointer">home</span>
+        <label class="cursor-pointer" translate>dashboard.title</label>
+    </a>
+    <a id="people" class="options-sidebar cursor-pointer" routerLink="/people" routerLinkActive="active"
+       *ngxPermissionsOnly="['CORE/read-*',  'CORE/read-people']">
+        <span class="material-icons custom-icon cursor-pointer">person</span>
+        <label class="cursor-pointer" translate>people.title.plural</label>
+    </a>
+    <a id="module" class="options-sidebar cursor-pointer" routerLink="/modules" routerLinkActive="active"
+       *ngxPermissionsOnly="['CORE/read-*', 'CORE/read-module']">
+        <span class="material-icons custom-icon cursor-pointer">view_module</span>
+        <label class="cursor-pointer" translate>module.title.plural</label>
+    </a>
+    <a id="role" class="options-sidebar cursor-pointer" routerLink="/roles" routerLinkActive="active"
+       *ngxPermissionsOnly="['CORE/read-*', 'CORE/read-role']">
+        <span class="material-icons custom-icon cursor-pointer">assignment_ind</span>
+        <label class="cursor-pointer" translate>role.title.plural</label>
+    </a>
+</div>

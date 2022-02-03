@@ -1,0 +1,121 @@
+@import '~material-icons/iconfont/material-icons.css';
+@import "node_modules/common/src/assets/scss/variables";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "node_modules/ladda/css/ladda";
+
+body, html {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.custom-center-flex {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+// TODO - Colocar no Common
+
+.card {
+    border-radius: 3px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #eaeaf3;
+    box-shadow: 0 3px 20px #0000000D;
+    max-width: 100% !important;
+    width: 100%;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .card {
+        position: static !important;
+    }
+}
+
+// TODO CRIAR ARQUIVO NO COMMON
+
+.form-group.required > label.control-label:after {
+    content: " *";
+    color: darkred;
+}
+
+.control-label {
+    color: #5E7179;
+    text-transform: uppercase;
+    opacity: 1;
+    font-size: 12px;
+}
+
+.form-group {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+    margin-bottom: 8px !important;
+}
+
+.form-control:focus {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    border: 1px solid rgba(19, 37, 101, 0.8) !important;
+}
+
+.btn {
+    width: 120px !important;
+    height: 39px !important;
+    font-size: 14px !important;
+
+    &.btn-primary {
+        color: #FFFFFF !important;
+        background: $primary-color !important;
+        border: 1px solid $primary-color !important;
+    }
+    
+    &.btn-add {
+        width: 53px !important;
+        height: 38px !important;
+        padding: 0 !important;
+        border: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+.color-primary-color {
+    color: $primary-color !important;
+}
+
+.color-red {
+    color: #BA2A2F;
+}
+
+.form-check-input:checked {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.icon-tooltip {
+    font-size: 12px;
+    padding: 1px;
+    cursor: pointer;
+    color: #326690;
+}

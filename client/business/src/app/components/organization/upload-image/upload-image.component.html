@@ -1,0 +1,30 @@
+<div class="card card-custom-img m-0">
+    <div class="card-body">
+        <div class="col">
+            <div class="images">
+                <common-loading [loading]="loading"></common-loading>
+                <div id="logo" class="image mb-3" *ngIf="image && !loading">
+                    <img [src]="image" class="avatar avatar-xl rounded-circle">
+                </div>
+                <div id="add-img-icon" class="image mb-3" *ngIf="!image && !loading">
+                    <span class="avatar avatar-xl rounded-circle">
+                        <span id="icon-add-image" class="material-icons-outlined">add_photo_alternate</span>
+                   </span>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button id="add-img-btn" type="button" class="btn btn-primary" (click)="openCloseModal()">
+                    <i class="material-icons-outlined">edit</i>
+                </button>
+                <button id="delete-img-btn" type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#modal-delete" [disabled]="!image">
+                    <i class="material-icons-outlined">delete</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<common-delete-confirmation target="modal-delete" (ok)="deleteImage()">
+</common-delete-confirmation>
+
+

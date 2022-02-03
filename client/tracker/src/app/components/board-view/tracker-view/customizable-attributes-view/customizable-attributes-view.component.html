@@ -1,0 +1,35 @@
+<div class="row">
+    <div [ngClass]="getColumnClass(item)" class="px-0" *ngFor="let item of customizableAttributes; let i = index">
+        <label #atributeTitle id="atribute-title-{{i}}" class="title text-truncate w-100" data-bs-toggle="tooltip" data-bs-placement="top"
+        title="{{atributeTitle.offsetWidth < atributeTitle.scrollWidth ? item['attribute'].title :''}}"> {{item["attribute"].title}}
+        </label>
+        <div *ngIf="item.value || item['attribute'].type=='BOOLEAN'; else elseBlock">
+            <div [ngSwitch]="item['attribute'].type">
+                <p id="date-atribute-label={{i}}" *ngSwitchCase="'DATE'"
+                   class="value">{{item.value | date:'dd/MM/yyyy'}}</p>
+                <p id="date-time-atribute-label={{i}}" *ngSwitchCase="'DATE_TIME'"
+                   class="value"> {{item.value | date:'dd/MM/yyyy - HH:mm'}} </p>
+                <p id="currency-atribute-label={{i}}" *ngSwitchCase="'CURRENCY'"
+                   class="value"> {{item.value | currency : item.attribute.currency}} </p>
+                <p id="decimal-atribute-label={{i}}" *ngSwitchCase="'DECIMAL'"
+                   class="value"> {{item.value | number:'.0'}} </p>
+                <p id="integer-atribute-label={{i}}" *ngSwitchCase="'INTEGER'"
+                   class="value"> {{item.value | number:'.0'}} </p>
+                <p id="boolean-atribute-label={{i}}" *ngSwitchCase="'BOOLEAN'" class="value">
+                    {{(item.value) ? ('system.yes' | translate) : ('system.no' | translate)}}</p>
+                <p id="people-atribute-label={{i}}" *ngSwitchCase="'PEOPLE'" class="value text-truncate w-100"
+                   [ngClass]="{'deleted': item.value.deleted}"> {{item.value.deleted ? ('tracker.card.deleted-item' | translate) : item.value.name}}</p>
+                <p id="organization-atribute-label={{i}}" *ngSwitchCase="'ORGANIZATION'"
+                   class="value text-truncate w-100"
+                   [ngClass]="{'deleted': item.value.deleted}"> {{item.value.deleted ? ('tracker.card.deleted-item' | translate) : item.value.fantasyName}}</p>
+                <p id="string-atribute-label={{i}}" *ngSwitchCase="'STRING'" class="value"> {{item.value}}</p>
+                <p id="list-atribute-label={{i}}" *ngSwitchCase="'LIST'" class="value"> {{item.value}}</p>
+                <p id="default-atribute-label={{i}}" *ngSwitchDefault class="value">{{item.value}}</p>
+            </div>
+        </div>
+        <ng-template #elseBlock>
+            <p id="no-registry" class="value"> {{'tracker.card.no-registry' | translate}}</p>
+        </ng-template>
+    </div>
+</div>
+

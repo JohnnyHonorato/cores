@@ -1,0 +1,17 @@
+<div id="drag-drop-status-change" class="status-item custom-status-head px-4 py-0">
+    <button id="close-btn" (click)="closeChangePosition()"
+            class="bg-transparent btn-clear text-danger p-0 position-edit-cancel" translate>
+        <span id="close-icon" class="material-icons-outlined format"> close </span>
+        tracker-manager.position-edit.cancel
+    </button>
+    <button id="save-btn" (click)="saveStatusChanges()"
+            class="btn-save float-right position-edit-save btn-save-order" translate>
+        tracker-manager.position-edit.save
+    </button>
+</div>
+<tracker-drag-drop-items
+    [list]="list"
+    [control]="'orderStatus'"
+    [showType]="false"
+    (updateList)="updateStatusList($event)">
+</tracker-drag-drop-items>

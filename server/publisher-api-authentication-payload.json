@@ -1,0 +1,7 @@
+{
+  "callbackUrl":"%WSO2_CALLBACK_URL%/",
+  "clientName":"rest_api_publisher",
+  "owner":"virtus",
+  "grantType":"client_credentials password refresh_token",
+  "saasApp":true
+}

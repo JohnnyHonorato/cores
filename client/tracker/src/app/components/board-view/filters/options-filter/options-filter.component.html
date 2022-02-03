@@ -1,0 +1,15 @@
+<div class="filter">
+    <div class="content-btn-filter centered" [ngClass]="isOpenFilter ? 'open-filters' : ''">
+        <button id="btn-filter" class="btn btn-filter p-2 d-flex" (click)="openFilter()">
+            <span class="label-filters px-2" id="filter-label">{{'tracker-manager.filter' | translate}}</span>
+            <div id="show-filters-icons" class="label-filters d-flex">
+                <i *ngIf="isOpenFilter" id="up-icon" class="material-icons-round">expand_less</i>
+                <i *ngIf="!isOpenFilter" id="down-icon" class="material-icons-round">expand_more</i>
+            </div>
+        </button>
+        <div class="divider"></div>
+        <button id="btn-advanced-filter" class="btn btn-advanced-filter centered p-2">
+            <i id="add-icon" class="material-icons-round">add</i>
+        </button>
+    </div>
+</div>

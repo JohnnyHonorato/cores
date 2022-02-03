@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    height: 100%;
+    direction: ltr;
+}
+
+body {
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    touch-action: manipulation;
+    font-feature-settings: "liga" 0;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #2A1B4D;
+    text-align: left;
+    background: #e7e9ef;
+}
+
+.page {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.row {
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.44rem;
+    margin-left: -0.44rem;
+}
+
+.card {
+    border-radius: 3px;
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #cbcee8;
+    box-shadow: 0 12px 11px -3px rgba(113, 126, 195, 0.25);
+}
+
+.btn {
+    cursor: pointer;
+    line-height: 26px;
+    padding: 5px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    letter-spacing: .0892857143em;
+    text-transform: uppercase;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary {
+  background: #132565;
+}
+
+.btn.btn-primary, .btn.btn-default {
+    font-size: 12px;
+}
+
+.invalid-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 87.5%;
+  color: #e41313;
+}
+
+.second-sidemenu .avatar {
+    color: #132565;
+    background: none !important;
+}
+
+.second-sidemenu .avatar i {
+    font-size: 100% !important;
+    vertical-align: unset;
+}
+
+.avatar-md {
+    width: 2.3rem;
+}
+
+.ps__thumb-y {
+    width: 5px;
+    background-color: #132565;
+    border-radius: 0;
+}
+
+.ps__rail-x,
+.ps__rail-y { opacity: 0.6; }

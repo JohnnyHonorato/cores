@@ -1,0 +1,164 @@
+.container-filter:not(:last-child) {
+    display: flex;
+    align-items: center;
+}
+
+.container-filter {
+    width: 100%;
+    height: 50px;
+    background: #f7f7fa;
+    border: 1px solid #f0f0f8;
+    border-radius: 4px;
+}
+
+.feedback {
+    margin-top: -4px !important;
+    margin-left: 9px !important;
+    margin-bottom: 5px !important;
+}
+
+.content-filter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.fs-icon {
+    font-size: 14px;
+}
+
+.btn-outline-success:hover {
+    color: #198754;
+}
+
+.cancel-icon {
+    color: #cb2d2d;
+    font-size: 18px;
+}
+
+.filter-item {
+    color: #969aa3;
+    font-size: 14px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 5px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #f0f0f8;
+}
+
+.saved-filter-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #142263;
+    opacity: 0.7;
+}
+
+.filter-name {
+    background: #f0f0f8;
+    border: 2px solid #f0f0f8;
+    border-radius: 4px;
+    min-width: 162px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-name-required {
+    height: auto !important;
+}
+
+.filter:not(:first-child) {
+    .before-filter-item:before {
+        color: #969aa3;
+        content: "\2022" !important;
+        margin-right: 12px;
+    }
+}
+
+@media (max-width: 570px) {
+    .btn-label {
+        display: none;
+    }
+
+    .btn-filter {
+        width: auto;
+    }
+
+    .fs-icon {
+        margin: 0 !important;
+    }
+
+    #filter-name-input,
+    .filter-name {
+        width: 100px;
+        min-width: 100px;
+    }
+
+    .saved-filter-name {
+        width: 85px;
+    }
+}
+
+#filter-name-input {
+    width: 180px;
+    height: 32px;
+    border: 2px solid #f0f0f8;
+    border-radius: 4px;
+    color: #142263;
+    font-size: 12px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 12px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 120px;
+}
+
+.custom-content-filters {
+    display: flex;
+    align-items: center;
+    max-width: 70%;
+    min-width: 30%;
+}
+
+.btn-filter {
+    background-color: white !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    font-size: 12px;
+    margin: 0;
+    width: 50%;
+    max-width: 90px;
+    height: 26px;
+}
+
+.btn-outline-danger:hover {
+    color: #dc3545;
+}
+
+.btn-none {
+    display: none !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.mw-80 {
+    max-width: 80% !important;
+}

@@ -1,0 +1,25 @@
+<div class="custom-navbar" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-left" fxLayout="row" fxLayoutAlign="start center">
+    <div id="toggle-menu" class="hamburger-button cursor-pointer" (click)="toggleMenu()">
+      <a class="material-icons custom-toggle custom-icon">menu</a>
+    </div>
+    <img alt="logo" (click)="goToPortal()" class="img cursor-pointer" src="../../../../assets/images/logo.png">
+  </div>
+  <div class="dropdown pr-2">
+    <span id="account-icon" class="material-icons cursor-pointer custom-icon" data-bs-toggle="dropdown">account_circle</span>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+      <div class="cursor-pointer">
+        <a id="account-option" class="dropdown-item d-flex align-items-center" href="#">
+          <i class="material-icons pr">manage_accounts</i>
+          <label id="account-label">Conta</label>
+        </a>
+      </div>
+      <div id="logout-option" (click)="logout()" class="cursor-pointer">
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <i class="material-icons pr">logout</i>
+          <label id="logout-label">Sair</label>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

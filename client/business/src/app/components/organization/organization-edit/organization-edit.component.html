@@ -1,0 +1,95 @@
+<form class="card" role="form" (ngSubmit)="preSubmitOrganization()" [formGroup]="editForm">
+    <common-loading [loading]="loading"></common-loading>
+    <div class="card-body" *ngIf="!loading">
+        <div class="color-primary-color custom-padding-fields">
+            <h4 id="page-title" translate>organization.data</h4>
+        </div>
+        <div class="row gx-0">
+            <div class="form-group required" [ngClass]="view ? 'col-sm-12' : 'col-sm-10'">
+                <label id="cnpj-label" class="control-label">CNPJ</label>
+                <input id="cnpj-input" type="text" formControlName="governmentCode" class="form-control"
+                       mask="00.000.000/0000-99" [ngClass]="hasError(editForm.get('governmentCode'))"
+                       (keyup.enter)="getOrganizationByCnpj()">
+                <common-control-message id="cnpj-control-msg" [control]="editForm.get('governmentCode')"></common-control-message>
+            </div>
+            <div *ngIf="!view" class="col custom-padding-fields mt-3">
+                <button id="btn-verify-cnpj"
+                        class="btn btn-primary mt-2" type="button"
+                        (click)="getOrganizationByCnpj()"
+                        [disabled]="!editForm.controls.governmentCode.valid" translate> common.verify
+                </button>
+            </div>
+        </div>
+        <div class="row gx-0" *ngIf="cnpjVerified">
+            <div class="col-sm-6">
+                <div class="form-group col-sm-12 required">
+                    <label id="org-name-label" class="control-label" translate>common.name</label>
+                    <input id="org-name-input" type="text" class="form-control" formControlName="name"
+                           [ngClass]="hasError(editForm.get('name'))">
+                    <common-control-message id="org-name-control-msg" [control]="editForm.get('name')"></common-control-message>
+                </div>
+                <div class="form-group col-sm-12 required">
+                    <label id="org-fantasy-name-label" class="control-label" translate>organization.fantasy-name</label>
+                    <input id="org-fantasy-name-input" type="text" class="form-control" formControlName="fantasyName"
+                           [ngClass]="hasError(editForm.get('fantasyName'))">
+                    <common-control-message id="ftsy-control-msg" [control]="editForm.get('fantasyName')"></common-control-message>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label id="description-label" class="control-label" translate>
+                        organization.description
+                    </label>
+                    <textarea id="description-input" class="form-control" formControlName="description"
+                              [ngClass]="hasError(editForm.get('description'))" rows="5">
+                    </textarea>
+                    <common-control-message id="desc-control-msg" [control]="editForm.get('description')"></common-control-message>
+                </div>
+            </div>
+            <div class="custom-padding-fields col-sm-6 m-auto">
+                <business-upload-image (successPostingImage)="saveImg($event)" [setObjectValue]="fileInformation?.file?.name?fileInformation:filePath"
+                                       (successDeleteImage)="deleteImg()">
+                </business-upload-image>
+            </div>
+            <div id="accordion" class="p-1 mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 id="contact-info-title" class="mb-0 contact-info-title cursor-pointer" (click)="collapseOne = !collapseOne"
+                            translate>
+                            contact-info.title.singular
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse" [ngClass]="collapseOne ? '' : 'show'">
+                        <div class="m-3">
+                            <common-contact-info [setContact]="item"
+                                                 (changeForm)="setContacts($event)">
+                            </common-contact-info>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="accordion2" class="p-1 mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 id="contributor-title" class="mb-0 contact-info-title cursor-pointer" (click)="collapseTwo = !collapseTwo"
+                            translate>
+                            organization.contributor
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" [ngClass]="collapseTwo ? '' : 'show'">
+                        <div class="m-3">
+                            <business-contributors (changeForm)="leadCreated($event)" [setItems]='item'
+                                                   [itemId]='item.id'>
+                            </business-contributors>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-0 mt-2" *ngIf="cnpjVerified">
+                <common-form-buttons class="p-1" (backButton)="backToList()" [loading]="submitting"
+                                     [disabledConditions]="editForm.invalid|| !contactsValid">
+                </common-form-buttons>
+            </div>
+        </div>
+    </div>
+</form>
+

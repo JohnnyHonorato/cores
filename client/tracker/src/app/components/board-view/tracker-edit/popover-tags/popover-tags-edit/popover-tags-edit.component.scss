@@ -1,0 +1,23 @@
+
+.separator {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-color {
+    font-size: 26px;
+    padding-right: 0px;
+    text-align: right;
+}
+
+.btn-clear, .btn-color, .button-label {
+    cursor: pointer;
+}
+
+.text-color{
+    color: #132565;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}

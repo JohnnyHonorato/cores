@@ -1,0 +1,75 @@
+@import "../../../../../node_modules/common/src/assets/scss/variables";
+
+:host {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: $background;
+    overflow-x: hidden;
+    transition: width 50ms ease-in-out;
+    box-shadow: 0 2px 20px #0000000D;
+}
+
+:host.expanded {
+    width: 0;
+}
+
+.container-sidebar {
+    padding: 8px 8px 0 8px;
+    border-right: 1px solid #eaeaf3;
+}
+
+.options-sidebar {
+    width: 206px;
+    height: 40px;
+    background-color: $background;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    label {
+        font-size: 14px;
+    }
+}
+
+.options-sidebar:hover, .active {
+    border-right: 5px solid #F89C33;
+    background-color: $primary-color;
+    color: $background;
+    text-decoration: none;
+}
+
+.custom-icon {
+    padding: 0 12px 0 9px;
+    font-size: 20px;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    :host {
+        width: 73px;
+        position: absolute;
+    }
+
+    .container-sidebar {
+        padding: 4px 4px 0 4px;
+        border-right: 1px solid #eaeaf3;
+    }
+
+    .options-sidebar {
+        width: 64px;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+
+        label {
+            display: none;
+        }
+    }
+
+    .custom-icon {
+        font-size: 26px;
+        padding: 0;
+    }
+}

@@ -1,0 +1,177 @@
+.control-label {
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 0;
+    opacity: 0.83;
+}
+
+.form-group.required > label.control-label:after {
+    content: " *";
+    color: #969AA3;
+}
+
+.format {
+    font-size: 12px;
+    line-height: normal;
+    vertical-align: middle;
+    padding-bottom: 2px;
+    padding-right: 6px;
+    text-align: left;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #EAEAF3;
+    border-radius: 8px;
+    opacity: 1;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #e4e6f9;
+}
+
+.not-allowed {
+    cursor: not-allowed !important;
+}
+
+.btn {
+    margin-left: 0.25rem;
+}
+
+.card-footer .btn:not(.last-item) {
+    margin-right: 0.25rem;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.text-area-height {
+    height: 80px;
+}
+
+.custom-modal-members {
+    background-color: #F9F9F9;
+    margin: 7px 4px;
+    border: 1px solid #EAECEF;
+    border-radius: 15px;
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+.modal-tags-content {
+    border: 1px solid #EAEAF3;
+    border-radius: 4px;
+}
+
+.modal-members-content,
+.modal-tags-content {
+    margin-bottom: 16px;
+}
+
+.modal-tags-content .input-group-prepend {
+    min-height: 37px;
+}
+
+.tag {
+    margin: 7px 0 7px 5px;
+    text-align: center;
+    font-size: 11px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 13px;
+}
+
+.material-icons-outlined,
+.material-icons {
+    font-size: 18px;
+}
+
+.disabled-color {
+    color: #969AA3 !important;
+}
+
+.ng-select span {
+    color: #969AA3 !important;
+}
+
+.form-control:disabled {
+    background: #F9F9F9;
+    border-radius: 4px;
+    border: none;
+}
+
+.input-group-text {
+    background: #FFFFFF;
+    border: 1px solid #EAEAF3;
+    border-radius: 0 4px 4px 0;
+    opacity: 1;
+}
+
+.form-control {
+    box-shadow: none;
+}
+
+.form-control:disabled::placeholder {
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0;
+    color: #969AA3;
+    opacity: 0.83;
+}
+
+.btn {
+    border-radius: 3px;
+    box-shadow: 0 3px 20px #0000000D;
+    display: flex;
+}
+
+.material-icons-outlined {
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0;
+    opacity: 1;
+    align-self: center;
+}
+
+.previous {
+    color: var(color-primary);
+    margin-right: 10px;
+}
+
+.next {
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.ng-select.disabled-color ::ng-deep .ng-select-container {
+    color: #969AA3;
+    box-shadow: none;
+}
+
+.ng-select.disabled-color ::ng-deep .ng-select-container .ng-value-container .ng-value, .ng-select.disabled-color ::ng-deep input {
+    cursor: not-allowed;
+}
+
+.position-edit-cancel {
+    margin-right: auto;
+    border: none;
+    font-size: 12px;
+}
+
+.list-group-item {
+    margin: 17px 5px 0px;
+}
+
+.pl-0 {
+    padding-left: 0px;
+}

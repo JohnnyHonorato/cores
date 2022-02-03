@@ -1,0 +1,70 @@
+version: 0.2
+
+env:
+  variables:
+    BUCKET_BUSINESS: "virtus-way-business"
+    BUCKET_PORTAL: "virtus-way-portal"
+    BUCKET_CORE: "virtus-way-core"
+  exported-variables:
+    - BUCKET_BUSINESS
+    - BUCKET_PORTAL
+    - BUCKET_CORE
+    - AWS_CLOUDFRONT_PORTAL_DIST_ID
+    - AWS_CLOUDFRONT_CORE_DIST_ID
+    - AWS_CLOUDFRONT_BUSINESS_DIST_ID
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+
+      - cd ./client/common
+      - npm install
+      - echo '##############################' Building frontend:COMMON
+      - npm run package
+      
+      - echo '##############################' Building frontend:PORTAL
+      - cd ../portal
+      - npm install
+      - npm run build:${BUILD_ENV}
+
+      - echo '##############################' Building frontend:CORE
+      - cd ../core
+      - npm install
+      - npm run build:${BUILD_ENV}
+
+      - echo '##############################' Building frontend:BUSINESS
+      - cd ../business
+      - npm install
+      - npm run build:${BUILD_ENV}
+  post_build:
+    commands:
+      - echo '###############' Updating s3 buckets from frontend '###############'
+      - aws s3 rm s3://${BUCKET_BUSINESS}/${BUILD_ENV} --recursive
+      - aws s3 cp dist/business s3://${BUCKET_BUSINESS}/${BUILD_ENV}/ --recursive
+      - cd ../portal
+      - aws s3 rm s3://${BUCKET_PORTAL}/${BUILD_ENV} --recursive
+      - aws s3 cp dist/portal s3://${BUCKET_PORTAL}/${BUILD_ENV}/ --recursive
+      - cd ../core
+      - aws s3 rm s3://${BUCKET_CORE}/${BUILD_ENV} --recursive
+      - aws s3 cp dist/core s3://${BUCKET_CORE}/${BUILD_ENV}/  --recursive
+
+      - echo '###############' Invalidate CloudFront cache for Portal '###############'
+      - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_PORTAL_DIST_ID}  --paths "/*"
+
+      - echo '###############' Invalidate CloudFront cache for Core '###############'
+      - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_CORE_DIST_ID}  --paths "/*"
+
+      - echo '###############' Invalidate CloudFront cache for Business '###############'
+      - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_BUSINESS_DIST_ID}  --paths "/*"
+
+      - echo '###############' Replacing docker compose file'###############'
+      - cd ../..
+      - mv docker-compose.${BUILD_ENV}.yml docker-compose.yml
+
+      - echo '###############' Removing files that is not used by Elastic Beanstalk '###############'
+      - rm -rf ./client
+      - rm -rf ./db
+artifacts:
+  files:
+    - '**/*'
+    # - '/root/.npm/_logs/**/*'

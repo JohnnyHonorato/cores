@@ -1,0 +1,15 @@
+.custom-title {
+    margin-top: 6px;
+    margin-bottom: 0;
+    color: #142263;
+    font-size: .875em;
+}
+
+.custom-value {
+    color: #6c757d !important;
+    font-size: .875em;
+
+    &.deleted {
+        color: darkred;
+    }
+}

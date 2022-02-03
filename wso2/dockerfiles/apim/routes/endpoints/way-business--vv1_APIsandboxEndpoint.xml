@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><endpoint xmlns="http://ws.apache.org/ns/synapse" name="way-business--vv1_APIsandboxEndpoint">
+    <http uri-template="http://business:8082">
+        <timeout>
+            <responseAction>fault</responseAction>
+        </timeout>
+    </http>
+    <property name="ENDPOINT_ADDRESS" value="http://business:8082"/>
+</endpoint>

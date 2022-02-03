@@ -1,0 +1,113 @@
+<form class="card" role="form" (ngSubmit)="onSubmit()" [formGroup]="editForm">
+    <common-loading [loading]="loading"></common-loading>
+    <div class="card-body" *ngIf="!loading">
+        <div class="color-primary-color">
+            <h3 id="module-data" translate>module.data</h3>
+        </div>
+        <div class="row">
+            <div class="form-group required col-sm-6">
+                <label id="module-name-label" class="control-label" translate>module.form.name</label>
+                <input id="input-module-name" type="text" class="form-control" formControlName="name"
+                       [ngClass]="hasError(editForm.controls.name)">
+                <common-control-message id="module-name-ctrl-msg" [control]="editForm.get('name')"></common-control-message>
+            </div>
+            <div class="form-group required col-sm-6">
+                <label id="module-link-label"class="control-label" translate>module.form.link</label>
+                <input id="input-module-link" type="text" class="form-control" formControlName="link"
+                       [ngClass]="hasError(editForm.controls.link)">
+                <common-control-message id="module-link-ctrl-msg" [control]="editForm.get('link')"></common-control-message>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-sm-2">
+                <label id="icon-label" class="control-label" translate>
+                    module.form.icon
+                    <span id="info-icon" class="material-icons icon-tooltip" data-bs-toggle="tooltip" data-bs-placement="top"
+                          title="{{'module.form.icon-tooltip' | translate}}">info</span>
+                </label>
+                <input id="input-module-icon" type="text" formControlName="icon" class="form-control"
+                       [ngClass]="hasError(editForm.controls.icon)">
+                <common-control-message id="module-icon-ctrl-msg" [control]="editForm.get('icon')"></common-control-message>
+            </div>
+            <div class="form-group required col-sm-4">
+                <label id="open-mode-label" class="control-label" translate>module.form.open-mode</label>
+                <select id="select-module-open-mode" formControlName="openMode" class="form-control form-select"
+                        [ngClass]="hasError(editForm.controls.openMode)">
+                    <option id="spa-open-mode" value="SPA" translate>module.form.spa</option>
+                    <option id="iframe-open-mode" value="IFRAME" translate>module.form.iframe</option>
+                    <option id="new-tab-open-mode" value="NEW_TAB" translate>module.form.new-tab</option>
+                </select>
+                <common-control-message id="module-open-mode-ctrl-msg" [control]="editForm.get('openMode')"></common-control-message>
+            </div>
+            <div *ngIf="isSpaOpenModeSelected" class="form-group col-sm-4 required">
+                <label id="module-path-name-label" class="control-label" translate>module.form.path-name</label>
+                <input id="input-module-path-name" type="text" formControlName="pathName"
+                       [ngClass]="hasError(editForm.controls.pathName)"
+                       class="form-control">
+                <common-control-message id="module-path-ctrl-msg" [control]="editForm.get('pathName')"></common-control-message>
+            </div>
+            <div class="col-sm-2" *ngIf="item.id !== 1">
+                <label id="public-module-label" class="control-label col-12" translate>
+                    module.form.public-module
+                    <span id="public-module-icon" class="material-icons icon-tooltip" data-bs-toggle="tooltip" data-bs-placement="top"
+                          title="{{'module.form.placeholders.public-module' | translate}}">info</span>
+                </label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="public-module-checkbox"
+                           formControlName="visible">
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3 pb-3 align-items-center">
+            <h3 id="permissions-label" class="m-0 p-0 custom-width color-primary-color">{{'module.form.permissions' | translate}}</h3>
+            <button id="add-permission" class="btn btn-primary btn-add" type="button" (click)="addPermission(editForm)"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="{{'module.form.add-permission' | translate}}">
+                <span id="add-permission-icon" class="material-icons-outlined">add</span>
+            </button>
+        </div>
+        <div class="row" formArrayName="permissions">
+            <div class="card col-sm-12 custom-card-permission p-4"
+                 *ngFor="let permissionControl of permissionControls(editForm); index as i"
+                 formGroupName="{{i}}">
+                <button [attr.id]="'remove-permission-button-' + i" type="button" class="btn btn-custom-row p-0" (click)="removePermission(i)"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="{{'system.delete' | translate}}">
+                    <span class="material-icons-outlined color-red custom-font-size">delete</span>
+                </button>
+
+                <div class="row">
+                    <div class="form-group col-sm-4 required">
+                        <label [attr.id]="'permission-name-label-' + i" class="control-label" translate>
+                            module.form.name
+                            <span [attr.id]="'permission-info-icon-' + i" class="material-icons icon-tooltip" data-bs-toggle="tooltip"
+                                  data-bs-placement="top"
+                                  title="{{'module.form.name-tooltip' | translate}}">info</span>
+                        </label>
+                        <input [attr.id]="'module-name-input-' + i" type="text" class="form-control" formControlName="name"
+                               [ngClass]="hasError(permissionControl.controls.name)"/>
+                        <common-control-message id="prm-name-ctrl-msg" [control]="permissionControl.controls.name">
+                        </common-control-message>
+                    </div>
+                    <div class="form-group col-sm-4 required">
+                        <label [attr.id]="'module-label-' + i" class="control-label" translate>module.form.label</label>
+                        <input [attr.id]="'module-label-input-' + i" type="text" class="form-control" formControlName="label"
+                               [ngClass]="hasError(permissionControl.controls.label)"/>
+                        <common-control-message id="prm-label-ctrl-msg" [control]="permissionControl.controls.label">
+                        </common-control-message>
+                    </div>
+                    <div class="form-group col-sm-4 required">
+                        <label [attr.id]="'module-description-label-' + i" class="control-label" translate>module.form.description</label>
+                        <input [attr.id]="'module-description-input-' + i" type="text" class="form-control" formControlName="description"
+                               [ngClass]="hasError(permissionControl.controls.description)"/>
+                        <common-control-message id="prm-desc-ctrl-msg" [control]="permissionControl.controls.description">
+                        </common-control-message>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <common-form-buttons (backButton)="backToList()" [loading]="submitting"
+                             [disabledConditions]="editForm.invalid">
+        </common-form-buttons>
+    </div>
+</form>
+

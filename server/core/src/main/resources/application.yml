@@ -1,0 +1,68 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: core
+  jackson:
+    default-property-inclusion: NON_NULL
+  mvc:
+    dispatch-options-request: true
+  jmx:
+    enabled: false
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        enable_lazy_load_no_trans: true
+        jdbc:
+          lob: 
+            non_contextual_creation: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/virtus_way?currentSchema=core
+    username: virtus
+    password: master
+    dbcp2:
+      initial-size: 5
+      max-total: 40
+      pool-prepared-statements: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    schemas: core
+    placeholders:
+      core-link: http://localhost:4201
+      business-link: http://localhost:4202
+      tracker-link: 
+  mail:
+    default-encoding: UTF-8
+    host: smtp.office365.com
+    username: virtus-way@outlook.com
+    password: 'Virtu$w4y'
+    port: 587
+    protocol: smtp
+    test-connection: false
+    properties:
+      mail: 
+        smtp: 
+          auth: true
+          starttls:
+            enable: true
+          ssl: 
+            trust: smtp.office365.com
+        transport: 
+          protocol: smt
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+logging:
+  level:
+    web: DEBUG
+jwt:
+  config:
+    type: encrypted
+client:
+  url: "http://localhost:4200"

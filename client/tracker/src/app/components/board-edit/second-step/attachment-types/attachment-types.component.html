@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h5 id="status-data-header" class="modal-title" translate>
+        tracker.card.attachment.setting
+    </h5>
+    <button id="close-btn-0" type="button" class="btn-close" aria-label="Close" (click)="modalAttachmentTypes?.hide()">
+    </button>
+</div>
+
+<div class="attachments" [formGroup]="form">
+    <label id="attachments-title-label" class="title d-block">
+        {{'tracker.card.attachment.type' | translate}}
+    </label>
+    <div class="modal-members-content">
+        <ng-select id="select-attachment-types" [items]="typeList" [multiple]="true" formControlName="types" change>
+            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                <div id="attachment-types-not-found" class="ng-option text-muted">
+                    {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                </div>
+            </ng-template>
+        </ng-select>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button id="close-btn-1" type="button" class="btn btn-back me-2" (click)="modalAttachmentTypes?.hide()">
+        <span translate>system.cancel</span>
+    </button>
+    <button id="save-btn" type="button" class="btn btn-primary" (click)="saveOrEdit()">
+        <span translate>system.save</span>
+    </button>
+</div>

@@ -1,0 +1,225 @@
+{
+    "system": {
+        "home": "Início",
+        "actions": "Ações",
+        "add": "Adicionar",
+        "apply": "Aplicar",
+        "confirm": "Confirmar",
+        "back": "Voltar",
+        "cancel": "Cancelar",
+        "filter": "Filtrar",
+        "clear": "Limpar",
+        "close": "Fechar",
+        "delete": "Remover",
+        "edit": "Editar",
+        "new": "Novo",
+        "save": "Salvar",
+        "details": "Detalhes",
+        "send": "Enviar",
+        "type-to-search": "Escreva para pesquisar",
+        "show": "Exibir",
+        "page": "Página",
+        "of": "de",
+        "from": "de",
+        "to": "até",
+        "download": "Download",
+        "no-record": "Nenhum registro foi encontrado.",
+        "change-password": "Alterar Autenticação",
+        "filter-results": "Filtrar Resultados",
+        "yes": "Sim",
+        "no": "Não",
+        "ok": "OK",
+        "no-result-for": "Nenhum resultado para",
+        "server-off": "O servidor está offline, por favor contate a administração",
+        "form": {
+            "validation": {
+                "required": "Campo obrigatório",
+                "email": "E-mail inválido",
+                "max-size": "Tamanho máximo é {{value}} caracteres",
+                "min-size": "Tamanho mínimo é {{value}} caracteres",
+                "min-list-length": "A lista deve conter no mínimo {{value}} itens",
+                "max-list-length": "A lista deve conter no máximo {{value}} itens",
+                "max-value": "Valor máximo permitido para este campo é {{value}}",
+                "min-value": "Valor mínimo permitido para este campo é {{value}}",
+                "ideal-not-between-min-max": "O valor Ideal deve estar entre o Mínimo e o Máximo",
+                "date-not-bigger": "A data final deve ser maior que a data inicial",
+                "min-greater-than-max": "O valor mínimo é maior que o máximo.",
+                "only-numbers": "Apenas números são permitidos",
+                "invalid": "Campo inválido",
+                "invalid-date": "Data inválida",
+                "pattern": "O campo contém caracteres inválidos",
+                "cnpj": "CNPJ inválido.",
+                "cpf": "CPF inválido",
+                "zipcode": "CEP inválido",
+                "min-date": "A data é menor do que a data permitida",
+                "max-date": "A data é maior do que a data permitida",
+                "max-number": "A quantidade máxima de digitos para esse valor é {{value}} digitos",
+                "one-main-email": "Só é permitido um email principal",
+                "one-main-phone": "Só é permitido um telefone principal",
+                "at-least-one-main-email": "Adicione pelo menos um email principal",
+                "code-phone-invalid-pattern": "Código do país com formato inválido"
+            },
+            "warning": {
+                "deleted": "Item removido."
+            }
+        },
+        "pagination": {
+            "items-page": "Itens por página",
+            "next-page": "Próxima página",
+            "previous-page": "Página anterior",
+            "first-page": "Primeira página",
+            "last-page": "Última página"
+        },
+        "search": {
+            "base": "Busca",
+            "advanced": "Busca Avançada"
+        }
+    },
+    "operations": {
+        "success": {
+            "title": "Sucesso",
+            "message": "Operação realizada com sucesso."
+        },
+        "error": {
+            "title": "Erro"
+        },
+        "warning": {
+            "title": "Alerta"
+        },
+        "info": {
+            "title": "Info"
+        },
+        "insert": {
+            "success": "Item inserido.",
+            "error": "Erro ao inserir item."
+        },
+        "update": {
+            "success": "Item atualizado.",
+            "error": "Erro ao atualizar item."
+        },
+        "delete": {
+            "success": "Item removido.",
+            "error": "Erro ao remover item.",
+            "confirmation": "Tem certeza que deseja remover este item?"
+        },
+        "save": {
+            "success": "Item salvo.",
+            "error": "Erro ao salvar item."
+        }
+    },
+    "common": {
+        "name": "Nome",
+        "verify": "Verificar",
+        "title": "Título",
+        "address": {
+            "title": "Endereço",
+            "street": "Rua",
+            "complement": "Complemento",
+            "neighborhood": "Bairro",
+            "zip-code": "CEP",
+            "city": "Cidade",
+            "number": "Número",
+            "state": "Estado",
+            "country": "País",
+            "domain": "Domínio",
+            "national": "Nacional",
+            "international": "Internacional"
+        },
+        "item": {
+            "title": "Item",
+            "deleted": "Informações removidas com sucesso!"
+        },
+        "edit": {
+            "item": "Editar Item"
+        },
+        "remove": {
+            "item": "Remover Item"
+        }
+    },
+    "organization": {
+        "title": {
+            "plural": "Organizações",
+            "singular": "Organização"
+        },
+        "data": "Dados da Organização",
+        "fantasy-name": "Nome Fantasia",
+        "cnpj": "CNPJ",
+        "department": "Departamento",
+        "position": "Cargo",
+        "add": "Adicionar Organização",
+        "edit": "Editar Organização",
+        "description": "Descrição",
+        "contributor": "Colaborador"
+    },
+    "contact-info": {
+        "title": {
+            "singular": "Informações para contato"
+        },
+        "tag": {
+            "residential": "Residencial",
+            "commercial": "Comercial",
+            "other": "Outro",
+            "mobile": "Celular",
+            "main": "Principal"
+        },
+        "type": "Tipo",
+        "phone": "Telefone",
+        "email": "Email",
+        "address": "Endereço",
+        "country-code": "Código"
+    },
+    "lead": {
+        "no-permission": "Você não tem permissão para visualizar leads"
+    },
+    "business-opportunity": {
+        "data": "Dados da Oportunidade de Negócio",
+        "title": {
+            "plural": "Oportunidades de Negócio"
+        },
+        "add": "Adicionar Oportunidade de Negócio",
+        "edit": "Editar Oportunidade de Negócio",
+        "opportunity-title": "Título da Oportunidade",
+        "opportunity-description": "Descrição da Oportunidade",
+        "representative": {
+            "singular": "Representante",
+            "plural": "Representantes",
+            "signatory": "Signatário",
+            "companyRepresentative": "Representante da Empresa",
+            "technicalRepresentative": "Representante Técnico"
+        },
+        "error-on-load": "Erro ao obter as informações necessárias para cadastro de Oportunidade de Negócio.",
+        "representative-already-in-list": "Esta pessoa já foi adicionada à lista.",
+        "no-record": "Nenhum colaborador foi encontrado para essa Organização."
+    },
+    "image": {
+        "title": "Imagem",
+        "invalid-size": "Arquivo de tamanho inválido",
+        "preview": "Pré-visualização",
+        "invalid-type":"Arquivo com formato inválido"
+    },
+    "tracker": {
+        "title": {
+            "singular": "Tracker"
+        },
+        "add":"Adicionar Card",
+        "view":"Visualizar Card",
+        "edit":"Editar Card"
+    },
+    "board": {
+        "title": {
+            "plural": "Boards"
+        },
+        "add": "Adicionar Board",
+        "edit": "Editar Board",
+        "view": "Visualizar Board"
+    },
+    "business": {
+        "title": {
+            "singular": "Business"
+        }
+    },
+    "not-found":{
+        "title": "Não encontrado",
+        "message":"A página solicitada não foi encontrada"
+    }
+}

@@ -1,0 +1,43 @@
+<div id="first-step" class="card custom-border-radius">
+    <div class="card-body">
+        <div class="d-sm-flex m-0 p-1 pb-2">
+            <div>
+                <div id="board-data" class="page-title-wizard" translate>
+                    tracker-manager.board-data
+                </div>
+                <div id="board-data-description" class="page-description-wizard" translate>
+                    tracker-manager.board-data-description
+                </div>
+            </div>
+        </div>
+        <div [formGroup]="form">
+            <div class="form-group required">
+                <label id="name-label" class="control-label" translate>common.name</label>
+                <input id="name-input" type="text" class="form-control" formControlName="name"
+                       [ngClass]="hasError(form.get('name'))" (ngModelChange)="validForm()">
+                <common-control-message id="board-name-ctrl-msg" [control]="form.get('name')"></common-control-message>
+            </div>
+            <div class="form-group">
+                <label id="description-input" class="control-label" translate>
+                    tracker.card.description
+                </label>
+                <textarea id="description-text-area" class="form-control" (ngModelChange)="validForm()"
+                          formControlName="description"
+                          [ngClass]="hasError(form.get('description'))" rows="5">
+                </textarea>
+                <common-control-message id="board-desc-ctrl-msg" [control]="form.get('description')"></common-control-message>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="back-btn" type="button" class="btn btn-back" (click)="backToList.emit()">
+            <span id="back-icon" class="material-icons-outlined previous">keyboard_arrow_left</span>
+            <span id="back-label" translate>system.back</span>
+        </button>
+        <button id="next-btn" type="button" class="btn btn-next" [disabled]="!nextStep" awNextStep>
+            <span id="next-label" translate>system.next</span>
+            <span id="next-icon" class="material-icons-outlined next">keyboard_arrow_right</span>
+        </button>
+    </div>
+</div>
+

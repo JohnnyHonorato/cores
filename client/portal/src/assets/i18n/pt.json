@@ -1,0 +1,10 @@
+{
+    "session-expired": {
+        "warning-session": "Sua sessão expirou",
+        "redirected-screen": "Você será redirecionado para  a tela de login."
+    },
+    "main": {
+        "welcome": "Oi, Bem-vindo!",
+        "lorem-ipsum": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt."
+    }
+}

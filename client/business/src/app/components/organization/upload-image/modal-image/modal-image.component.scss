@@ -1,0 +1,27 @@
+.modal-footer .btn.btn-back {
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+image-cropper {
+    padding: 0;
+    max-width: 600px;
+    max-height: 350px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.page-description {
+    text-align: center;
+}
+
+.btn-back {
+    margin: 0 5px;
+}
+
+.modal-dialog {
+    min-width: 900px !important;
+}

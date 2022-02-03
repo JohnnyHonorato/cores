@@ -1,0 +1,19 @@
+<div class="custom-container">
+    <div class="content">
+        <div class="text-center">
+            <h3 id="welcome-msg" translate>main.welcome</h3>
+            <p id="homepage-text" class="text-muted" translate>main.lorem-ipsum</p>
+        </div>
+        <div class="module-content" *ngIf="modules">
+            <div *ngFor="let module of modules; let i = index">
+                <div id="module-{{i+1}}" class="module-card cursor-pointer" (click)="goTo(module.link)">
+                    <div id="module-{{i+1}}-icon" class="back-icon">
+                        <i class="material-icons">{{module.icon}}</i>
+                    </div>
+                    <label id="module-{{i+1}}-label">{{module.name}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

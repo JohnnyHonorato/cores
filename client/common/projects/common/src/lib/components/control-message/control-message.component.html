@@ -1,0 +1,6 @@
+<label class="invalid-feedback" *ngIf="errorMessage !== null">
+    {{errorMessage.message | translate: {value: errorMessage.value} }}
+</label>
+<label class="warning-feedback" *ngIf="errorMessage === null && warningMessage !== null">
+    {{warningMessage.message | translate: {value: warningMessage.value} }}
+</label>

@@ -1,0 +1,136 @@
+.checklist-name {
+    text-align: left;
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #142263;
+    opacity: 0.83;
+    font-weight: 500;
+}
+
+.card-head {
+    padding-top: 0 !important;
+    padding-bottom: 0.2rem !important;
+    display: flex;
+    align-items: center;
+}
+
+.mat-progress-bar {
+    width: 90%;
+}
+
+.card-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: auto;
+    position: relative;
+    top: 3px;
+}
+
+.no-border {
+    border: none;
+}
+
+.button-add-checklist-item {
+    background: #142263;
+    box-shadow: 0 3px 20px #0000000D;
+    border-radius: 3px;
+    opacity: 1;
+    border: 0;
+    width: 36px;
+    height: 38px;
+}
+
+.button-add-checklist-item:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.done-items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 16px !important;
+}
+
+.done-items label {
+    display: flex;
+    margin-left: 8px;
+    margin-bottom: 0;
+}
+
+.icon-size {
+    font-size: 18px;
+    padding-top: 2px;
+}
+
+i {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.material-icons-outlined {
+    line-height: inherit;
+}
+
+.add-item-paddings {
+    padding: 20px 0 0 0;
+}
+
+.card {
+    margin-bottom: 15px !important;
+    padding: 15px;
+    background: #FFFFFF;
+    border: 1px solid #EAEAF3;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.form-control[formControlName="name"] {
+    background: #FFFFFF;
+    border: 1px solid #EAEAF3;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#delete {
+    cursor: pointer;
+    color: #CB2D2D;
+}
+
+#add {
+    color: #FFFFFF;
+}
+
+#update {
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+input::placeholder {
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: #969AA3;
+    opacity: 0.61;
+}
+
+.popover-margin {
+    margin-left: auto;
+}
+
+.margin-delete-button {
+    margin-top: -5px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.quant-items-label {
+    font-size: 13px;
+    color: #142263;
+}

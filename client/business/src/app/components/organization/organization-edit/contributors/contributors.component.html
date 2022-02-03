@@ -1,0 +1,87 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="form-group col-sm-4">
+            <label id="org-label" class="control-label" translate>organization.contributor</label>
+            <ng-select id="role" appendTo="body" [items]="searchItems | async" bindLabel="name"
+                       [loading]="loadingComponent" [typeahead]="subjects" formControlName="people">
+                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div id="no-people" class="ng-option text-muted">
+                        {{'system.no-result-for' | translate}} "{{searchTerm}}"
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+        <div class="form-group col-sm-4">
+            <label id="department-label" class="control-label" translate>organization.department</label>
+            <input id="department-input" class="form-control" type="text" formControlName="department">
+            <common-control-message id="department-ctrl-msg" [control]="form.get('department')">
+            </common-control-message>
+        </div>
+        <div class="form-group col-sm-4">
+            <label id="position-label" class="control-label" translate>organization.position</label>
+            <div class="row gx-0">
+                <div class="col p-0">
+                    <input id="position-input" class="form-control" type="text" formControlName="position">
+                </div>
+                    <span class="col-auto">
+                    <button id="save-contributor-btn" class="btn btn-primary btn-add" type="button"
+                            (click)="addItem(form.value)" [disabled]="form.invalid">
+                        <span class="material-icons-outlined" *ngIf="selectedIndex === null">add</span>
+                        <span class="material-icons-outlined" *ngIf="selectedIndex !== null">save</span>
+                    </button>
+                </span>
+                <common-control-message id="contr-position-ctrl-msg" [control]="form.get('position')">
+                </common-control-message>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="col-12 custom-padding-fields">
+    <div class="table-responsive mt-2">
+        <table class="table card-table table-vcenter text-nowrap">
+            <thead class="custom-thead">
+            <tr>
+                <th id="name-column-tile" class="custom-th" translate>common.name</th>
+                <th id="department-column-tile" class="custom-th" translate>organization.department</th>
+                <th id="position-column-tile" class="custom-th" translate>organization.position</th>
+                <th class="custom-th left"></th>
+            </tr>
+            </thead>
+            <tbody id="contributor-table">
+            <tr class="table-no-content">
+                <td colspan="4" class="text-center" *ngIf="items.length <= 0">
+                    <strong id="no-record">{{'system.no-record' | translate}}</strong>
+                </td>
+            </tr>
+            <ng-container *ngFor="let item of items; let i = index">
+                <tr>
+                    <td id="name-content-{{i+1}}">
+                        {{item.people?.name}}
+                    </td>
+                    <td id="department-content-{{i+1}}">
+                        {{item.department}}
+                    </td>
+                    <td id="position-content-{{i+1}}">
+                        {{item.position}}
+                    </td>
+                    <td class="text-right actions-column">
+                        <button id="edit-contributor-btn-{{i+1}}" type="button" class="btn-muted" (click)="editItem(item, i)"
+                                data-toggle="tooltip" data-placement="top"
+                                title="{{'common.edit.item' | translate}}">
+                            <i class="material-icons-outlined">edit</i>
+                        </button>
+                        <button id="remove-contributor-btn-{{i+1}}" type="button" class="btn-muted text-danger" (click)="setRemoveIndex(i)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-delete-item">
+                            <i class="material-icons-outlined color-red">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>
+<common-delete-confirmation (ok)="deleteItem()" target="modal-delete-item">
+</common-delete-confirmation>

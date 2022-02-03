@@ -1,0 +1,59 @@
+server:
+  port: 8082
+  url: "http://wso2:8280/"
+spring:
+  application:
+    name: business
+  jackson:
+    default-property-inclusion: NON_NULL
+  mvc:
+    dispatch-options-request: true
+  jmx:
+    enabled: false
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        enable_lazy_load_no_trans: true
+        jdbc:
+          lob: 
+            non_contextual_creation: true
+  datasource:
+    url: jdbc:postgresql://db:5432/virtus_way?currentSchema=business
+    username: virtus
+    password: master
+    dbcp2:
+      initial-size: 5
+      max-total: 40
+      pool-prepared-statements: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    schemas: business
+  mail:
+    default-encoding: UTF-8
+    host: smtp.office365.com
+    username: virtus-way@outlook.com
+    password: 'Virtu$w4y'
+    port: 587
+    protocol: smtp
+    test-connection: false
+    properties:
+      mail: 
+        smtp: 
+          auth: true
+          starttls:
+            enable: true
+          ssl: 
+            trust: smtp.office365.com
+        transport: 
+          protocol: smt
+jwt:
+  config:
+    type: encrypted
+wso2:
+    core-api-key: "eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6ImdhdGV3YXlfY2VydGlmaWNhdGVfYWxpYXMiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJWSVJUVVNcL21hcmNlbG8uZmVybmFuZGVzQGNhcmJvbi5zdXBlciIsImFwcGxpY2F0aW9uIjp7Im93bmVyIjoiVklSVFVTXC9tYXJjZWxvLmZlcm5hbmRlcyIsInRpZXJRdW90YVR5cGUiOm51bGwsInRpZXIiOiJVbmxpbWl0ZWQiLCJuYW1lIjoiV2F5QnVzaW5lc3MiLCJpZCI6MywidXVpZCI6ImUzNGZlOTY3LTBjZTgtNGU3ZC1hNzZmLTk0NmZjY2FhYzA1MyJ9LCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJ0aWVySW5mbyI6eyJVbmxpbWl0ZWQiOnsidGllclF1b3RhVHlwZSI6InJlcXVlc3RDb3VudCIsImdyYXBoUUxNYXhDb21wbGV4aXR5IjowLCJncmFwaFFMTWF4RGVwdGgiOjAsInN0b3BPblF1b3RhUmVhY2giOnRydWUsInNwaWtlQXJyZXN0TGltaXQiOjAsInNwaWtlQXJyZXN0VW5pdCI6bnVsbH19LCJrZXl0eXBlIjoiUFJPRFVDVElPTiIsInBlcm1pdHRlZFJlZmVyZXIiOiIiLCJzdWJzY3JpYmVkQVBJcyI6W3sic3Vic2NyaWJlclRlbmFudERvbWFpbiI6ImNhcmJvbi5zdXBlciIsIm5hbWUiOiJ3YXktY29yZSIsImNvbnRleHQiOiJcL2NvcmVcL3YxIiwicHVibGlzaGVyIjoiVklSVFVTXC9tYXJjZWxvLmZlcm5hbmRlcyIsInZlcnNpb24iOiJ2MSIsInN1YnNjcmlwdGlvblRpZXIiOiJVbmxpbWl0ZWQifSx7InN1YnNjcmliZXJUZW5hbnREb21haW4iOiJjYXJib24uc3VwZXIiLCJuYW1lIjoid2F5LWJ1c2luZXNzIiwiY29udGV4dCI6IlwvYnVzaW5lc3NcL3YxIiwicHVibGlzaGVyIjoiVklSVFVTXC9tYXJjZWxvLmZlcm5hbmRlcyIsInZlcnNpb24iOiJ2MSIsInN1YnNjcmlwdGlvblRpZXIiOiJVbmxpbWl0ZWQifV0sInBlcm1pdHRlZElQIjoiIiwiaWF0IjoxNjIyMTI3NzQ2LCJqdGkiOiJlNDMxMjJkOS1jNGFjLTQ5YzctYjkwMy1jN2U3MzJhYTY4ZjYifQ==.M2U-KcZP4RMYVUwxh855Fr4mwJaYjdbML6x2VYHki8Kqtkai_SiYXBgz2mtfRbSjUceu0hfawtWh5fCcgCtF0L5FOBw-7vN-JE8RsuPmBo2wTce2DPPkLvu0SyE6LDIXYmt5pj-YcY4OxcuvUJf6LXlihf827t3jinAaIB6dn3YUuDbx11PFa6SRnMZKEQIwF4kvZQZbAOQe1QWgtyE53ORyZH2IMiVhKE1oDQU7EDV9rIagcavpz4Fj1CN-Obd5oY5SrJq4XJR_VmIg30SaAL11Bwn6p3M5gIy4Qk6qjCxhfsNe2aaQkG3JSuvkX8TsDRFT_dx_wIQHJGrBiMN14w=="
+

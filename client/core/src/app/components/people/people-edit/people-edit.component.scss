@@ -1,0 +1,55 @@
+@import "node_modules/common/src/assets/scss/variables";
+
+.nav-item {
+    border: #E0E0E0 solid 1px;
+    cursor: pointer;
+    text-align: center;
+    width: 20%;
+    height: 20%;
+    min-width: 150px;
+    border-bottom-width: 0;
+}
+
+.custom-card {
+    height: calc(100% - 50px) !important;
+    border-radius: 0 0 3px 3px;
+}
+
+.active {
+    background: $primary-color;
+    color: #FFFFFF;
+    border: $primary-color solid 1px;
+}
+
+.contact-info-title {
+    font-size: 20px;
+    color: $primary-color;
+    font-weight: 400;
+}
+
+.min-h-100 {
+    min-height: 100% !important;
+}
+
+.content-form {
+    height: 92% !important;
+}
+
+@media (max-width: 767px) {
+    .nav-item {
+        width: 50%;
+        height: 50%;
+    }
+    .content-form {
+        height: 82% !important;
+    }
+}
+
+@media (max-width: 872px) and (min-width: 771px) {
+    .control-label {
+        white-space: nowrap;
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

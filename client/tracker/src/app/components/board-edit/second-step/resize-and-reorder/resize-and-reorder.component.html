@@ -1,0 +1,67 @@
+<div id="resize-and-reorder" class="resize-and-reorder">
+    <div class="status-item custom-status-head px-4 py-0 mx-1">
+        <button id="close-changes" (click)="closeChange()"
+                class="bg-transparent btn-clear text-danger p-0 position-edit-cancel" translate>
+            <span id="close-icon" class="material-icons-outlined format"> close </span>
+            tracker-manager.position-edit.cancel
+        </button>
+
+        <button id="save-changes" (click)="saveChanges()"
+                class="btn-save float-right position-edit-save btn-save-order" translate>
+            tracker-manager.position-edit.save
+        </button>
+    </div>
+    <div class="default-attributes pt-2">
+        <div class="row">
+            <div class="col-6 pl-0">
+                <div class="form-group required">
+                    <label id="name-label" class="control-label disabled-color" translate>tracker.card.name</label>
+                    <input id="name-input" type="text" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="col-6 mb-0 pr-0">
+                <div class="form-group">
+                    <label id="start-date-label" class="control-label disabled-color"
+                           translate>tracker.card.due-date</label>
+                    <div class="input-group date">
+                        <input id="start-date" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 pr-0 pl-0">
+                <div class="form-group">
+                    <label id="description-label" class="control-label disabled-color" translate>tracker.card.description</label>
+                    <textarea id="description-text-area" rows="1" class="form-control text-area-height no-resize"
+                              disabled
+                              placeholder="{{'tracker.card.description' | translate}}">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 pl-0">
+                <div class="form-group">
+                    <label id="tags-title-label"
+                           class="control-label disabled-color">{{'tracker.card.tags.title' | translate}}</label>
+                    <input id="tags-title-input" type="text" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="col-6 pr-0">
+                <div class="form-group">
+                    <label id="card-members-label"
+                           class="control-label disabled-color">{{'tracker.card.members' | translate}}</label>
+                    <input id="card-members-input" type="text" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 custom-gridster form-group pr-0 pl-0">
+                <tracker-custom-att-grid [receiveCustomAtt]="customAttList"
+                                         (updateItemList)="updateItemList($event)">
+                </tracker-custom-att-grid>
+            </div>
+        </div>
+    </div>
+</div>

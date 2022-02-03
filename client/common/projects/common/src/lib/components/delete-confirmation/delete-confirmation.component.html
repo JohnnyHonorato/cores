@@ -1,0 +1,23 @@
+<div class="modal fade" [id]="target" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="system-confirm-title" class="modal-title" translate>system.confirm</h3>
+                <button id='btn-close' type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="delete-confirmation-text" translate>operations.delete.confirmation</p>
+            </div>
+            <div class="modal-footer">
+                <button id="no-button" type="button" class="btn btn-back" data-bs-dismiss="modal" translate>
+                    system.no
+                </button>
+                <button id="yes-button" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onOK()" translate>
+                    system.yes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

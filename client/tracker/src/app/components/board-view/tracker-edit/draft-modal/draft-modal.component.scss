@@ -1,0 +1,43 @@
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    padding: 8px 15px;
+}
+
+.modal-body {
+    font-size: 20px;
+
+    p {
+        text-align: left;
+    }
+}
+
+.btn-lg {
+    font-size: 18px;
+    width: 155px;
+    height: 40px;
+}
+
+.close {
+    font-size: 20px;
+    padding: 0 15px;
+    margin: 0;
+}
+
+.custom-modal {
+    z-index: 999999999999 !important;
+}
+
+.text-style {
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+
+.title-size {
+    font-size: 24px;
+}

@@ -1,0 +1,13 @@
+<ul class="pagination">
+    <li id="first-page">
+        <a href="javascript:void(0);" (click)="firstPage()">«</a>
+    </li>
+    <li id="page-{{i+1}}" *ngFor="let page of pages; let i=index" [ngClass]="page === currentPage ? 'active' : ''">
+        <a href="javascript:void(0);" (click)="changePage(page)">
+            {{page}}
+        </a>
+    </li>
+    <li id="last-page">
+        <a href="javascript:void(0);" (click)="lastPage()">»</a>
+    </li>
+</ul>

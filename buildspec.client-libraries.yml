@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - rm -rf ./client/common/package-lock.json
+  build:
+    on-failure: ABORT
+    commands:
+      - echo Build started on `date`
+      
+      - echo '##############################' Building client:common
+      - npm --prefix ./client/common install
+      - npm --prefix ./client/common run package
+artifacts:
+  files:
+    - './client/**/*'
+    - './buildspec.client-modules.yml'
+    - './buildspec.client-deploy.yml'
+cache:
+  paths:
+    - '/root/.npm/**/*'
+    - './client/common/node_modules/**/*'

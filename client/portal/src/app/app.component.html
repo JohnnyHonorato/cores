@@ -1,0 +1,11 @@
+<app-header (toggle)="expanded = !expanded" fxLayout="column"></app-header>
+<div>
+    <app-sidebar [expanded]="expanded" fxLayout="column"></app-sidebar>
+    <div class="custom-content" fxLayout="column" fxFlex>
+        <div class="content-menu">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<app-footer fxLayout="column"></app-footer>
+

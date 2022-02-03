@@ -1,0 +1,387 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/angular-archwizard/styles/archwizard.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "node_modules/common/src/assets/scss/variables";
+
+/* custom wizard */
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+    border: 2px solid #4D66D3 !important;
+    background-color: #4D66D3 !important;
+
+    .custom-icon-wizard {
+        color: white;
+    }
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.done .step-indicator {
+    border: solid 2px #079C57 !important;
+    background-color: #079C57 !important;
+
+    .custom-icon-wizard {
+        color: white;
+    }
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li .step-indicator {
+    border: solid 2px #EAEAF3 !important;
+    background-color: white !important;
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.editing .step-indicator {
+    border: 2px solid #4D66D3 !important;
+    background-color: #4D66D3 !important;
+
+    .custom-icon-wizard {
+        color: white;
+    }
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li:not(:last-child):after {
+    width: calc(100% - 114px);
+    left: calc(50% + 57px);
+}
+
+li.done:after {
+    border: solid 3px #079C57 !important;
+    border-radius: 3px;
+    background-color: #079C57 !important;
+}
+
+li.current:after,
+li.editing:after,
+li:after {
+    border: solid 3px #EAEAF3 !important;
+    border-radius: 3px;
+    background-color: #EAEAF3 !important;
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li .step-indicator {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.custom-icon-wizard {
+    font-size: 26px;
+    margin-top: 10px;
+    color: #142263;
+}
+
+.custom-aw-wizard {
+    min-width: 600px !important;
+    margin: 0 40px !important;
+
+    .steps-indicator .label {
+        color: #142263;
+        text-transform: none;
+        font-size: 13.5pt;
+        font-weight: 600;
+    }
+}
+
+aw-wizard-navigation-bar ul.steps-indicator li.navigable a:hover .label {
+    color: #142263;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.btn-primary, &.btn-default, &.btn-danger, &.btn-next, &.btn-back {
+        font-size: 12px;
+    }
+
+    &.btn-next, &.btn-next:hover, &.btn-next:disabled, &.btn-next:focus {
+        color: #ffffff;
+        background: #4D66D3;
+        border-color: #4D66D3;
+        box-shadow: 0 3px 20px #0000000D;
+        border-radius: 3px;
+        opacity: 1;
+    }
+
+    &.btn-next:hover {
+        background: #455bbd;
+    }
+
+    &.btn-next:disabled {
+        opacity: 0.65;
+    }
+
+    &.btn-back, &.btn-back:hover {
+        background: #EAEAF3;
+        box-shadow: 0 3px 20px #0000000D;
+        border-radius: 3px;
+    }
+
+    &.btn-back:hover {
+        background: #dddde0;
+    }
+}
+
+.btn-muted {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-muted:focus, .btn-muted:hover, .btn-muted:active, .btn-muted:active:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 9999 !important;
+}
+
+.cdk-overlay-container {
+    z-index: 1200 !important;
+}
+
+.add-btn-div {
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    margin-right: 2px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+}
+
+.btn-save-order {
+    background-color: #079C57 !important;
+    font-size: 11px;
+    box-shadow: none;
+    border: #079C57 !important;
+    border-radius: 3px;
+    color: white !important;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.no-value {
+    font-size: 12px;
+    color: #5e7179;
+    padding: 0 5px;
+}
+
+.select-preview div {
+    background-color: white !important;
+}
+
+.select-preview .ng-select-container {
+    border: 1px solid #EAEAF3 !important;
+}
+
+.select-preview .ng-select-container:hover {
+    box-shadow: none;
+}
+
+// custom ng-select
+.ng-select .ng-select-container {
+    outline: none !important;
+    box-shadow: none !important;
+    min-height: 38px !important;
+}
+
+// custom ng-select focus
+.ng-select.ng-select-focused > .ng-select-container {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    border: 1px solid rgba(19, 37, 101, 0.8) !important;
+}
+
+// custom ng-select validation
+ng-select.ng-invalid.ng-touched:not(.ng-select-opened) .ng-select-container {
+    border: 1px solid #dc3545 !important;
+}
+
+.ng-dropdown-panel {
+    border: 1px solid rgba(19, 37, 101, 0.8) !important;
+    border-top: none !important;
+}
+
+ngb-popover-window .popover-body {
+    padding: 0;
+}
+
+.btn-clear {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.color-red {
+    color: #BA2A2F;
+}
+
+.pr-0 {
+    padding-right: 0 !important;
+}
+
+.popover {
+    width: 17rem;
+    max-width: 17rem;
+    font-size: 16px;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #f0f0f8;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #4d66d3;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+    background-color: rgba(31, 71, 218, 0.8);
+}
+
+.mat-slide-toggle-bar {
+    background-color: #f0f0f8;
+}
+
+.mat-slide-toggle-thumb {
+    background-color: #969aa3
+}
+
+.title-popover {
+    padding-left: 15px;
+    padding-right: 23px;
+    padding-top: 6px;
+    font-size: 14px;
+}
+
+.page-description-wizard {
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #969AA3;
+    opacity: 1;
+}
+
+.page-title-wizard {
+    font-size: 18px !important;
+    font-weight: 600;
+    color: #142263;
+}
+
+.tag {
+    text-align: center;
+    font-size: 11px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 13px;
+    padding: 0.2rem 0.6rem;
+}
+
+.custom-status-head {
+    height: 46px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F9F9F9;
+    border: 1px solid #F0F0F8;
+    border-radius: 4px;
+    margin-bottom: 1px;
+}
+
+.position-edit-save {
+    width: 163px !important;
+    height: 30px !important;
+}
+
+.mat-checkbox-checked.mat-primary .mat-checkbox-background, .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
+    background-color: #132263;
+}
+
+/* start of lib dragula customization */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+}
+
+.gu-hide {
+    left: -9999px !important;
+}
+
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+}
+
+.mat-checkbox-disabled:not(.mat-checkbox-checked) .mat-checkbox-frame {
+    border-color: #142263;
+}
+
+.mat-progress-bar-fill::after {
+    background-color: #142263;
+}
+
+.mat-progress-bar-buffer {
+    background-color: #F0F0F8;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-position {
+    position: absolute;left: 20px;top: 50%;
+}
+
+.upload-toast-color {
+    background-color: cornflowerblue !important;
+}
+
+.warning-feedback {
+    font-size: 14px;
+    line-height: 21px;
+    color: #f93;
+    margin-top: 4px;
+}

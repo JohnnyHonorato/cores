@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><endpoint xmlns="http://ws.apache.org/ns/synapse" name="way-core--vv1_APIsandboxEndpoint">
+    <http uri-template="http://core:8081">
+        <timeout>
+            <responseAction>fault</responseAction>
+        </timeout>
+    </http>
+    <property name="ENDPOINT_ADDRESS" value="http://core:8081"/>
+</endpoint>

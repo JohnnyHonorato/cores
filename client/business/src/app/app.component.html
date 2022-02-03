@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <business-header class="header" (toggle)="expanded = !expanded"></business-header>
+    <div class="page-wrapper">
+        <div>
+            <business-sidebar [expanded]="expanded"></business-sidebar>
+        </div>
+        <div class="custom-container">
+            <business-breadcrumb class="min-vw-400"></business-breadcrumb>
+            <div class="custom-content" [ngClass]="expanded ? '' : 'custom-content-not-sidebar'">
+                <router-outlet></router-outlet>
+            </div>
+            <business-footer class="mt-auto"></business-footer>
+        </div>
+    </div>
+</div>
+

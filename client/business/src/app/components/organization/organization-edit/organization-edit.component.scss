@@ -1,0 +1,45 @@
+.lead-row {
+    margin-bottom: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    .contact-card {
+        margin-top: 1rem;
+    }
+
+    label {
+        margin-bottom: 0;
+    }
+
+    .remove-icon {
+        margin-top: 25px;
+        margin-bottom: 0;
+    }
+
+}
+
+.mat-expansion-panel {
+    h4 {
+        line-height: 4.1;
+    }
+}
+
+.padding-custom {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.center-custom {
+    margin: auto;
+}
+
+#btn-verify-cnpj {
+    width: 100% !important;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}

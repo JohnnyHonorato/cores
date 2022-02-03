@@ -1,0 +1,51 @@
+<aw-wizard #wizard [navBarLayout]="'large-empty-symbols'" [disableNavigationBar]="true"
+           class="custom-aw-wizard custom-wizard">
+
+    <aw-wizard-step stepTitle="{{'tracker-manager.board-data' | translate}}" (stepExit)="changeStep($event)">
+        <ng-template awWizardStepSymbol>
+            <span id="one-step-icon" class="material-icons-outlined custom-icon-wizard"> {{ setIconStepOne() }} </span>
+        </ng-template>
+        <tracker-first-step (formIsValid)="setFirstStep($event)" (backToList)="backToList()"
+                            [nextStep]="steps.get('first').nextStep"
+                            [setObjectValue]="board">
+        </tracker-first-step>
+    </aw-wizard-step>
+
+    <aw-wizard-step stepTitle="{{'tracker-manager.card-data' | translate}}" (stepExit)="changeStep($event)">
+        <ng-template awWizardStepSymbol>
+            <span id="two-step-icon" class="material-icons-outlined custom-icon-wizard"> {{ setIconStepTwo() }} </span>
+        </ng-template>
+        <tracker-second-step-data (formIsValid)="setSecondStep($event)"
+                                  [setAttributes]="item ? board.attributes : null"
+                                  [setAttachments]="item ? board.fileTypesRestrictions : null"
+                                  [setTransitions]="board ? board['transitions'] : null"
+                                  (transitionsListChange)="setTransitions($event)"
+                                  (attachmentTypesChange)="setAttachmentTypes($event)">
+        </tracker-second-step-data>
+    </aw-wizard-step>
+
+    <aw-wizard-step stepTitle="{{'tracker-manager.matrix-status' | translate}}" (stepExit)="changeStep($event)">
+
+        <ng-template awWizardStepSymbol>
+            <span id="third-step-icon"
+                  class="material-icons-outlined custom-icon-wizard"> {{ setIconStepThree() }} </span>
+        </ng-template>
+
+        <tracker-third-step (statusListChange)="setThirdStep($event)"
+                            (changeStatusOrder)="changeStatusOrder($event)"
+                            (transitionsListChange)="setTransitions($event)"
+                            (goToFourthStep)="goToFourthStep()"
+                            [nextStep]="steps.get('third').nextStep"
+                            [setTransitions]="board ? board['transitions'] : null"
+                            [setStatusList]="board ? board.status : null" *ngIf="!fourthStepOpen && stepCount === 2"
+                            [attributes]="board.attributes">
+        </tracker-third-step>
+
+
+        <tracker-fourth-step *ngIf="fourthStepOpen" [attributes]="board.attributes" (saveStep)="save()"
+                             (backStep)="backFourthStep()">
+        </tracker-fourth-step>
+
+    </aw-wizard-step>
+
+</aw-wizard>

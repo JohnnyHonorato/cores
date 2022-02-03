@@ -1,0 +1,89 @@
+<div class="card tracker cursor-pointer" #card *ngIf="item" trackerDragDrop (fileDropped)="onFileDropped($event)">
+    <div id="to-view-card-{{item.id}}" class="tracker-card-header p-10 pb-0" (click)="navigateToCard(item.id)">
+        <div id="card-id-{{item.id}}" class="card-id">#{{item.id}}</div>
+        <tracker-assignees [listAssignees]="item.assignees" (filter)="filter($event)"></tracker-assignees>
+    </div>
+    <div class="row p-10" (click)="navigateToCard(item.id)">
+        <div class="p-0" [ngClass]="item.delay ? 'col-sm-8' : 'col-sm-12'">
+            <label id="filter-by-tag-label" class="tags tags-width text-truncate" *ngFor="let tag of item.tags"
+                   [ngStyle]="{'background': tag.color}"
+                   data-bs-toggle="tooltip" title="{{'system.filter-tag' | translate}}" (click)="filterByTag($event,tag)">
+                {{tag.name}}
+            </label>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-end p-0" *ngIf="item.delay">
+            <label id="tracker-card-delay-label" class="tags card-delay text-truncate m-0">
+                {{'tracker.card.delay' | translate}}
+            </label>
+        </div>
+        <div class="tracker-card-body p-0">
+            <h5 id="title-header" class="card-title m-0">{{item.title}}</h5>
+            <div class="custom-icon-space">
+                <div id="subject" class="custom-icon-card icon-subject">
+                    <span id="subject-icon" class="material-icons-outlined">subject</span>
+                </div>
+                <div #numberComments id="number-comments" class="custom-icon-card quick-view-icon"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="top" title="{{'tracker.card.view-comments' | translate}}"
+                     (click)="emitShowQuickView('comment'); $event.stopPropagation()"
+                     [ngClass]="isComment ? 'dropdown-focus' : ''">
+                    <span id="comments-icon" class="material-icons-outlined" #commentIcon>chat_bubble_outline</span>
+                    {{item.numberComments}}
+                </div>
+                {{item.numberAttachments}}
+                <div id="number-attachment" class="custom-icon-card quick-view-icon" data-bs-toggle="tooltip"
+                     data-bs-placement="top" title="{{'tracker.card.view-attachment' | translate}}"
+                     (click)="emitShowQuickView('attachment'); $event.stopPropagation()"
+                     [ngClass]="isAttachment ? 'dropdown-focus' : ''">
+                    <span id="attachment-icon" class="material-icons-outlined" #attachmentIcon>attach_file</span>
+                    {{item.attachments.length}}
+                </div>
+            </div>
+            <div *ngIf="item.links.length>0">
+                <label id="links-label" class="card-title d-block m-0">
+                    {{'tracker.links' | translate}}
+                </label>
+                <label *ngFor="let link of item.links" class="label-link" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="{{link.title}}"
+                (click)="navigateToLinkedCard(link); $event.stopPropagation()">#{{link.id}}</label>
+            </div>
+            <div class="panel panel-default">
+                <div id="showCard{{item.id}}" class="panel-collapse collapse mt-2">
+                    <label id="tracker-card-description" *ngIf="item.description" class="card-title pb-0 mb-0">
+                        {{'tracker.card.description' | translate}}</label>
+                    <p id="card-description" class="card-description p-0 m-0">{{item.description}}</p>
+                    <tracker-view-customizable-attributes
+                        [attributes]="{attributesValue: item?.attributesValue,
+                        transition: item?.transition, attributes: item?.trackerModel?.attributes}">
+                    </tracker-view-customizable-attributes>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="custom-hr">
+    <div class="p-10">
+        <div class="tracker-card-footer">
+            <a class="tracker-card-footer-content align-items-center" data-bs-toggle="collapse"
+               href="#showCard{{item.id}}" aria-expanded="false">
+                <div id="due-date-card" [ngClass]="item.dueDate ? 'tracker-due-date' : ''">
+                    <i id="due-date-icon" class="material-icons-round" *ngIf="item.dueDate">event</i>
+                    {{item.dueDate | date:'dd MMMM, yyyy'}}
+                </div>
+                <div id="show-card-icons" class="icon-collapse d-flex">
+                    <i id="up-icon" class="material-icons-round up">expand_less</i>
+                    <i id="down-icon" class="material-icons-round down">expand_more</i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<tracker-quick-view-comments [coordinatesCard]="iconCoordinates"
+                             (closeQuickView)="openOrCloseQuickViewComment()"
+                             (changeTotalComments)="updateCountComments()" [setTrackerId]="item.id"
+                             *ngIf="isComment">
+</tracker-quick-view-comments>
+<tracker-quick-view-attachment [coordinatesCard]="iconCoordinates"
+                               (closeQuickView)="openOrCloseQuickViewAttachment()"
+                               [trackerId]="item.id"
+                               *ngIf="isAttachment">
+</tracker-quick-view-attachment>

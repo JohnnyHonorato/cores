@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "tracker": "http://localhost:4203/main.js"
+  }
+}

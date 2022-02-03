@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" translate>image.title</h5>
+    <button id="close-btn" type="button" class="btn-close" (click)="modalRef.hide()"></button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12 mb-4 form-group">
+            <input id="img-input" #myInputFile accept="image/*" type="file" (change)="onFileChange($event)" />
+        </div>
+        <div id="img-file" class="col-7 d-flex justify-content-center" *ngIf="imgChangeEvt?.name">
+            <image-cropper [imageFile]="imgChangeEvt" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" (imageCropped)="cropImg($event)" (loadImageFailed)="imgFailed()">
+            </image-cropper>
+        </div>
+        <div id="no-img-file" class="col-7 d-flex justify-content-center" *ngIf="!imgChangeEvt?.name">
+            <image-cropper [imageChangedEvent]="imgChangeEvt" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" (imageCropped)="cropImg($event)" (loadImageFailed)="imgFailed()">
+            </image-cropper>
+        </div>
+        <div id="img" class="col-5 d-flex justify-content-center flex-column align-items-center">
+            <div id="img-crop">
+                <img [src]="cropImgPreview" />
+            </div>
+            <div id="img-preview" class="page-description" *ngIf="imgChangeEvt" translate>image.preview</div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button id="cancel-action" type="button" class="btn btn-back" (click)="modalRef.hide()">
+        <span translate>system.cancel</span>
+    </button>
+    <button id="save-img" type="button" class="btn btn-primary" *ngIf="imgChangeEvt" (click)="save()">
+        <span translate>system.save</span>
+    </button>
+</div>

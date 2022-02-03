@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><endpoint xmlns="http://ws.apache.org/ns/synapse" name="way-tracker--vv1_APIsandboxEndpoint">
+    <http uri-template="http://tracker:8083">
+        <timeout>
+            <responseAction>fault</responseAction>
+        </timeout>
+    </http>
+    <property name="ENDPOINT_ADDRESS" value="http://tracker:8083"/>
+</endpoint>

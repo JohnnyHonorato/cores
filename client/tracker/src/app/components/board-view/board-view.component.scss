@@ -1,0 +1,71 @@
+.status-list {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+    height: 100%;
+}
+
+.list-filters {
+    height: calc(100% - 4.2rem);
+}
+
+.edit-filters {
+    height: calc(100% - 8.5rem);
+}
+
+.no-filters {
+    height: 100%;
+}
+
+.status-column {
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.row > * {
+    width: auto;
+    padding: 0 6px !important;
+}
+
+.card, .card-header, .card-body {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+.card-header {
+    padding: 12px 12px 0 12px;
+    height: auto;
+    min-height: auto;
+    max-height: auto;
+}
+
+mat-drawer-content:not(.items-end) {
+    justify-content: flex-start;
+}
+
+.mat-drawer {
+    position: fixed;
+}
+
+.mat-drawer-container {
+    display: contents;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.mat-drawer-content {
+    overflow-y: hidden;
+}
+
+.card {
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}

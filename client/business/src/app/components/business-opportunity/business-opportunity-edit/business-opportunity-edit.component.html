@@ -1,0 +1,178 @@
+<div class="row">
+    <div class="col-sm-12 p-0">
+        <form class="card" role="form" (ngSubmit)="onSubmit()" [formGroup]="editForm">
+            <common-loading [loading]="loading"></common-loading>
+            <div class="card-body" *ngIf="!loading">
+                <div id="page-title" class="color-primary-color custom-padding-fields">
+                    <h4 translate>business-opportunity.data</h4>
+                </div>
+                <div class="row">
+                    <div class="form-group required col-sm-6">
+                        <label id="title-label" class="control-label" translate>business-opportunity.opportunity-title</label>
+                        <input id="title-input" type="text" class="form-control" formControlName="title"
+                               [ngClass]="hasError(editForm.get('title'))">
+                        <common-control-message id="title-control-msg" [control]="editForm.get('title')"></common-control-message>
+                    </div>
+                    <div class="form-group required col-sm-6">
+                        <label id="organization-label" class="control-label" translate>organization.title.singular</label>
+                        <select id="organization-select" class="form-control form-select" formControlName="organizationId"
+                                [ngClass]="hasError(editForm.get('organizationId'))"
+                                (change)="onChangeOrganization($event.target.value)">
+                            <option id="organization-options"
+                                    *ngFor="let organization of organizations"
+                                    [value]="organization.id">
+                                {{organization.fantasyName}}
+                            </option>
+                        </select>
+                        <common-control-message id="org-control-msg" [control]="editForm.get('organizationId')"></common-control-message>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group required col-sm-12">
+                        <label id="description-label" class="control-label" translate>business-opportunity.opportunity-description</label>
+                        <textarea id="description-input" name="story" class="form-control" formControlName="description" rows="5" cols="33">
+                        </textarea>
+                        <common-control-message id="description-control-msg" [control]="editForm.get('description')">
+                        </common-control-message>
+                    </div>
+                </div>
+                <div *ngIf="showRepresentativeFormList" id="accordion" class="p-1 mt-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 id="representative-title" class="mb-0 contact-info-title cursor-pointer"
+                                (click)="collapseOne = !collapseOne" translate>
+                                business-opportunity.representative.plural
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse m-3"
+                             [ngClass]="collapseOne ? '' : 'show'">
+                            <div *ngIf="peoples?.length">
+                                <form role="form" [formGroup]="representativeForm">
+                                    <div class="col-sm-12 d-flex align-items-center">
+                                        <div class="form-group col-sm-3">
+                                            <label id="representative-label" class="control-label" translate>
+                                                business-opportunity.representative.singular
+                                            </label>
+                                            <ng-select id="representative-select"
+                                                       formControlName="peopleId"
+                                                       [items]="peoples" bindLabel="name" bindValue="id">
+                                            </ng-select>
+                                            <common-control-message id="representative-control-msg"
+                                                                    [control]="representativeForm.get('peopleId')">
+                                            </common-control-message>
+                                        </div>
+                                        <div class="content-checkbox mt-3">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="signatory"
+                                                       formControlName="signatory"
+                                                       [attr.disabled]="representativeForm.invalid ? true : null">
+                                                <label id="signatory-label" class="form-check-label" for="signatory" translate>
+                                                    business-opportunity.representative.signatory
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="companyRepresentative"
+                                                       formControlName="companyRepresentative"
+                                                       [attr.disabled]="representativeForm.invalid ? true : null">
+                                                <label id="companyRepresentative-label" class="form-check-label" for="companyRepresentative"
+                                                       translate>
+                                                    business-opportunity.representative.companyRepresentative
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       id="technicalRepresentative"
+                                                       formControlName="technicalRepresentative"
+                                                       [attr.disabled]="representativeForm.invalid ? true : null">
+                                                <label id="technicalRepresentative-label" class="form-check-label"
+                                                       for="technicalRepresentative" translate>
+                                                    business-opportunity.representative.technicalRepresentative
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 align-items-center">
+                                            <button id="add-representative-button" class="btn btn-primary btn-add" type="button"
+                                                    [disabled]="representativeForm.invalid"
+                                                    (click)="addRepresentative()">
+                                                <span class="material-icons-outlined">add</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="col-12 p-1 mt-2">
+                                    <div class="table-responsive">
+                                        <table class="table card-table">
+                                            <thead class="custom-thead">
+                                            <tr>
+                                                <th id="name-column-title" class="custom-th col-md-4" translate>common.name</th>
+                                                <th id="signatory-column-title" class="custom-th col-md-2" translate>
+                                                    business-opportunity.representative.signatory
+                                                </th>
+                                                <th id="representative-column-title" class="custom-th col-md-2" translate>
+                                                    business-opportunity.representative.companyRepresentative
+                                                </th>
+                                                <th id="tec-representative-column-title" class="custom-th col-md-2" translate>
+                                                    business-opportunity.representative.technicalRepresentative
+                                                </th>
+                                                <th id="actions-column" class="custom-th left"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="representative-table-body">
+                                            <tr class="table-no-content">
+                                                <td colspan="5" class="text-center" *ngIf="item?.representatives.length <= 0">
+                                                    <strong>{{'system.no-record' | translate}}</strong>
+                                                </td>
+                                            </tr>
+                                            <ng-container *ngFor="let item of item?.representatives; let i = index">
+                                                <tr>
+                                                    <td id="name-content-{{i+1}}">
+                                                        {{item.name}}
+                                                    </td>
+                                                    <td id="signatory-content-{{i+1}}" translate>
+                                                        system.{{getYesOrNoValue(item.signatory)}}
+                                                    </td>
+                                                    <td id="representative-content-{{i+1}}" translate>
+                                                        system.{{getYesOrNoValue(item.companyRepresentative)}}
+                                                    </td>
+                                                    <td id="tec-representative-content-{{i+1}}" translate>
+                                                        system.{{getYesOrNoValue(item.technicalRepresentative)}}
+                                                    </td>
+                                                    <td class="text-right actions-column">
+                                                        <button id="edit-representative-button-{{i+1}}" type="button" class="btn-muted"
+                                                                (click)="editItem(item, i)">
+                                                            <i class="material-icons-outlined" data-bs-toggle="tooltip"
+                                                               data-bs-placement="top"
+                                                               title="{{'system.edit' | translate}}">edit</i>
+                                                        </button>
+                                                        <button id="remove-representative-button-{{i+1}}" type="button"
+                                                                class="btn-muted text-danger"
+                                                                (click)="setRemoveIndex(i)">
+                                                            <i class="material-icons-outlined color-red"
+                                                               data-bs-toggle="tooltip" data-bs-placement="top"
+                                                               title="{{'system.delete' | translate}}">delete</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <strong id="no-contributor" *ngIf="!peoples?.length">
+                                {{'business-opportunity.no-record' | translate}}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-0 mt-2">
+                    <common-form-buttons class="p-1" (backButton)="backToList()" [loading]="submitting"
+                                         [disabledConditions]="editForm.invalid">
+                    </common-form-buttons>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

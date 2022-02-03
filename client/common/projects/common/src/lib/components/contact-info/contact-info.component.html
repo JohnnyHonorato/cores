@@ -1,0 +1,305 @@
+<ul class="nav">
+    <li id="contact-info-email" (click)="selectedTab = 'email';resetForms()"
+        [ngClass]="{'tab-active': selectedTab === 'email'}"
+        class="cursor-pointer">
+        <label class="cursor-pointer" translate>contact-info.email</label>
+    </li>
+    <li id="contact-info-phone" (click)="selectedTab = 'phone';resetForms()"
+        [ngClass]="{'tab-active': selectedTab === 'phone'}"
+        class="cursor-pointer">
+        <label class="cursor-pointer" translate>contact-info.phone</label>
+    </li>
+    <li id="contact-info-address" (click)="selectedTab = 'address';resetForms()"
+        [ngClass]="{'tab-active': selectedTab === 'address'}"
+        class="cursor-pointer">
+        <label class="cursor-pointer" translate>contact-info.address</label>
+    </li>
+</ul>
+
+<div class="panel-body">
+    <div class="tab-content">
+        <div class="tab-pane" [ngClass]="{'active': selectedTab === 'email'}" id="tab1">
+            <form [formGroup]="formEmail">
+                <div class="row">
+                    <div class="form-group col-sm-5 required">
+                        <label id="email-label" class="control-label" translate>contact-info.email</label>
+                        <input id="email-input" type="text" class="form-control" formControlName="email"
+                               [ngClass]="hasError(formEmail.get('email'))">
+                        <common-control-message id="email-control-msg" [control]="formEmail.get('email')">
+                        </common-control-message>
+                    </div>
+                    <div class="form-group col-sm-4 required">
+                        <label id="contact-type-label" class="control-label" translate>contact-info.type</label>
+                        <select id="select-type-email" class="form-control form-select" formControlName="emailTag"
+                                [ngClass]="hasError(formEmail.get('emailTag'))">
+                            <option [attr.id]="'email-type-' + i" *ngFor="let emailType of emailTypes; let i = index" [value]="emailType.value" translate>
+                                {{emailType.label}}
+                            </option>
+                        </select>
+                        <common-control-message id="email-tag-control-msg" [control]="formEmail.get('emailTag')">
+                        </common-control-message>
+                    </div>
+                    <button id="email-save-or-add-button" class="btn btn-primary btn-add mt-20" type="button"
+                            (click)="addContact(formEmail.value)" [disabled]="formEmail.invalid">
+                        <span id="add-icon" class="material-icons-outlined" *ngIf="selectedIndex === null">add</span>
+                        <span id="save-icon" class="material-icons-outlined" *ngIf="selectedIndex !== null">save</span>
+                    </button>
+                    <label id="no-email-main" class="no-email-main" *ngIf="!checkEmailIsValid()">
+                        {{'system.form.validation.at-least-one-main-email' | translate}}
+                    </label>
+                </div>
+            </form>
+            <div class="col-12">
+                <div class="table-responsive mt-2">
+                    <table class="table card-table table-vcenter text-nowrap">
+                        <thead class="custom-thead">
+                        <tr>
+                            <th id="email-column" class="custom-th" translate>contact-info.email</th>
+                            <th id="email-type-column" class="custom-th" translate>contact-info.type</th>
+                            <th class="custom-th left"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="email-info-table">
+                        <tr class="table-no-content">
+                            <td colspan="3" class="text-center" *ngIf="amountEmail <= 0">
+                                <strong id="email-no-record">{{'system.no-record' | translate}}</strong>
+                            </td>
+                        </tr>
+                        <ng-container *ngFor="let contact of contacts; let i = index">
+                            <tr *ngIf="contact?.contactInfoType === 'EMAIL'">
+                                <td [attr.id]="'email-value-' + i">
+                                    {{contact.email}}
+                                </td>
+                                <td [attr.id]="'emailTag-value-' + i" translate>
+                                    {{ 'contact-info.tag.' + contact.emailTag?.toLowerCase() }}
+                                </td>
+                                <td class="text-right actions-column">
+                                    <button [attr.id]="'edit-email-button-' + i"  type="button" class="btn-muted" (click)="editContactByType(contact, i)">
+                                        <i class="material-icons-outlined">edit</i>
+                                    </button>
+                                    <button type="button" class="btn-muted" [attr.id]="'delete-email-button-' + i"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-delete-contact-info"
+                                            (click)="setRemoveIndex(i)">
+                                        <i class="material-icons-outlined color-red">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{'active': selectedTab === 'phone'}" id="tab2">
+            <form [formGroup]="formPhones">
+                <div class="row">
+                    <div class="form-group col-sm-2">
+                        <label id="country-code-label" class="control-label" translate>contact-info.country-code</label>
+                        <input id="country-code-input" type="text" class="form-control" formControlName="phoneCountryCode"
+                               [ngClass]="hasError(formPhones.get('phoneCountryCode'))">
+                        <common-control-message id="phone-code-control-msg" [control]="formPhones.get('phoneCountryCode')">
+                        </common-control-message>
+                    </div>
+                    <div class="form-group col-sm-5">
+                        <label id="phone-label" class="control-label" translate>contact-info.phone</label>
+                        <input id="phone-input" type="text" class="form-control" formControlName="phone"
+                               [ngClass]="hasError(formPhones.get('phone'))">
+                        <common-control-message id="phone-number-control-msg" [control]="formPhones.get('phone')">
+                        </common-control-message>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label id="type-label" class="control-label" translate>contact-info.type</label>
+                        <select id="select-type-phone" class="form-control form-select" formControlName="phoneTag"
+                                [ngClass]="hasError(formPhones.get('phoneTag'))">
+                            <option [attr.id]="'phone-type-' + i" *ngFor="let phoneType of phoneTypes; let i = index" [value]="phoneType.value"
+                                    translate>{{phoneType.label}}</option>
+                        </select>
+                        <common-control-message id="phone-tag-control-msg"
+                            [control]="formPhones.get('phoneTag')"></common-control-message>
+                    </div>
+                    <button id="phone-save-or-add-button" class="btn btn-primary btn-add mt-20" type="button" (click)="addContact(formPhones.value)"
+                            [disabled]="formPhones.invalid || !checkIsValid(formPhones.get('contactInfoType').value)">
+                        <span class="material-icons-outlined" *ngIf="selectedIndex === null">add</span>
+                        <span class="material-icons-outlined" *ngIf="selectedIndex !== null">save</span>
+                    </button>
+                </div>
+            </form>
+            <div class="col-12">
+                <div class="table-responsive mt-2">
+                    <table class="table card-table table-vcenter text-nowrap">
+                        <thead class="custom-thead">
+                        <tr>
+                            <th id="country-code-column" class="custom-th" translate>contact-info.country-code</th>
+                            <th id="phone-number-column" class="custom-th" translate>contact-info.phone</th>
+                            <th id="phone-type-column" class="custom-th" translate>contact-info.type</th>
+                            <th class="custom-th left"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="contact-phone-table">
+                        <tr class="table-no-content">
+                            <td id="phone-no-record" colspan="4" class="text-center" *ngIf="amountPhones <= 0">
+                                <strong>{{'system.no-record' | translate}}</strong>
+                            </td>
+                        </tr>
+                        <ng-container *ngFor="let contact of contacts; let i = index">
+                            <tr *ngIf="contact.contactInfoType === 'PHONE'">
+                                <td [attr.id]="'phone-country-code-value-' + i">
+                                    {{contact.phoneCountryCode}}
+                                </td>
+                                <td [attr.id]="'phone-value-' + i">
+                                    {{contact.phone}}
+                                </td>
+                                <td [attr.id]="'phone-tag-value-' + i" translate>
+                                    {{ contact.phoneTag ? ('contact-info.tag.' + contact.phoneTag?.toLowerCase()) : ('') }}
+                                </td>
+                                <td class="text-right actions-column">
+                                    <button [attr.id]="'edit-phone-button-' + i" type="button" class="btn-muted" (click)="editContactByType(contact, i)">
+                                        <i class="material-icons-outlined">edit</i>
+                                    </button>
+                                    <button [attr.id]="'delete-phone-button-' + i" type="button" class="btn-muted"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-delete-contact-info"
+                                            (click)="setRemoveIndex(i)">
+                                        <i class="material-icons-outlined color-red">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" [ngClass]="{'active': selectedTab === 'address'}" id="tab3">
+            <form [formGroup]="formAddress">
+                <div class="row">
+                    <div class="col-sm-11 p-0 row">
+                        <div class="col-sm-2 form-group">
+                            <label id="domain-label" class="control-label" translate>common.address.domain</label>
+                            <select id="select-type-domain" class="form-control form-select"
+                                    formControlName="contactDomain" (change)="setMask()">
+                                <option [attr.id]="'domain-' + i" *ngFor="let domain of domains; let i = index" [value]="domain.value"
+                                        translate>{{domain.label}}</option>
+                            </select>
+                            <common-control-message id="address-domain-control-msg" [control]="formAddress.get('contactDomain')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label id="zip-code-label" class="control-label" translate>common.address.zip-code</label>
+                            <input id="zip-code-input" class="form-control" type="text" formControlName="addressZipCode"
+                                   [ngClass]="hasError(formAddress.get('addressZipCode'))" [mask]="zipMask">
+                            <common-control-message id="zip-code-control-msg" [control]="formAddress.get('addressZipCode')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-5 form-group">
+                            <label id="street-label" class="control-label" translate>common.address.street</label>
+                            <input id="street-input" class="form-control" type="text" formControlName="addressStreet"
+                                   [ngClass]="hasError(formAddress.get('addressStreet'))">
+                            <common-control-message id="street-control-msg" [control]="formAddress.get('addressStreet')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-1 form-group">
+                            <label id="address-number-label" class="control-label" translate>common.address.number</label>
+                            <input id="address-number-input" class="form-control" type="text" formControlName="addressNumber"
+                                   [ngClass]="hasError(formAddress.get('addressNumber'))">
+                            <common-control-message id="address-number-control-msg" [control]="formAddress.get('addressNumber')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label id="address-complement-label" class="control-label" translate>common.address.complement</label>
+                            <input id="address-complement-input" class="form-control" type="text" formControlName="addressComplement"
+                                   [ngClass]="hasError(formAddress.get('addressComplement'))">
+                            <common-control-message id="address-complement-control-msg" [control]="formAddress.get('addressComplement')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label id="neighborhood-label" class="control-label" translate>common.address.neighborhood</label>
+                            <input id="neighborhood-input" class="form-control" type="text" formControlName="addressNeighborhood"
+                                   [ngClass]="hasError(formAddress.get('addressNeighborhood'))">
+                            <common-control-message id="neighborhood-control-msg" [control]="formAddress.get('addressNeighborhood')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label id="city-label" class="control-label" translate>common.address.city</label>
+                            <input id="city-input" class="form-control" type="text" formControlName="addressCity"
+                                   [ngClass]="hasError(formAddress.get('addressCity'))">
+                            <common-control-message id="city-control-msg" [control]="formAddress.get('addressCity')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label id="state-label" class="control-label" translate>common.address.state</label>
+                            <input id="state-input" class="form-control" type="text" formControlName="addressState"
+                                   [ngClass]="hasError(formAddress.get('addressState'))">
+                            <common-control-message id="state-control-msg" [control]="formAddress.get('addressState')">
+                            </common-control-message>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label id="country-label" class="control-label" translate>common.address.country</label>
+                            <input id="country-input" class="form-control" type="text" formControlName="addressCountry"
+                                   [ngClass]="hasError(formAddress.get('addressCountry'))">
+                            <common-control-message id="country-control-msg" [control]="formAddress.get('addressCountry')">
+                            </common-control-message>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 center">
+                        <button id="address-save-or-add-button" class="btn btn-primary btn-add" type="button"
+                                (click)="addContact(formAddress.value)"
+                                [disabled]="formAddress.invalid || !checkIsValid(formAddress.get('contactInfoType').value)">
+                            <span class="material-icons-outlined" *ngIf="selectedIndex === null">add</span>
+                            <span class="material-icons-outlined" *ngIf="selectedIndex !== null">save</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-12">
+                <div class="table-responsive mt-2">
+                    <table class="table card-table table-vcenter text-nowrap">
+                        <thead class="custom-thead">
+                        <tr>
+                            <th id="zip-code-column" class="custom-th" translate>common.address.zip-code</th>
+                            <th id="city-column" class="custom-th" translate>common.address.city</th>
+                            <th id="neighborhood-column" class="custom-th" translate>common.address.neighborhood</th>
+                            <th class="custom-th left"></th>
+                        </tr>
+                        </thead>
+                        <tbody id="contact-address-table">
+                        <tr class="table-no-content">
+                            <td colspan="4" class="text-center" *ngIf="amountAddresses <= 0">
+                                <strong id="address-no-record">{{'system.no-record' | translate}}</strong>
+                            </td>
+                        </tr>
+                        <ng-container *ngFor="let contact of contacts; let i = index">
+                            <tr *ngIf="contact.contactInfoType === 'ADDRESS'">
+                                <td [attr.id]="'address-zip-code-value-' + i">
+                                    {{contact.addressZipCode}}
+                                </td>
+                                <td [attr.id]="'address-city-value-' + i">
+                                    {{contact.addressCity}}
+                                </td>
+                                <td [attr.id]="'address-neighborhood-value-' + i">
+                                    {{contact.addressNeighborhood}}
+                                </td>
+                                <td class="actions-column">
+                                    <button [attr.id]="'edit-address-button-' + i" type="button" class="btn-muted" (click)="editContactByType(contact, i)">
+                                        <i class="material-icons-outlined">edit</i>
+                                    </button>
+                                    <button [attr.id]="'delete-address-button-' + i" type="button" class="btn-muted"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-delete-contact-info"
+                                            (click)="setRemoveIndex(i)">
+                                        <i class="material-icons-outlined color-red">delete</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<common-delete-confirmation (ok)="deleteContact()" [target]="'modal-delete-contact-info'">
+</common-delete-confirmation>

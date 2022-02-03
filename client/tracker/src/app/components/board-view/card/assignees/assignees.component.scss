@@ -1,0 +1,102 @@
+.material-icons-round {
+    color: #4D66D3;
+    font-size: 1.125em;
+}
+
+.size-count-members {
+    font-size: 10px;
+    font-weight: 500 !important;
+    color: #142263;
+}
+
+.background-options {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: #eaeaf3;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.align-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-menu {
+    padding: 0;
+    width: 198px;
+}
+
+.header-dropdown {
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+}
+
+.member-list-title {
+    text-align: left;
+    font-size: 12px;
+    color: #142263;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.line-icon-close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.custom-icon-close {
+    font-size: 16px;
+}
+
+.custom-icon-circle {
+    font-size: 16px;
+    padding-right: 5px;
+
+}
+
+.custom-name-member {
+    color: #142263;
+    opacity: 1;
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.item-members {
+    height: 33px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.item-members:hover {
+    background-color: #F7F7FA;
+}
+
+.dropdown-divider {
+    margin: 0rem 0;
+}
+
+.body-dropdown {
+    max-height: 165px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #F0F0F8;
+}

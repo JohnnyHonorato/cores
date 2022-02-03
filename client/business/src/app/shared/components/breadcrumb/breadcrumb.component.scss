@@ -1,0 +1,33 @@
+@import "../../../../../node_modules/common/src/assets/scss/variables";
+
+.container-breadcrumb {
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #eaeaf3;
+    background-color: #FFFFFF;
+    padding: 18px 20px;
+}
+
+.breadcrumb-item {
+    color: #969AA3;
+    text-transform: capitalize;
+}
+
+.breadcrumb-item > .active {
+    color: $primary-color;
+    opacity: 1;
+}
+
+.breadcrumb-item:not(:last-child) {
+    cursor: pointer;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    letter-spacing: 0;
+    color: #969AA3;
+    opacity: 1;
+    content: "•" !important;
+    margin: 0 3px;
+    cursor: text;
+}
+

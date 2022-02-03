@@ -1,0 +1,48 @@
+<div id="drag-drop-items" cdkDropList (cdkDropListDropped)="drop($event)">
+    <ul class="list-group" *ngFor="let item of list; let i = index">
+        <li class="list-group-item status-item cursor-pointer" *ngIf="!item.deleted" cdkDrag>
+            <div class="name-padding d-flex" [ngClass]="showType ? 'col-md-6' : 'col-md-10'">
+                <span id="drag-icon" class="material-icons-outlined"> drag_indicator </span>
+                <div id="status-item-name" class="text-truncate padding-top-1o">
+                    {{getNameToDisplay(item)}}
+                </div>
+            </div>
+            <div *ngIf="showType" class="col-md-4 mt-1 no-padding">
+                <div id="status-type-text" class="text-truncate status-type-text">
+                    {{getTypeToDisplayFormatted(item.type) | translate}}
+                </div>
+            </div>
+            <div class="text-right pull-right col-md-2" *ngIf="control !== 'orderStatus'">
+                <div [ngSwitch]="control">
+                    <span *ngSwitchCase="'status'">
+                        <button id="edit-btn" type="button" class="btn-muted" data-toggle="tooltip" data-placement="top"
+                                title="{{'system.edit' | translate}}" (click)="editStatus(item, i)">
+                            <i class="fe fe-edit-2 fa-lg"></i>
+                        </button>
+                    </span>
+                    <span *ngSwitchCase="'attributes'">
+                        <button id="open-custom-btn" type="button" class="btn-muted" data-toggle="modal"
+                                data-target="#custom-att-edit"
+                                (click)="openCustomAttributeModal(item)">
+                            <i class="fe fe-edit-2 fa-lg"></i>
+                        </button>
+                    </span>
+                    <button id="remove-item-btn" type="button" class="btn-muted text-danger"
+                            [attr.data-target]="'#modal-delete-' + control"
+                            (click)="setRemoveItemAndIndex(item, i)">
+                        <i class="fe fe-trash text-danger fa-lg"></i>
+                    </button>
+                </div>
+                <tracker-modal-delete-relationship
+                    (ok)="removeFromList()"
+                    [setValue]="getItem()"
+                    target="confirmation-delete-relationship"
+                >
+                </tracker-modal-delete-relationship>
+            </div>
+        </li>
+    </ul>
+
+    <common-delete-confirmation (ok)="removeFromList()" target="modal-delete-{{control}}">
+    </common-delete-confirmation>
+</div>

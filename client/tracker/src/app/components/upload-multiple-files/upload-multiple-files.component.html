@@ -1,0 +1,70 @@
+<div id="attachments" class="card border-0 m-0">
+    <div *ngIf="isPreview else noPreview" class="card-header p-16 cursor-not-allowed">
+        <div class="d-flex align-items-center">
+            <div id="card-title" class="page-title-wizard p-0 m-0">{{'tracker.card.attachment.title' | translate}}</div>
+            <div class="ms-auto">
+                <i id="expand-more-icon" class="material-icons-outlined expand_more"> expand_more </i>
+            </div>
+        </div>
+    </div>
+    <ng-template #noPreview>
+        <div class="card-header card-header-files py-2 mt-0 px-3 cursor-pointer" data-bs-toggle="collapse"
+             href="#collapse-card"
+             aria-expanded="false">
+            <div class="d-flex align-items-center">
+                <div id="attachment-title"
+                     class="page-title-wizard m-0">{{'tracker.card.attachment.title' | translate}}</div>
+                <div class="ms-auto">
+                    <i id="less-icon" class="material-icons-outlined expand_less"> expand_less </i>
+                    <i id="more-icon" class="material-icons-outlined expand_more"> expand_more </i>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <div class="card-body collapse p-0 px-3" id="collapse-card">
+        <div class="container-drop my-3" *ngIf="!isView" trackerDragDrop (fileDropped)="onFileDropped($event)">
+            <input type="file" #fileDropRef id="fileDropRef" multiple
+                   (change)="fileBrowseHandler($event.target.files)" (click)="$event.target.value=null" [disabled]="isPreview==true"/>
+            <span id="drag-and-drop-description" class="m-0 dnd-description cursor-default">{{'tracker.drag-and-drop-description' | translate}}
+                <label id="select-attachment" class="cursor-pointer"
+                       for="fileDropRef">{{'tracker.drag-and-drop-btn' | translate}}</label>
+            </span>
+        </div>
+        <div class="d-flex files-extensions mt-2" *ngIf="filesExtensions.length != 0 && !isView">
+            <label id="supported-file-types">{{'tracker.supported-file-types' | translate}}</label>
+            <div *ngFor="let ext of filesExtensions; let i = index">
+                <label id="type-ext-{{i}}" class="ms-1">{{'.' + ext}}</label>
+            </div>
+        </div>
+        <p id="no-attachments" class="page-description-wizard m-0" *ngIf="isView && files.length === 0" translate>
+            tracker.card.no-attachments</p>
+        <div [ngClass]="files.length > 3 ? 'files-list-content' : 'files-list'">
+            <div class="single-file" *ngFor="let file of files; let i = index">
+                <div class="content-file">
+                    <div class="info">
+                        <h4 id="file-name-{{i}}"
+                            class="name text-truncate"> {{ file?.originalName ? file?.originalName : file?.name }}
+                        </h4>
+                    </div>
+                    <div class="options">
+                        <span id="file-size-{{i}}" class="size">
+                            {{ file?.fileSize ? formatBytes(file?.fileSize, null) : formatBytes(file?.size, null) }}
+                        </span>
+                        <span id="btn-download" *ngIf="file.id"
+                              [ngClass]="files.length > 3 && isView ? 'material-icons-outlined download me-2' : 'material-icons-outlined download'"
+                              (click)="downloadFile(file)"> file_download
+                        </span>
+                        <span id="btn-delete"
+                              [ngClass]="files.length > 3 ? 'material-icons-outlined delete me-2' : 'material-icons-outlined delete'"
+                              data-bs-target="#modal-delete-attachment" data-bs-toggle="modal" *ngIf="!isView"
+                              (click)="getFileToRemoveData(i, file)"> delete
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<common-delete-confirmation id="delete-attachment" (ok)="deleteFile()" target="modal-delete-attachment">
+</common-delete-confirmation>

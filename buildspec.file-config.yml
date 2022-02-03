@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  post_build:
+    on-failure: ABORT
+    commands:
+      - echo '###############' Replacing docker compose file'###############'
+      - mv docker-compose.${BUILD_ENV}.yml docker-compose.yml
+artifacts:
+  files:
+    - docker-compose.yml
+    - nginx/**/*
+    - wso2/**/*

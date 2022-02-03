@@ -1,0 +1,12 @@
+<div class="row align-content-end">
+
+    <button *ngIf="showBackButton" id="btn-back" type="button" class="btn btn-back" (click)="back()">
+        <strong translate>system.back</strong>
+    </button>
+
+    <button *ngIf="showSaveButton" id="btn-save" type="submit" [ladda]="loading" class="btn btn-primary mr-0"
+            [disabled]="disabledConditions">
+        <strong translate>system.save</strong>
+    </button>
+
+</div>

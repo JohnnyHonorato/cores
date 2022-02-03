@@ -1,0 +1,61 @@
+.item-border {
+    background: #F9F9F9;
+    border: 1px solid #EAECEF;
+    border-radius: 4px;
+    opacity: 1;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.item-padding {
+    padding: 4px 10px;
+}
+
+i {
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0;
+    opacity: 1;
+}
+
+.pl-2 {
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: #142263;
+    opacity: 0.83;
+}
+
+#edit {
+    color: #142263;
+    margin-right: 5px;
+}
+
+#delete {
+    color: #CB2D2D;
+}
+
+::ng-deep .mat-checkbox-frame {
+    letter-spacing: 0;
+    border-color: #142263;
+    opacity: 1;
+}
+
+.material-icons-outlined {
+    line-height: inherit;
+}
+
+.custom-check {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    margin-left: 10px;
+}
+
+.first-icon {
+    margin-left: auto;
+}

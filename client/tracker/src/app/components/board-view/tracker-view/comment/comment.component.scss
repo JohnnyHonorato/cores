@@ -1,0 +1,72 @@
+.card-body {
+    padding: 13px;
+    color: #75788A;
+}
+
+.card {
+    border: 1px solid #EAECEF;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.custom-icon {
+    margin-top: 2px;
+    margin-left: 3px;
+    color: #142263;
+    font-size: 15px;
+}
+
+.custom-label {
+    font-size: 12px !important;
+    color: #969AA3;
+}
+
+.dropdown-menu {
+    min-width: 7rem;
+}
+
+.textarea-custom {
+    position: relative;
+    resize: none;
+    color: #969AA3;
+    width: 100%;
+}
+
+.custom-button-textarea {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+}
+
+.card-header-comments:hover , .comment-option:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.custom-title {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #142263;
+    font-weight: 600;
+}
+
+div[aria-expanded="false"] .expand_less {
+    display: none;
+}
+
+div[aria-expanded="true"] .expand_more {
+    display: none;
+}
+
+.expand_less, .expand_more {
+    line-height: 1.5;
+}
+
+.comment-option {
+    color: #6c6a8d;
+}
+
+.comment-title {
+    color: #142263;
+    font-size: 13px;
+    font-weight: 500;
+}

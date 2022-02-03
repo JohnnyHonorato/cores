@@ -1,0 +1,67 @@
+<ng-template #popContent id="popover-checklist">
+    <ng-container>
+        <div class="title-popover row">
+            <div class="col p-0">
+                <label id="popover-checklist-label" class="popover-label" translate>
+                    {{checklistName ? 'tracker.edit-checklist' : 'tracker.add-checklist'}}
+                </label>
+            </div>
+        </div>
+        <hr class="separator"/>
+        <div class="popover-checklists-content">
+            <form [formGroup]="form" class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group required p-0">
+                        <label id="name-label" class="control-label" translate>system.name</label>
+                        <input id="name-input" type="text" class="form-control" formControlName="name"
+                               [ngClass]="hasError(form.get('name'))">
+                        <common-control-message id="checklist-name-ctrl-msg" [control]="form.get('name')">
+                        </common-control-message>
+                    </div>
+                </div>
+                <div class="col d-flex">
+                    <button id="btn-create-checklist" type="button" [disabled]="form.invalid"
+                            class="btn btn-w-m btn-primary pull-right mb-2 btn-save" (click)="emitChecklistName();">
+                        <span translate>system.save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+</ng-template>
+
+<div *ngIf="!checklistName" class="checklists m-0 px-3">
+    <div id="checklists-title" class="page-title page-title-wizard ms-0" translate>
+        tracker.card.checklist.plural
+    </div>
+    <div id="add-checklist" *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/insert-checklist']">
+        <button type="button"
+                *ngIf="!isPreview" class="btn btn-primary" [ngbPopover]="popContent"
+                [autoClose]="'outside'"
+                triggers="manual" #popoverChecklist="ngbPopover" (click)="popoverChecklist.open()"
+                (hidden)="resetForm()">
+            <span class="d-flex upper-case span-size" translate>
+                <i id="add-checklist-icon" class="material-icons mr-2 icon-size"> add </i>
+                tracker.add-checklist
+            </span>
+        </button>
+    </div>
+    <div id="preview-checklist" *ngIf="isPreview">
+        <button type="button" class="not-allowed btn btn-primary shadow-none">
+            <span translate class="d-flex align-items-center">
+                <i id="preview-checklist-icon" class="material-icons me-2 fs-6"> add </i>
+                tracker.add-checklist
+            </span>
+        </button>
+    </div>
+</div>
+<div *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-checklist']">
+    <button class="btn-clear"
+            *ngIf="checklistName" id="pop-open" [ngbPopover]="popContent" [autoClose]="'outside'" triggers="manual"
+            #popoverChecklist="ngbPopover" (click)="popoverChecklist.open()" (hidden)="resetForm()">
+        <i id="edit" class="material-icons-outlined card-icon edit-icon" data-toggle="tooltip" data-placement="top"
+           title="{{'tracker.edit-checklist' | translate}}">
+            edit
+        </i>
+    </button>
+</div>

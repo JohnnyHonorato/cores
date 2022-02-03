@@ -1,0 +1,29 @@
+<div id="modal-header" class="modal-header">
+    <h5 id="status-data-header" class="modal-title" translate>
+        status.data
+    </h5>
+    <button id="close-btn-0" type="button" class="btn-close" (click)="close()"></button>
+</div>
+
+<div id="modal-body" class="modal-body" [formGroup]="form">
+    <div class="form-group required px-0">
+        <label id="name-label" class="control-label" translate>
+            common.name
+        </label>
+        <input id="name-input" type="text" class="form-control" formControlName="name"
+               [ngClass]="hasError(form.get('name'))">
+        <common-control-message id="status-name-ctrl-msg" [control]="form.get('name')"></common-control-message>
+    </div>
+</div>
+
+<div id="modal-footer" class="modal-footer">
+    <button id="close-btn-1" type="button" class="btn btn-back"
+            (click)="close()">
+        <span translate>system.cancel</span>
+    </button>
+
+    <button id="save-btn" type="button" class="btn btn-primary" [disabled]="!form.valid"
+            (click)="saveOrEdit()">
+        <span translate>system.save</span>
+    </button>
+</div>

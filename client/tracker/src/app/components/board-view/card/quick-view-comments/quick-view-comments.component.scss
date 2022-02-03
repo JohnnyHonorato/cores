@@ -1,0 +1,121 @@
+.container-comment {
+    width: 305px;
+    max-height: 158px;
+    font-size: 12px;
+}
+
+.main-panel {
+    max-height: 158px;
+    overflow-y: scroll;
+}
+
+#user-label {
+    color: #142263;
+    font-weight: 500;
+}
+
+p > label:after {
+    content: " •";
+    color: #142263;
+}
+
+.text-truncate-custom {
+    color: #75788A;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.card-no-comment {
+    font-size: 12px;
+    padding: 8px;
+}
+
+.custom-button-textarea {
+    position: absolute;
+    bottom: 19px;
+    right: 11px;
+    box-shadow: none;
+    width: 60px !important;
+    height: 32px !important;
+    text-transform: uppercase;
+    font-size: 11px !important;
+}
+
+.textarea-custom {
+    position: relative;
+    resize: none;
+    color: #969AA3;
+    width: 100%;
+    height: 38px;
+}
+
+.form-control {
+    padding-right: 80px !important;
+}
+
+::placeholder, ::-webkit-input-placeholder, :-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder {
+    color: #969AA3;
+    font-size: 11px;
+    font-weight: 100;
+    line-height: 24px;
+}
+
+.content-comment {
+    margin: 0 8px;
+}
+
+.content-comment:not(:last-child) {
+    border-bottom: solid 1px #eaeaf3;
+}
+
+.max-size-comment {
+    color: red;
+    font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #F0F0F8;
+}
+
+textarea::placeholder {
+    font-size: 14px;
+}
+
+.quick-view {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    opacity: 1;
+    z-index: 1;
+}
+
+.content-quick-view {
+    display: flex;
+    align-items: center;
+    float: right;
+    margin: 88px 47px;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+
+.dropdown-menu {
+    box-shadow: -3px 3px 20px #00000027;
+    border: 1px solid #F0F0F8;
+    border-radius: 3px;
+    opacity: 1;
+}

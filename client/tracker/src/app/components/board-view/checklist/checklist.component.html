@@ -1,0 +1,82 @@
+<div id="checklist" class="card m-0">
+    <div [className]="isView ? 'pl-2 card-head':'card-head'">
+        <div [className]="isView ? 'col-sm-4 no-padding truncate-long-text':'col-sm-10 no-padding truncate-long-text'">
+            <p id="check-list-label" class="checklist-name">{{checklist.name}}</p>
+        </div>
+        <div *ngIf="!isView" class="col-sm-2 no-padding text-right d-flex">
+            <tracker-popover-checklist class="popover-margin" [checklistName]="checklist.name"
+                                       (checklistAdded)="updateChecklist($event)">
+            </tracker-popover-checklist>
+            <i class="material-icons-outlined pull-right icon-size margin-delete-button" id="delete" (click)="delete()"
+               data-bs-target="#modal-delete-checklist" data-bs-toggle="modal"
+               *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/delete-checklist']">
+                delete
+            </i>
+        </div>
+        <div *ngIf="isView" class="col-sm-8 no-padding text-right">
+            <div class="done-items col-sm-12">
+                <mat-progress-bar mode="determinate" value="{{doneItemsPercent}}"></mat-progress-bar>
+                <label id="quant-items-label" class="quant-items-label"> {{doneItemsQtd}}
+                    / {{checklist.items.length}}</label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isView">
+        <form [formGroup]="form" class="row">
+            <div class="col-sm-12 p-0">
+                <div *ngIf="checklist.items.length > 0" class="form-group no-padding">
+                    <div class="col-sm-12 mb-1" *ngFor="let item of checklist.items; let i = index">
+                        <tracker-checklist-item [item]="item" [itemIndex]="i" [checklistIndex]="checklistIndex"
+                                                [isView]="isView"
+                                                (checklistItemValueChanged)="itemValueChanged($event)"
+                                                (updateItem)="updateItem($event)"
+                                                (deleteChecklistItem)="emitDeleteChecklistItemEvent($event)"></tracker-checklist-item>
+                    </div>
+                </div>
+                <div
+                    *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/insert-checklist', 'TRACKER/insert-checklist-item']">
+                    <div class="col-sm-12 input-group pt-2" *ngIf="!isUpdate">
+                        <input id="input-add-checklist-item-{{checklistIndex}}" type="text" class="form-control"
+                               formControlName="name" [ngClass]="hasError(form.get('name'))"
+                               placeholder="{{'tracker.add-checklist-item' | translate}}">
+                        <button id="add-check-list-btn" type="button" class="button-add-checklist-item"
+                                (click)="addChecklistItem()"
+                                [disabled]="form.invalid">
+                            <i class="material-icons-outlined" id="add">
+                                add
+                            </i>
+                        </button>
+                    </div>
+                </div>
+                <div *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-checklist-item']">
+                    <div class="col-sm-12 input-group pt-2" *ngIf="isUpdate">
+                        <input id="input-update-checklist-item-{{checklistIndex}}" type="text" class="form-control"
+                               formControlName="name" [ngClass]="hasError(form.get('name'))"
+                               placeholder="{{'tracker.add-checklist-item' | translate}}">
+                        <button id="update-check-list-btn" type="button" class="button-add-checklist-item"
+                                (click)="addChecklistItem()"
+                                [disabled]="form.invalid">
+                            <i class="material-icons-outlined" id="update"> save </i>
+                        </button>
+                    </div>
+                </div>
+                <common-control-message id="check-item-name-ctrl-msg" [control]="form.get('name')">
+                </common-control-message>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="isView">
+        <form [formGroup]="form" class="row">
+            <div class="col-sm-12 p-0">
+                <div *ngIf="checklist.items.length > 0" class="form-group no-padding">
+                    <div class="col-sm-12 mb-1" *ngFor="let item of checklist.items; let i = index">
+                        <tracker-checklist-item [item]="item" [itemIndex]="i" [isView]="isView"
+                                                (checklistItemValueChanged)="itemValueChanged($event)"
+                                                (updateItem)="updateItem($event)"
+                                                (deleteChecklistItem)="emitDeleteChecklistItemEvent($event)"></tracker-checklist-item>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

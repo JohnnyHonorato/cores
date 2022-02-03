@@ -1,0 +1,142 @@
+.custom-icon-matrix {
+    font-size: 28px;
+}
+
+.custom-icon-settings {
+    font-size: 17px;
+    color: #969AA3;
+    text-align: left;
+    padding-top: 4px;
+    cursor: pointer;
+}
+
+.btn-add {
+    color: #079C57;
+    cursor: pointer;
+}
+
+.btn-remove {
+    color: #C0C3CC;
+    cursor: pointer;
+}
+
+.card-table tr td:first-child, .card-table tr th:first-child {
+    max-width: 260px;
+    min-width: 260px;
+}
+
+.order-by {
+    color: #4D66D3;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.format {
+    font-size: 16px;
+    line-height: normal;
+    vertical-align: middle;
+    padding: 0 6px 2px;
+}
+
+.btn-muted {
+    font-size: 18px;
+}
+
+.cut-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    margin: 0;
+}
+
+.custom-tr p {
+    padding-top: 1.5px;
+}
+
+.custom-th {
+    padding-bottom: 10px;
+    padding-left: 16px;
+    max-width: 200px;
+    min-width: 200px;
+    margin: auto 0;
+}
+
+.custom-option-table {
+    display: grid;
+    grid-template-columns: 1fr 30px 1fr;
+}
+
+.table > thead:first-child > tr:first-child > th {
+    background-color: #F9F9F9;
+}
+
+.change-color-table {
+    background-color: #F9F9F9;
+}
+
+.btn {
+    border-radius: 3px;
+    box-shadow: 0px 3px 20px #0000000D;
+    display: flex;
+}
+
+.material-icons-outlined {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0;
+    opacity: 1;
+    align-self: center;
+}
+
+.previous {
+    color: var(color-primary);
+    margin-right: 10px;
+}
+
+.next {
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #EAEAF3;
+    border-radius: 8px;
+    opacity: 1;
+}
+
+.modal-footer {
+    padding: 18px;
+}
+
+.text-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-att-btn {
+    width: 170px !important;
+    margin-left: auto;
+}
+
+.add-status-btn {
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    padding-top: 6px;
+    padding-bottom: 8px;
+}
+
+.btn-add {
+    width: 30px !important;
+    height: 18px !important;
+}
+
+.wkf-inactive {
+    padding-top: 4px !important;
+}
+
+.color-head {
+    border-bottom: 2px solid hsl(0, 0%, 87%);
+}

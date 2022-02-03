@@ -1,0 +1,117 @@
+<div id="fourth-step" class="card">
+    <div class="card-body">
+        <div class="pb-0 px-4 pt-4">
+            <div class="d-sm-flex m-0 pb-2">
+                <div>
+                    <div id="preview-do-card-title" class="page-title-wizard" translate>
+                        tracker-manager.preview-do-card
+                    </div>
+                    <div id="preview-do-card-description" class="page-description-wizard" translate>
+                        tracker-manager.preview-do-card-description
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 p-0">
+                    <div class="form-group p-0 required">
+                        <label id="card-name-label" class="control-label" translate>tracker.card.name</label>
+                        <input id="card-name-input" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="col-6 ps-2 pe-0 mb-0">
+                    <div class="form-group p-0">
+                        <label id="card-due-date-label" class="control-label" translate>tracker.card.due-date</label>
+                        <div class="input-group date">
+                            <input id="start-date" class="form-control" placeholder="DD/MM/AAAA" disabled>
+                            <div class="input-group-prepend not-allowed">
+                                <div class="input-group-text">
+                                    <span id="date-icon" class="material-icons">event</span>
+                                </div>
+                            </div>
+                        </div>
+                        <mat-datepicker #pickerDueDate></mat-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="form-group p-0">
+                        <label id="description-label" class="control-label" translate>tracker.card.description</label>
+                        <textarea id="description-text-area" rows="1" class="form-control text-area-height no-resize"
+                                  disabled
+                                  placeholder="{{'tracker.card.description' | translate}}">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 p-0">
+                    <div class="form-group p-0">
+                        <label id="tags-title" class="control-label" translate>
+                            tracker.card.tags.title
+                        </label>
+                        <div class="modal-tags-content not-allowed">
+                            <label id="tags-label" *ngFor="let tag of mockTags" class="tag not-allowed"
+                                   [ngStyle]="{'background': tag.color}">
+                                {{tag.name}}
+                            </label>
+                            <div class="input-group-prepend float-end">
+                                <div class="input-group-text border-0 border-start custom-color-border">
+                                    <i id="tag-icon" class="material-icons"> local_offer </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 ps-2 p-0">
+                    <label id="card-members-label" class="control-label" translate>
+                        tracker.card.members
+                    </label>
+                    <div class="multiple-select not-allowed">
+                        <ng-select id="select-members" bindLabel="name" [multiple]="true"
+                                   class="custom-color-border disabled-color flex-nowrap"
+                                   [items]="mockMembers" [(ngModel)]="mockMembers" disabled>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-0">
+                    <label id="link-label" class="control-label" translate>
+                        tracker.links
+                    </label>
+                    <div class="multiple-select not-allowed">
+                        <ng-select id="select-links" bindLabel="title" [multiple]="true"
+                                   class="custom-color-border disabled-color flex-nowrap"
+                                   [items]="mockLinks" [(ngModel)]="mockLinks" disabled>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="attributesList?.length > 0">
+                <tracker-customizable-attributes [setLitAttributes]="attributesList"
+                                                 [isPreview]="true">
+                </tracker-customizable-attributes>
+            </div>
+        </div>
+        <hr class="mb-0"/>
+        <div class="pb-0">
+            <tracker-upload-multiple-files [isPreview]="true"></tracker-upload-multiple-files>
+        </div>
+        <hr class="m-0"/>
+        <div class="pb-0 ps-0">
+            <tracker-popover-checklist [isPreview]="true">
+            </tracker-popover-checklist>
+        </div>
+    </div>
+    <div class="card-footer p-4">
+        <button id="previous-btn" type="button" class="btn btn-back" (click)="back()">
+            <span id="previous-icon" class="material-icons-outlined previous"> keyboard_arrow_left </span>
+            <span translate>system.previous</span>
+        </button>
+        <button id="save-btn" type="button" class="last-item btn btn-primary" (click)="save()">
+            <span translate>system.save</span>
+        </button>
+    </div>
+</div>
+

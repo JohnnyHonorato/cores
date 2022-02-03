@@ -1,0 +1,135 @@
+version: '2.1'
+
+services:
+  nginx:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$NGINX_REPO_NAME:$BUILD_ENV
+    container_name: nginx
+    build: 
+      context: nginx/.
+    ports:
+      - "80:8080"
+    depends_on:
+      wso2:
+        condition: service_healthy
+    networks:
+      - way
+  core:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CORE_REPO_NAME:$BUILD_ENV
+    container_name: core
+    build:
+        context: server/.
+        args:
+            MODULE: core
+            PORT: 8081
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8081:8081" 
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-prod}
+    networks:
+      - way
+  business:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$BUSINESS_REPO_NAME:$BUILD_ENV
+    container_name: business
+    build:
+        context: server/.
+        args:
+            MODULE: business
+            PORT: 8082
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8082:8082"
+    networks:
+      - way
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-prod}
+  tracker:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$TRACKER_REPO_NAME:$BUILD_ENV
+    container_name: tracker
+    build:
+        context: server/.
+        args:
+            MODULE: tracker
+            PORT: 8083
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8083:8083"
+    networks:
+      - way
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-prod}
+  wso2:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$WSO2_REPO_NAME:$BUILD_ENV
+    build:
+      context: ./wso2/dockerfiles/apim
+      args:
+        BUILD_ENV: ${BUILD_ENV:-prod}
+        LDAP_USERNAME: ${LDAP_USERNAME}
+        LDAP_PASSWORD: ${LDAP_PASSWORD}
+    container_name: wso2
+    healthcheck:
+      test: ["CMD", "nc", "-z","localhost", "9443"]
+      interval: 10s
+      retries: 20
+    depends_on:
+      core:
+        condition: service_started
+    volumes:
+      - ./wso2/conf/apim-prod:/home/wso2carbon/wso2-config-volume
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+      - "8243:8243"
+    networks:
+      - way
+    environment:
+      # TODO use production variables
+      - DOMAIN_NAME=development.eba-yjeia8v3.us-east-2.elasticbeanstalk.com
+  portal:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$PORTAL_REPO_NAME:$BUILD_ENV
+    container_name: portal
+    build: 
+      context: client/.
+      args:
+        PORT: 4200
+        MODULE: portal
+        BUILD_ENV: ${BUILD_ENV:-prod.local}
+    environment:
+      TZ: America/Sao_Paulo
+    networks:
+      - way
+  client-core:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$CORE_CLIENT_REPO_NAME:$BUILD_ENV
+    container_name: client-core
+    build: 
+      context: client/.
+      args:
+        PORT: 4100
+        MODULE: core
+        BUILD_ENV: ${BUILD_ENV:-prod.local}
+    environment:
+      TZ: America/Sao_Paulo
+    depends_on:
+      core:
+        condition: service_started
+    networks:
+      - way
+  client-business:
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$BUSINESS_CLIENT_REPO_NAME:$BUILD_ENV
+    container_name: client-business
+    build: 
+      context: client/.
+      args:
+        PORT: 4101
+        MODULE: business
+        BUILD_ENV: ${BUILD_ENV:-prod.local}
+    environment:
+      TZ: America/Sao_Paulo
+    depends_on:
+      business:
+        condition: service_started
+    networks:
+      - way
+networks:
+  way:
+    driver: bridge

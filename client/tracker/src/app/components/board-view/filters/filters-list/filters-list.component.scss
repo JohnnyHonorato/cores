@@ -1,0 +1,189 @@
+@import 'node_modules/common/src/assets/scss/variables';
+
+.filters-list-container {
+    width: 100%;
+    border: 1px solid #F0F0F8;
+    border-radius: 3px;
+}
+
+.filter {
+    background: #F0F0F8;
+    border-radius: 4px;
+    height: 34px;
+    padding: 0 8px 0 12px;
+
+    .fav-option {
+        display: flex;
+        align-items: center;
+
+        i {
+            font-size: 15px;
+
+        }
+    }
+}
+
+.filter-more {
+    width: 224px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-item {
+    max-width: 100%;
+    color: $primary-color;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.more-icon {
+    font-size: 14px;
+    color: $primary-color;
+    padding-top: 6px;
+}
+
+.filters-list {
+    width: 95%;
+}
+
+.filters-list-full {
+    width: 100%;
+}
+
+.more-filters {
+    width: 34px;
+    height: 34px;
+    background: #F0F0F8;
+    border-radius: 3px;
+
+    i {
+        font-size: 18px;
+        color: $primary-color;
+    }
+
+    label {
+        font-size: 12px;
+        color: $primary-color;
+        font-weight: 600;
+        letter-spacing: -0.1em;
+    }
+}
+
+.more-filters:hover, .filter:hover {
+    background-color: #F7F7FA;
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    background: #FFFFFF;
+    box-shadow: -3px 3px 20px #0000000D;
+    border: 1px solid #F0F0F8;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.dropdown-menu-list {
+    width: 140px;
+    right: -8px;
+}
+
+.dropdown-menu-more {
+    right: 0;
+    top: 29px;
+    max-height: 428px;
+    overflow-y: auto;
+}
+
+.dropdown-menu-list .dropdown-item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    i {
+        font-size: 15px;
+        padding-right: 12px;
+    }
+
+    label {
+        font-size: 12px;
+        color: $primary-color;
+        font-weight: 500;
+    }
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+}
+
+.dropdown-menu-list .dropdown-item:hover {
+    background-color: #F7F7FA;
+}
+
+.selected-filter {
+    border: 1px solid #4D66D3;
+}
+
+.fav-option, .fav-option:hover {
+    color: #4D66D3;
+    height: 100%;
+}
+
+.delete-option, .delete-option:hover {
+    height: 100%;
+    color: #CB2D2D;
+}
+
+.filter-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12px;
+    padding-right: 6px;
+
+    i {
+        font-size: 15px;
+    }
+}
+
+.no-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+
+    label {
+        font-size: 14px;
+        color: $primary-color;
+    }
+}
+
+#add-new-filter-label {
+    color: #4D66D3;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #F0F0F8;
+}
+
+@media (max-width: 767px) {
+
+    .filters-list {
+        width: 80%;
+    }
+
+    .filter {
+        padding: 0 2px 0 4px;
+    }
+}

@@ -1,0 +1,12 @@
+<div class="container-breadcrumb">
+    <ol id="breadcrumb" class="breadcrumb m-0">
+        <li [attr.id]="'breadcrumb-item-' + i" class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs; let i = index">
+        <span class="custom-span" [routerLink]="breadcrumb.url"
+              routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        {{breadcrumb.label | translate}}
+        </span>
+        </li>
+    </ol>
+</div>
+
+

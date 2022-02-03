@@ -1,0 +1,39 @@
+<ng-container id="popover-tags-list">
+    <div class="title-popover">
+        <div class="pr-0 text-center" *ngxPermissionsOnly="['TRACKER/insert-*', 'TRACKER/insert-tag']">
+            <button id="edit-tag-btn" class="btn-clear text-primary pr-0 d-flex m-auto" (click)="openEditTag.emit()">
+                <span id="add-icon" class="material-icons icon-18">add</span>
+                <label id="add-tags" class="text-center" role="button" translate>tracker.card.tags.add</label>
+            </button>
+        </div>
+    </div>
+    <hr class="separator"/>
+    <common-loading id="loading-tags-list" [loading]="loading"></common-loading>
+    <div class="list-labels-content" *ngIf="!loading">
+        <label id="no-record-label" class="col-sm-12 no-record-message" *ngIf="!loading && tags.length <= 0"
+               translate>system.no-record</label>
+        <div *ngFor="let tag of tags">
+            <div class="row">
+                <div class="form-check col-sm-9">
+                    <input id="tag-checkbox" color="primary" class="form-check-input col-sm-1" type="checkbox"
+                           [(ngModel)]="tag.isChecked" (change)="selectedTag.emit(tag)">
+                    <label id="tag-color-label" class="col-sm-11 text-truncate"
+                           [style.color]="tag.color">{{tag.name}}</label>
+                </div>
+                <button id="edit-tag-btn-2" class="btn-sm btn-edit col-sm-1 btn-clear text-right pe-0"
+                        (click)="openEditTag.emit(tag)"
+                        *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-tag']">
+                    <i class="material-icons-outlined icon-16" data-bs-toggle="tooltip" data-bs-placement="top"
+                       title="{{'system.edit' | translate}}" id="edit-icon">edit</i>
+                </button>
+                <button id="delete-tag-btn" class="btn-sm btn-remove col-sm-2 btn-clear pe-0"
+                        (click)="openRemoveTag.emit(tag)"
+                        *ngxPermissionsOnly="['TRACKER/delete-*', 'TRACKER/delete-tag']">
+                    <i class="material-icons-outlined icon-16 color-red" data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       title="{{'system.delete' | translate}}" id="delete-icon">delete</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>

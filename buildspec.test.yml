@@ -1,0 +1,43 @@
+version: 0.2
+
+env:
+  variables:
+    MAVEN_OPTS: "-Dfile.encoding=UTF-8 -Dhttps.protocols=TLSv1.2 -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+    MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+  exported-variables:
+    - MAVEN_OPTS
+phases:
+  install:
+    on-failure: ABORT
+    runtime-versions:
+      java: corretto11
+    commands:
+      - apt-get update -y
+      - apt-get install -y maven
+      - apt-get install -y testng
+
+      - curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+      - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+      - apt-get -y update
+      - apt-get -y install google-chrome-stable
+
+      - pwd
+      - ls
+      - google-chrome --version
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - cd ./way-automation
+  build:
+    commands:
+      - echo Test started on `date`
+      - mvn $MAVEN_CLI_OPTS test -DsuiteXmlFile=AllTestSuites.xml -Denv=${BUILD_ENV} -Dheadless=true
+reports:
+  SurefireReports:
+    files:
+      - 'testng-results.xml'
+    base-directory: 'way-automation/target/surefire-reports/'
+    file-format: TestngXml
+cache:
+  paths:
+    - '/root/.m2/**/*'

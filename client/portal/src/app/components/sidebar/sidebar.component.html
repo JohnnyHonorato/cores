@@ -1,0 +1,7 @@
+<div class="options cursor-pointer">
+    <div class="options-content opt1" *ngFor="let module of modules; let i = index">
+        <div id="sb-module-{{i+1}}" class="icon d-flex align-items-center justify-content-center" (click)="goTo(module.link)">
+            <i class="material-icons">{{module.icon}}</i>
+        </div>
+    </div>
+</div>

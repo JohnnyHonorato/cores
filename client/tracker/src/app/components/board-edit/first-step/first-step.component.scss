@@ -1,0 +1,48 @@
+.custom-border-radius {
+    border-radius: 8px !important;
+}
+
+.status-list {
+
+    &.is-invalid,
+    &.state-invalid {
+        border: 1px solid #e41313;
+        border-radius: 3px;
+        background: none;
+    }
+}
+
+.btn {
+    border-radius: 3px;
+    box-shadow: 0 3px 20px #0000000D;
+    display: flex;
+}
+
+.material-icons-outlined {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0;
+    opacity: 1;
+    align-self: center;
+}
+
+.previous {
+    color: var(color-primary);
+    margin-right: 10px;
+}
+
+.next {
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #EAEAF3;
+    border-radius: 8px;
+    opacity: 1;
+}
+
+.modal-footer {
+    padding: 18px;
+}

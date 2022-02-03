@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <core-header class="header" (toggle)="expanded = !expanded"></core-header>
+    <div class="page-wrapper">
+        <div>
+            <core-sidebar [expanded]="expanded"></core-sidebar>
+        </div>
+        <div class="custom-container">
+            <core-breadcrumb class="min-vw-400"></core-breadcrumb>
+            <div class="custom-content" [ngClass]="expanded ? '' : 'custom-content-not-sidebar'">
+                <router-outlet></router-outlet>
+            </div>
+            <core-footer class="mt-auto"></core-footer>
+        </div>
+    </div>
+</div>

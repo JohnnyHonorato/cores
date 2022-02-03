@@ -1,0 +1,153 @@
+.tracker {
+    background: #FFFFFF;
+    box-shadow: 0 3px 20px #0000000D;
+    border: 1px solid #F0F0F8;
+    border-radius: 3px;
+    opacity: 1;
+    margin-bottom: 10px;
+}
+
+.card-id {
+    color: #4D66D3;
+    font-size: 0.875em;
+}
+
+.card-title {
+    font-size: 0.875em;
+    color: #142263;
+    padding-top: 5px;
+}
+
+.card-description {
+    font-size: 0.875em;
+    color: #6c757d;
+}
+
+.tags {
+    border-radius: 13px;
+    text-align: center;
+    margin-right: 4px;
+    font-size: 0.6em;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 8px;
+    height: 22px;
+
+    &:hover {
+        opacity: 0.8
+    }
+}
+
+.tags-width {
+    max-width: 48%;
+}
+
+.card-delay {
+    background-color: #FFFFFF;
+    border: 0.075rem solid red;
+    color: red;
+}
+
+.custom-icon-space {
+    display: flex;
+    column-gap: 4px;
+    margin-top: 5px;
+    font-size: 0.75em;
+}
+
+.custom-icon-card {
+    display: flex;
+    align-items: center;
+    color: #969AA3;
+}
+
+.icon-subject {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.quick-view-icon {
+    padding: 4px 6px;
+    border-radius: 2px;
+}
+
+.quick-view-icon:hover {
+    color: #142263;
+    background: #EAEAF3;
+}
+
+.custom-icon-card > * {
+    font-size: 1.2em;
+}
+
+#number-comments span {
+    padding-right: 3px;
+}
+
+a[aria-expanded="false"] .up {
+    display: none;
+}
+
+a[aria-expanded="true"] .down {
+    display: none;
+}
+
+.icon-collapse {
+    font-size: 18pt;
+    color: #142263;
+}
+
+.tracker-due-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    background: #F7F7FA;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #142263;
+
+    i {
+        font-size: 12px;
+    }
+}
+
+.tracker-card-footer-content {
+    text-decoration: none;
+}
+
+.custom-hr {
+    margin: 0;
+    border: 1px solid #F0F0F8;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.no-assignees {
+    margin-bottom: 6px;
+}
+
+.tracker-card-header, .tracker-card-footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-focus {
+    border-radius: 2px;
+    z-index: 3;
+    background: white;
+}
+
+.label-link {
+    background: #F0F0F8;
+    color: #142263;
+    padding: 0px 8px;
+    margin: 0px 2px;
+    font-size: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+}

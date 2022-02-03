@@ -1,0 +1,196 @@
+version: '2.1'
+
+services:
+  nginx:
+    container_name: nginx
+    build: 
+      context: nginx/.
+    ports:
+      - "80:8080"
+    depends_on:
+      wso2:
+        condition: service_healthy
+    networks:
+      - way
+  mysql:
+    container_name: mysql
+    image: mysql:5.7.31
+    ports:
+      - 3306
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: "root"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 200s
+      retries: 10
+    volumes:
+      - ./wso2/conf/mysql/scripts:/docker-entrypoint-initdb.d
+      - ./wso2/conf/mysql/conf/my.cnf:/etc/mysql/my.cnf
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+    command: [--ssl=0]
+    networks:
+      - way
+  db:
+    container_name: db
+    build: db/.
+    ports: 
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: virtus
+      POSTGRES_PASSWORD: 'master'
+      POSTGRES_DB: virtus_way
+      TZ: America/Sao_Paulo
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "virtus_way", "-U", "virtus" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    networks:
+      - way
+  core:
+    container_name: core
+    build:
+        context: server/.
+        args:
+            MODULE: core
+            PORT: 8081
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8081:8081" 
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-dev.local}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -s http://localhost:8081/system/health || exit 1"]
+      timeout: 10s
+      interval: 30s
+      retries: 10
+    depends_on: 
+      db:
+        condition: service_started
+    networks:
+      - way
+  business:
+    container_name: business
+    build:
+        context: server/.
+        args:
+            MODULE: business
+            PORT: 8082
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8082:8082"
+    networks:
+      - way
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-dev.local}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+      core:
+        condition: service_healthy
+  tracker:
+    container_name: tracker
+    build:
+        context: server/.
+        args:
+            MODULE: tracker
+            PORT: 8083
+            TZ: America/Sao_Paulo
+    ports: 
+      - "8083:8083"
+    networks:
+      - way
+    environment:
+      - SPRING_ENV=${SPRING_ENV:-dev.local}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+    depends_on: 
+      db:
+        condition: service_started
+  wso2:
+    build:
+      context: ./wso2/dockerfiles/apim
+      args:
+        BUILD_ENV: ${BUILD_ENV:-dev.local}
+        LDAP_USERNAME: ${LDAP_USERNAME}
+        LDAP_PASSWORD: ${LDAP_PASSWORD}
+    container_name: wso2
+    healthcheck:
+      test: ["CMD", "nc", "-z","localhost", "9443"]
+      interval: 10s
+      retries: 20
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./wso2/conf/apim-dev.local:/home/wso2carbon/wso2-config-volume
+      - wso2-persistent-storage:/home/wso2carbon/wso2am-3.2.0/repository/deployment/server
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+      - "8243:8243"
+    networks:
+      - way
+    environment:
+      - DOMAIN_NAME=localhost
+  portal:
+    container_name: portal
+    build: 
+      context: client/.
+      args:
+        PORT: 4200
+        MODULE: portal
+        BUILD_ENV: ${BUILD_ENV:-dev.local}
+    environment:
+      TZ: America/Sao_Paulo
+    networks:
+      - way
+  client-core:
+    container_name: client-core
+    build: 
+      context: client/.
+      args:
+        PORT: 4100
+        MODULE: core
+        BUILD_ENV: ${BUILD_ENV:-dev.local}
+    environment:
+      TZ: America/Sao_Paulo
+    depends_on:
+      core:
+        condition: service_started
+    networks:
+      - way
+  client-business:
+    container_name: client-business
+    build: 
+      context: client/.
+      args:
+        PORT: 4101
+        MODULE: business
+        BUILD_ENV: ${BUILD_ENV:-dev.local}
+    environment:
+      TZ: America/Sao_Paulo
+    depends_on:
+      business:
+        condition: service_started
+    networks:
+      - way
+networks:
+  way:
+    driver: bridge
+volumes:
+  wso2-persistent-storage:

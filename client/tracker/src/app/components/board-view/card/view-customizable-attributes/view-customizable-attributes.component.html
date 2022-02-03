@@ -1,0 +1,33 @@
+<ng-container *ngFor="let item of attributesList">
+    <ng-container *ngIf="item.attribute.showOnCard">
+        <label id="customize-attribute-title" class="custom-title">{{item.attribute.title}}</label>
+        <ng-container [ngSwitch]="item.attribute.type">
+            <ng-container *ngIf="item.value; else elseBlock">
+                <p *ngSwitchCase="'DATE'" id="customize-date"
+                   class="custom-value">{{item.value | date:'dd/MM/yyyy'}}</p>
+                <p *ngSwitchCase="'DATE_TIME'" id="customize-date-time"
+                   class="custom-value"> {{item.value | date:'dd/MM/yyyy - HH:mm'}} </p>
+                <p *ngSwitchCase="'CURRENCY'" id="customize-currency"
+                   class="custom-value"> {{item.value | currency : item.attribute.currency}} </p>
+                <p *ngSwitchCase="'DECIMAL'" id="customize-decimal"
+                   class="custom-value"> {{item.value | number:'.0'}} </p>
+                <p *ngSwitchCase="'INTEGER'" id="customize-integer"
+                   class="custom-value"> {{item.value | number:'.0'}} </p>
+                <p *ngSwitchCase="'BOOLEAN'" id="customize-boolean" class="custom-value">
+                    {{(item.value == true) ? ('system.yes' | translate) : ('system.no' | translate)}}</p>
+                <p *ngSwitchCase="'PEOPLE'" id="customize-people" class="custom-value"
+                   [ngClass]="{'deleted': item.value.deleted}">
+                    {{item.value?.deleted ? ('tracker.card.deleted-item' | translate) : item.value?.name}}</p>
+                <p *ngSwitchCase="'ORGANIZATION'" id="customize-organization" class="custom-value"
+                   [ngClass]="{'deleted': item.value.deleted}">
+                    {{item.value?.deleted ? ('tracker.card.deleted-item' | translate) : item.value?.fantasyName}}</p>
+                <p *ngSwitchCase="'STRING'" id="customize-string" class="custom-value"> {{item.value}}</p>
+                <p *ngSwitchCase="'LIST'" id="customize-list" class="custom-value"> {{item.value}}</p>
+                <p *ngSwitchDefault id="customize-id" class="custom-value">{{item.value}}</p>
+            </ng-container>
+            <ng-template #elseBlock>
+                <p id="no-registry-label" class="custom-value">{{ 'tracker.card.no-registry' | translate}}</p>
+            </ng-template>
+        </ng-container>
+    </ng-container>
+</ng-container>

@@ -1,0 +1,31 @@
+@import "node_modules/common/src/assets/scss/variables";
+
+.images {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-xl {
+    width: 8rem;
+    height: 8rem;
+    line-height: 8rem;
+    font-size: 3.5rem;
+
+    #icon-add-image {
+        font-size: 48px;
+        color: $primary-color !important;
+    }
+}
+
+.btn-block + .btn-block {
+    margin-top: 0;
+}
+
+.btn-sm {
+    max-width: 110px !important;
+}

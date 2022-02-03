@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><ServiceProvider>
+  <ApplicationName>virtus_way-business</ApplicationName>
+  <Description>Service Provider for application virtus_way-business</Description>
+  <JwksUri/>
+  <InboundAuthenticationConfig>
+    <InboundAuthenticationRequestConfigs>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>fibvDVdwJKZURU_4pps4HUa0HA4a</InboundAuthKey>
+        <InboundAuthType>oauth2</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <inboundConfiguration><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oAuthAppDO>
+    <oauthConsumerKey>fibvDVdwJKZURU_4pps4HUa0HA4a</oauthConsumerKey>
+    <oauthConsumerSecret>hNxIZtZJogoiNMQy0CYbMzcf2wMa</oauthConsumerSecret>
+    <applicationName>virtus_way-business</applicationName>
+    <callbackUrl>regexp=(http://localhost:4202|http://localhost:4202/.*)</callbackUrl>
+    <oauthVersion>OAuth-2.0</oauthVersion>
+    <grantTypes>refresh_token urn:ietf:params:oauth:grant-type:saml2-bearer implicit password client_credentials iwa:ntlm urn:ietf:params:oauth:grant-type:device_code authorization_code urn:ietf:params:oauth:grant-type:jwt-bearer </grantTypes>
+    <scopeValidators/>
+    <pkceSupportPlain>true</pkceSupportPlain>
+    <pkceMandatory>false</pkceMandatory>
+    <state>ACTIVE</state>
+    <userAccessTokenExpiryTime>3600</userAccessTokenExpiryTime>
+    <applicationAccessTokenExpiryTime>3600</applicationAccessTokenExpiryTime>
+    <refreshTokenExpiryTime>86400</refreshTokenExpiryTime>
+    <idTokenExpiryTime>3600</idTokenExpiryTime>
+    <audiences/>
+    <bypassClientCredentials>false</bypassClientCredentials>
+    <renewRefreshTokenEnabled>true</renewRefreshTokenEnabled>
+    <requestObjectSignatureValidationEnabled>false</requestObjectSignatureValidationEnabled>
+    <idTokenEncryptionEnabled>false</idTokenEncryptionEnabled>
+    <idTokenEncryptionAlgorithm>null</idTokenEncryptionAlgorithm>
+    <idTokenEncryptionMethod>null</idTokenEncryptionMethod>
+    <tokenType>Default</tokenType>
+</oAuthAppDO>
+]]></inboundConfiguration>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>Business Way</InboundAuthKey>
+        <InboundAuthType>openid</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+      <InboundAuthenticationRequestConfig>
+        <InboundAuthKey>Business Way</InboundAuthKey>
+        <InboundAuthType>passivests</InboundAuthType>
+        <InboundConfigType>standardAPP</InboundConfigType>
+        <Properties/>
+      </InboundAuthenticationRequestConfig>
+    </InboundAuthenticationRequestConfigs>
+  </InboundAuthenticationConfig>
+  <LocalAndOutBoundAuthenticationConfig>
+    <AuthenticationSteps/>
+    <AuthenticationType>default</AuthenticationType>
+    <alwaysSendBackAuthenticatedListOfIdPs>false</alwaysSendBackAuthenticatedListOfIdPs>
+    <UseTenantDomainInUsername>false</UseTenantDomainInUsername>
+    <UseUserstoreDomainInRoles>true</UseUserstoreDomainInRoles>
+    <UseUserstoreDomainInUsername>false</UseUserstoreDomainInUsername>
+    <SkipConsent>true</SkipConsent>
+    <skipLogoutConsent>true</skipLogoutConsent>
+    <EnableAuthorization>false</EnableAuthorization>
+  </LocalAndOutBoundAuthenticationConfig>
+  <RequestPathAuthenticatorConfigs/>
+  <InboundProvisioningConfig>
+    <ProvisioningUserStore/>
+    <IsProvisioningEnabled>false</IsProvisioningEnabled>
+    <IsDumbModeEnabled>false</IsDumbModeEnabled>
+  </InboundProvisioningConfig>
+  <OutboundProvisioningConfig>
+    <ProvisioningIdentityProviders/>
+  </OutboundProvisioningConfig>
+  <ClaimConfig>
+    <RoleClaimURI/>
+    <LocalClaimDialect>true</LocalClaimDialect>
+    <IdpClaim/>
+    <ClaimMappings/>
+    <AlwaysSendMappedLocalSubjectId>false</AlwaysSendMappedLocalSubjectId>
+    <SPClaimDialects/>
+  </ClaimConfig>
+  <PermissionAndRoleConfig>
+    <Permissions/>
+    <RoleMappings/>
+    <IdpRoles/>
+  </PermissionAndRoleConfig>
+  <IsSaaSApp>false</IsSaaSApp>
+  <ImageUrl/>
+  <AccessUrl/>
+  <IsDiscoverable>false</IsDiscoverable>
+</ServiceProvider>

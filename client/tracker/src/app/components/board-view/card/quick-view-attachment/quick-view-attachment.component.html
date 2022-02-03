@@ -1,0 +1,36 @@
+<div class="quick-view fade open show" [ngStyle]="{'display': isDisplayed ? 'inline' : 'none'}"
+     (click)="onChangeDisplay()">
+    <div class="content-quick-view cursor-pointer">
+        <label id="quick-view-label" class="cursor-pointer m-0 pr-1" translate>tracker.quick-view</label>
+        <span id="close-icon" class="material-icons-outlined">close</span>
+    </div>
+    <div class="btn-group background-options"
+         [ngStyle]="{right: getRight(), bottom: getBottom(), top: getTop(), left: getLeft()}">
+        <div #dropDownMenu class="dropdown-menu d-block p-0 m-0" role="menu" (click)="$event.stopPropagation()">
+            <div *ngIf="searchId" class="container-attachment">
+                <common-loading [loading]="loading" [size]="'small'"></common-loading>
+                <div *ngIf="items && items.length && !loading">
+                    <div *ngFor="let item of items; let i = index">
+                        <div class="col-12 p-2">
+                            <div class="col-11">
+                                <label class="content-attachment m-0 text-truncate me-2"
+                                       id="attachment-label-{{item.id}}">
+                                    {{item.originalName}}</label>
+                            </div>
+                            <div id="btn-download" class="col-1 d-flex justify-content-end"
+                                 (click)="downloadFile(item)">
+                                <span id="download-icon"
+                                      class="material-icons-outlined cursor-pointer download-icon"> file_download </span>
+                            </div>
+                        </div>
+                        <hr *ngIf="i < items.length - 1" class="my-0 mx-1">
+                    </div>
+                </div>
+                <div class="p-2" *ngIf="!items?.length">
+                    <p id="no-attachments-label"
+                       class="m-0 card-no-attachment">{{'tracker.card.no-attachments' | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

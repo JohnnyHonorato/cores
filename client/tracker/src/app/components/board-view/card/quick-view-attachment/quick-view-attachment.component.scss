@@ -1,0 +1,61 @@
+.container-attachment {
+    max-height: 110px;
+    overflow: auto;
+
+    div div div {
+        display: flex;
+    }
+}
+
+.download-icon {
+    font-size: 16px;
+    color: #4d66d3;
+}
+
+.content-attachment {
+    color: #142263;
+}
+
+.content-attachment, .card-no-attachment {
+    font-size: 12px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #F0F0F8;
+}
+
+.quick-view {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    opacity: 1;
+    z-index: 1;
+}
+
+.content-quick-view {
+    display: flex;
+    align-items: center;
+    float: right;
+    margin: 88px 47px;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.dropdown-menu {
+    box-shadow: -3px 3px 20px #00000027;
+    border: 1px solid #F0F0F8;
+    border-radius: 3px;
+    opacity: 1;
+    max-width: 180px;
+}

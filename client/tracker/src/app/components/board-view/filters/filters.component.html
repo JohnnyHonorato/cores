@@ -1,0 +1,14 @@
+<div class="mx-1" *ngIf="openFilter">
+    <tracker-filters-list [trackerModelId]="trackerModelId"
+                          (selectedFilter)="selectFilter($event)"
+                          (deleteAppliedFilter)="removeAppliedFilter()">
+    </tracker-filters-list>
+</div>
+<div class="mx-1">
+    <tracker-filter-edit [setFilter]="selectedFilter"
+                         [trackerModelId]="trackerModelId"
+                         (saveFilter)="saveFilter($event)"
+                         (cleanFilter)="cleanFilter()"
+                         (removeItemFilter)="removeFilterItem($event)">
+    </tracker-filter-edit>
+</div>

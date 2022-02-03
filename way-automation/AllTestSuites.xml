@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AllTestSuites">
+<suite-files>
+    <suite-file path="LoginSuite.xml"></suite-file>
+    <suite-file path="ModulesSuite.xml"></suite-file>
+    <suite-file path="PeopleSuite.xml"></suite-file>
+    <suite-file path="RolesSuite.xml"></suite-file>
+    <suite-file path="BusinessOpportunitySuite.xml"></suite-file>
+    <suite-file path="OrganizationsSuite.xml"></suite-file>
+    <suite-file path="TrackerBoardSuite.xml"></suite-file>
+    <suite-file path="TrackerSuite.xml"></suite-file>
+</suite-files>
+</suite>

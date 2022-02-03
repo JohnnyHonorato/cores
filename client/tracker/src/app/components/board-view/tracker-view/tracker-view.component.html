@@ -1,0 +1,109 @@
+<common-loading id="loading-tracker-view" [loading]="loading"></common-loading>
+<div class="card tracker" *ngIf="item && !loading">
+    <div class="card-body m-0 px-0">
+        <div class="row px-3">
+            <div id="page-title" class="col page-title-wizard p-0">{{item.title}}</div>
+            <div class="col pe-0 d-flex justify-content-end align-items-center"
+                *ngxPermissionsOnly="['TRACKER/update-*', 'TRACKER/update-tracker']">
+                <span id="edit-icon" class="material-icons fs-5 color-icon cursor-pointer" (click)="toEdit()">
+                    edit
+                </span>
+            </div>
+        </div>
+        <p id="tracker-view-description" class="page-description-wizard text px-3 py-2 m-0" *ngIf="item.description">
+            {{item.description}}</p>
+        <div class="row px-3 pb-2">
+            <div class="col-3 p-0">
+                <label id="card-deadline-label" class="title">
+                    {{'tracker.card.deadline' | translate}}
+                </label>
+                <div *ngIf="item.dueDate; else elseDateBlock">
+                    <p id="due-date-label" class="value m-0">{{item.dueDate | date:'dd/MM/yyyy'}}</p>
+                </div>
+                <ng-template #elseDateBlock>
+                    <p id="no-registry-label" class="value m-0">{{'tracker.card.no-registry' | translate}}</p>
+                </ng-template>
+            </div>
+
+            <div class="col-3 p-0">
+                <label id="tags-title-label" class="title d-block">
+                    {{'tracker.card.tags.title' | translate}}
+                </label>
+                <div *ngIf="item.tags.length>0; else elseTagBlock" class="pe-3">
+                    <label id="tag-name-label-{{1}}" *ngFor="let tag of item.tags; let i = index"
+                           class="tag text-truncate mw-100 me-1" [ngStyle]="{'background': tag.color}">
+                        {{tag.name}}
+                    </label>
+                </div>
+                <ng-template #elseTagBlock>
+                    <p id="no-registry-tags"
+                       class="value m-0 text-truncate">{{'tracker.card.no-registry' | translate}}</p>
+                </ng-template>
+            </div>
+
+            <div class="col-6 p-0">
+                <label id="card-members-label" class="title d-block">
+                    {{'tracker.card.members' | translate}}
+                </label>
+                <div class="row">
+                    <label *ngFor="let member of members; let i = index" class="member d-flex mb-2">
+                        <span class="material-icons me-1 fs-5" id="member-name-icon-{{i}}">
+                            account_circle
+                        </span>
+                        <div id="member-name-{{i}}" class="text-truncate">{{member.name | translate}}</div>
+                    </label>
+                    <p id="no-registry-member" *ngIf="members.length==0"
+                       class="value">{{'tracker.card.no-registry' | translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="col-12 p-0">
+                <label id="links-label" class="title d-block">
+                    {{'tracker.links' | translate}}
+                </label>
+                <div class="row">
+                    <label *ngFor="let link of item.links" class="label-link" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="{{link.title}}"
+                (click)="navigateToLinkedCard(link)">#{{link.id}}</label>
+                    <p id="no-registry-link" *ngIf="item.links.length==0"
+                       class="value p-0 m-0">{{'tracker.card.no-registry' | translate}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-3">
+            <tracker-customizable-attributes-view id="customizable-attributes-view" *ngIf="loadTrackerModel" [attributes]="trackerModel?.attributes"
+                                                  [transition]="item.transition"
+                                                  [attributeValues]="item.attributesValue">
+            </tracker-customizable-attributes-view>
+        </div>
+        <hr *ngIf="item.checklists.length > 0" class="mb-0 mt-0">
+        <div *ngxPermissionsOnly="['TRACKER/read-*', 'TRACKER/read-checklist']">
+            <div *ngIf="item.checklists.length > 0" class="px-3">
+                <h5 id="checklist-title" class="page-title-wizard">{{'tracker.card.checklist.plural' | translate}}</h5>
+                <div class="col-12 p-0" *ngFor="let checklist of item.checklists; let i = index">
+                    <tracker-checklist id="tracker-checklist" [checklist]="checklist" [checklistIndex]="i"
+                                       [checklistItemRemovedEvent]="removeChecklistItemSubject.asObservable()"
+                                       [isView]="true">
+                    </tracker-checklist>
+                </div>
+            </div>
+
+        </div>
+        <hr class="mb-0 mt-4">
+        <tracker-upload-multiple-files id="tracker-upload-multiple-files" [isView]="true"
+                                       [setFiles]="item.attachments">
+        </tracker-upload-multiple-files>
+        <hr class="mb-0 mt-0">
+        <tracker-comment id="tracker-comment" [trackerId]="item.id"></tracker-comment>
+    </div>
+
+    <div class="card-footer p-0 p-3">
+        <div class="float-end">
+            <button id="btn-cancel" type="button" class="btn btn-back" (click)="backToList()" translate>
+                system.back
+            </button>
+        </div>
+    </div>
+</div>

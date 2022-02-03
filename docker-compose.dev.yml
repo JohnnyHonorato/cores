@@ -1,0 +1,111 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    mem_limit: 100m
+    build: 
+      context: nginx/dev/.
+    ports:
+      - "80:8080"
+      - "443:443"
+    networks:
+      - way
+  core:
+    image: 728647365976.dkr.ecr.us-east-2.amazonaws.com/virtus_way-dev-service_core
+    container_name: core
+    mem_limit: 400m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -s http://core:8081/system/health || exit 1"]
+      interval: 30s
+      retries: 20
+    ports: 
+      - "8081:8081" 
+    environment:
+      - BUILD_ENV=${BUILD_ENV:-dev}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+      - IAM_USER_S3_KEY=${IAM_USER_S3_KEY}
+      - IAM_USER_S3_SECRET=${IAM_USER_S3_SECRET}
+      - FILES_BUCKET=${FILES_BUCKET}
+    depends_on:
+      wso2:
+        condition: service_healthy
+    networks:
+      - way
+  business:
+    image: 728647365976.dkr.ecr.us-east-2.amazonaws.com/virtus_way-dev-service_business
+    container_name: business
+    mem_limit: 400m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -s http://business:8082/system/health || exit 1"]
+      interval: 30s
+      retries: 20
+    ports: 
+      - "8082:8082"
+    networks:
+      - way
+    environment:
+      - BUILD_ENV=${BUILD_ENV:-dev}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+    depends_on:
+      wso2:
+        condition: service_healthy
+      core:
+        condition: service_healthy
+  tracker:
+    image: 728647365976.dkr.ecr.us-east-2.amazonaws.com/virtus_way-dev-service_tracker
+    container_name: tracker
+    mem_limit: 400m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -s http://tracker:8083/system/health || exit 1"]
+      interval: 30s
+      retries: 20
+    ports: 
+      - "8083:8083"
+    networks:
+      - way
+    environment:
+      - BUILD_ENV=${BUILD_ENV:-dev}
+      - WSO2_CALLBACK_URL=${WSO2_CALLBACK_URL}
+      - WSO2AM_ADDRESS=${WSO2AM_ADDRESS}
+      - WSO2AM_USERNAME=${WSO2AM_USERNAME}
+      - WSO2AM_PASSWORD=${WSO2AM_PASSWORD}
+      - IAM_USER_S3_KEY=${IAM_USER_S3_KEY}
+      - IAM_USER_S3_SECRET=${IAM_USER_S3_SECRET}
+      - FILES_BUCKET=${FILES_BUCKET}
+    depends_on:
+      wso2:
+        condition: service_healthy
+  wso2:
+    image: wso2
+    build:
+      context: ./wso2/dockerfiles/apim
+      args:
+        BUILD_ENV: ${BUILD_ENV:-dev}
+        LDAP_USERNAME: ${LDAP_USERNAME}
+        LDAP_PASSWORD: ${LDAP_PASSWORD}
+    container_name: wso2
+    mem_limit: 2048m
+    healthcheck:
+      test: ["CMD", "nc", "-z","localhost", "9443"]
+      interval: 10s
+      retries: 20
+    volumes:
+      - /var/app/current/wso2/conf/apim-dev:/home/wso2carbon/wso2-config-volume
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+      - "8243:8243"
+    networks:
+      - way
+    environment:
+      - DOMAIN_NAME=${BUILD_ENV:-dev}-apim.virtus-way.org
+networks:
+  way:
+    driver: bridge

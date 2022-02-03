@@ -1,0 +1,81 @@
+.content-checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.check-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.centered-button {
+    position: relative;
+    top: 30%;
+}
+
+.vertical-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-add {
+    width: 53px !important;
+    height: 38px !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    color: #142263;
+}
+
+.table > thead > tr > th {
+    background: #F7F9FF;
+    border-bottom: 3px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px 16px;
+}
+
+td {
+    background: white;
+}
+
+.actions-column-header {
+    min-width: 110px;
+}
+
+.actions-column {
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+    min-width: 120px;
+    display: table-cell;
+    text-align: center;
+}
+
+.btn-muted {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-muted:focus, .btn-muted:hover, .btn-muted:active, .btn-muted:active:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.custom-th {
+    vertical-align: middle;
+}

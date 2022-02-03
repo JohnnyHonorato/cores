@@ -1,0 +1,80 @@
+version: 0.2
+
+env:
+  shell: bash
+  variables:
+      BUILD_ENV: ${BUILD_ENV}
+  exported-variables:
+    - BUILD_ENV
+    - MODULE
+    - PORT
+    - WSO2_CALLBACK_URL
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      # reading cloudfront distribution variable
+      - ECR_REPO_NAME=$(eval "echo \${$ECR_REPO_NAME}")
+
+      # generating Image URI
+      - IMAGE_URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}
+      
+      - echo Checking environment variables
+      - |
+        VARS="BUILD_ENV AWS_ACCOUNT_ID AWS_DEFAULT_REGION \
+        ECR_REPO_NAME MODULE WSO2_CALLBACK_URL WSO2AM_ADDRESS \
+        WSO2AM_USERNAME WSO2AM_PASSWORD"
+      - |
+        for VAR in ${VARS};
+        do
+          if [ -z $(eval "echo \${$VAR}") ];
+          then
+            echo Variable ${VAR} is not set
+            exit 1
+          fi
+        done
+      - echo All environment variables set
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - TIMEZONE=America/Sao_Paulo
+
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+      
+      - CACHE_IMAGE_ERROR=$(docker manifest inspect ${IMAGE_URI}:cache > /dev/null ; echo $?)
+      - IMAGE_ERROR=$(docker manifest inspect ${IMAGE_URI} > /dev/null ; echo $?)
+
+      - |
+        if [ ${CACHE_IMAGE_ERROR} -ne 1 ];
+        then
+          docker pull ${IMAGE_URI}:cache
+        fi
+
+      - |
+        if [ ${IMAGE_ERROR} -ne 1 ];
+        then
+          docker pull ${IMAGE_URI}
+        fi
+  build:
+    on-failure: ABORT
+    commands:
+      - echo Build of service:${MODULE} started on `date`
+      - |
+        docker build ./server/. -f ./server/builder.dockerfile \
+        --build-arg MODULE=${MODULE} --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --cache-from ${IMAGE_URI}:cache -t ${IMAGE_URI}:cache
+      - |
+        docker build ./server/. --build-arg MODULE=${MODULE} \
+        --build-arg PORT=${PORT} --build-arg TZ=${TIMEZONE} \
+        --build-arg IMAGE_URI=${IMAGE_URI} --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --cache-from ${IMAGE_URI} -t ${IMAGE_URI}
+
+  post_build:
+    on-failure: ABORT
+    commands:
+      - docker image push ${IMAGE_URI}
+      - docker image push ${IMAGE_URI}:cache
+cache:
+  paths:
+    - '/root/.m2/**/*'

@@ -1,0 +1,83 @@
+<div class="col-sm-12 custom-table-header  mb-2">
+    <button id="btn-add-server" class="btn btn-primary cursor-pointer" type="button" (click)="add()"
+            [disabled]="loading"
+            *ngxPermissionsOnly="[modulePrefix+'/insert-*', modulePrefix+'/insert-'+entity]">
+        <label class="custom-font-size uppercase cursor-pointer" *ngIf="innerWidth >= 767">
+            {{'system.add' | translate}}
+        </label>
+        <span class="material-icons-outlined custom-center-flex" *ngIf="innerWidth < 767">
+            add
+        </span>
+    </button>
+    <common-search-list
+        [serviceUrlSearch]="getServiceURL()"
+        [currentPage]="currentPage"
+        [currentColumn]="currentColumn"
+        [pageSize]="currentPageSize"
+        (results)="receiveItems($event)"
+        (currentSearch)="currentSearch = $event"
+        (isLoading)="loading = $event"
+        [filter]="defaultFilter">
+    </common-search-list>
+</div>
+<table class="table table-sm mb-0">
+    <thead>
+    <tr>
+        <th id="{{ column.title | translate | lowercase }}-column" scope="col" *ngFor="let column of columns; let i;">
+            {{ column.title | translate }}
+        </th>
+        <th class="actions-column-header"></th>
+    </tr>
+    </thead>
+    <tbody id="table-body">
+    <tr>
+        <td colspan="12" *ngIf="items.length <= 0 && !loading">
+            <strong id="no-record">{{'system.no-record' | translate}}</strong>
+        </td>
+        <td colspan="12" *ngIf="loading">
+            <common-loading [loading]="loading"></common-loading>
+        </td>
+    </tr>
+    <ng-container *ngIf="!loading">
+        <tr *ngFor="let item of items; let i=index">
+            <ng-container *ngFor="let column of columns; let j=index;">
+                <td id="{{ column.title| translate | lowercase }}-{{i}}" class="{{this.columns[j].col}}">
+                    {{showValue(item[column.value], column.predicate ? column.predicate : undefined, column.formatType)}}
+                </td>
+            </ng-container>
+            <td class="actions-column">
+                <ng-container *ngFor="let action of actions">
+                    <button id="{{ action.icon }}-{{i}}" (click)="action.method(item.id)" class="btn-muted">
+                        <i [ngClass]="action.icon"></i>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="showEdit">
+                    <button id='btn-edit-{{i}}' (click)="edit(item.id)" class="btn-muted">
+                        <i class="material-icons-outlined" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="{{'system.edit' | translate}}">edit</i>
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="showDelete">
+                    <button id="btn-delete-{{i}}" class="btn-muted" data-bs-toggle="modal" data-bs-target="#modal-delete"
+                            (click)="remove(item.id)">
+                        <i class="material-icons-outlined color-red" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="{{'system.delete' | translate}}">delete</i>
+                    </button>
+                </ng-container>
+            </td>
+        </tr>
+        <common-delete-confirmation target="modal-delete">
+        </common-delete-confirmation>
+    </ng-container>
+    </tbody>
+</table>
+<div class="d-flex pt-3 align-items-center"
+     [ngClass]="innerWidth > 500 ? 'justify-content-between' : 'custom-center-flex'"
+     [hidden]="!(items.length > 0)">
+    <common-page-size (pageSizeChanged)="setPageSize($event)"
+                      *ngIf="innerWidth > 500">
+    </common-page-size>
+<common-paginator [totalPages]="totalPages" [currentPage]="currentPage"
+                      (pageChanged)="onChangePaginator($event)">
+    </common-paginator>
+</div>

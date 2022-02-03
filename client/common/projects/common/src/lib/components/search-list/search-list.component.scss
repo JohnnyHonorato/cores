@@ -1,0 +1,29 @@
+.input-search {
+    width: 320px;
+    height: 44px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    opacity: 1;
+    float: left;
+    padding-right: 40px !important;
+}
+
+.input-search:focus {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    border: 1px solid rgba(19, 37, 101, 0.8);
+}
+
+#search-icon {
+    float: left;
+    margin: 11px 0 0 -34px;
+    color: #142263;
+}
+
+@media (max-width: 767px) {
+    .input-search {
+        max-width: 240px;
+    }
+}
+

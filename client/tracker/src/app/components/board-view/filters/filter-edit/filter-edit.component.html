@@ -1,0 +1,49 @@
+<div class="container-filter mb-3" [ngClass]="view?'':'filter-name-required'" *ngIf="filters.length > 0">
+    <div class="content-filter">
+        <div class="p-2" [ngClass]="view?'filter-name':''">
+            <form [formGroup]="editForm" role="form">
+                <div class="d-flex align-items-center" *ngIf="view; else filterEdit">
+                    <label id="saved-filter-name text-truncate"
+                           class="saved-filter-name text-truncate">
+                        {{editForm.controls.name.value}}
+                    </label>
+                </div>
+                <ng-template #filterEdit>
+                    <input id="filter-name-input" type="text" formControlName="name" class="form-control">
+                </ng-template>
+            </form>
+        </div>
+        <div class="p-0 custom-content-filters" [ngClass]="view?'mw-80':''">
+            <div class="mx-3 filters">
+                <div id="filters" class="filter" *ngFor="let filterItem of filters; let i=index">
+                    <label id="filter-name" class="filter-item text-truncate"
+                           [ngClass]="view?'before-filter-item':''">{{filterItem.name}}</label>
+                    <button id="cancel-btn" class="btn-muted p-0 d-flex" [ngClass]="view?'btn-none':''"
+                            (click)="removeFilterItem(filterItem)">
+                        <span class="material-icons cancel-icon ms-1">cancel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="pe-2 d-flex align-items-center ms-auto">
+            <button id="save-btn" type="submit" [disabled]="!editForm.controls.name.value"
+                    [ngClass]="{'btn-outline-success':editForm.controls.name.value,'btn-outline-secondary':!editForm.controls.name.value, 'btn-none': view }"
+                    class="btn-sm btn-filter d-flex align-items-center" (click)="save()">
+                <span class="material-icons-outlined fs-icon me-1 cursor-pointer"> done </span>
+                <label id="save-btn-label" *ngIf="!isEdit()" class="cursor-pointer btn-label"
+                       translate>system.save</label>
+                <label id="edit-btn-label" *ngIf="isEdit()" class="cursor-pointer btn-label"
+                       translate>system.edit</label>
+            </button>
+            <button id="clear-btn" type="button" [ngClass]="view?'w-90':''"
+                    class="btn-outline-danger btn-sm btn-filter ms-2 d-flex align-items-center"
+                    (click)="clean()">
+                <span class="material-icons-outlined fs-icon me-1 cursor-pointer"> close </span>
+                <label id="clear-btn-label" class="cursor-pointer btn-label" translate>system.clear</label>
+            </button>
+        </div>
+    </div>
+    <div class="feedback">
+        <common-control-message id="common-message" [control]="editForm.get('name')"></common-control-message>
+    </div>
+</div>

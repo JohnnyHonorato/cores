@@ -1,0 +1,18 @@
+<ng-container id="popover-tags-remove">
+    <common-loading id="loading-tags-remove" [loading]="loading"></common-loading>
+    <div *ngIf="!loading" class="title-popover row p-3 text-center">
+        <label id="tags-delete-warning" translate>tracker.card.tags.delete.warning</label>
+        <br/>
+        <label id="tags-delete-confirmation" translate>operations.delete.confirmation</label>
+    </div>
+    <form *ngIf="!loading" id="form-tags-remove" role="form">
+        <div class="form-group text-center required col-sm-12">
+            <button id="btn-cancel" type="button" class="btn btn-sm btn-back" (click)="openListTags.emit()" translate>
+                system.no
+            </button>
+            <button id="btn-generate" type="button" class="btn btn-sm btn-primary ms-2" (click)="removeTag()" translate>
+                system.yes
+            </button>
+        </div>
+    </form>
+</ng-container>

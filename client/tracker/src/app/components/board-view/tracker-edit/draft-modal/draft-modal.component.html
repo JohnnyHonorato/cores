@@ -1,0 +1,21 @@
+<div id="modal-header" class="modal-header">
+    <h3 id="modal-title" class="modal-title col-sm-11 no-padding title-size" translate>system.draft-data</h3>
+    <button *ngIf="type===discardDraftDataType" id="close-btn-0"
+            type="button" class="btn-close" aria-label="Close" (click)="onClose()">
+    </button>
+</div>
+<div id="modal-body" class="modal-body text-style">
+    <p id="retrieve-draft" *ngIf="type===retrieveDraftDataType" translate>system.retrieve-draft</p>
+    <p id="discard-draft" *ngIf="type===discardDraftDataType" translate>system.discard-draft</p>
+</div>
+<div id="modal-footer" class="modal-footer">
+    <button id="btn-no" type="button" class="btn btn-back btn-lg" data-dismiss="modal" (click)="cancel()">
+        <span id="text-no" translate>system.no</span>
+    </button>
+    <button id="btn-yes" type="button" class="btn btn-primary btn-lg" data-dismiss="modal" (click)="confirmation()">
+        <span id="text-yes" translate>system.yes</span>
+    </button>
+</div>
+
+
+

@@ -1,0 +1,68 @@
+{
+    "name": "way-%MODULE%",
+    "context": "%MODULE%",
+    "version": "v1",
+    "provider": "virtus",
+    "lifeCycleStatus": "CREATED",
+    "responseCachingEnabled": false,
+    "cacheTimeout": 300,
+    "isDefaultVersion": false,
+    "enableSchemaValidation": false,
+    "enableStore": true,
+    "type": "HTTP",
+    "transport": [
+      "http",
+      "https"
+    ],
+    "policies": [
+      "Unlimited"
+    ],
+    "apiThrottlingPolicy": null,
+    "authorizationHeader": "apikey",
+    "securityScheme": [
+      "oauth_basic_auth_api_key_mandatory",
+      "api_key"
+    ],
+    "visibility": "PUBLIC",
+    "endpointSecurity": null,
+    "gatewayEnvironments": [
+      "Production and Sandbox"
+    ],
+    "subscriptionAvailability": "CURRENT_TENANT",
+    "accessControl": "NONE",
+    "corsConfiguration": {
+      "corsConfigurationEnabled": true,
+      "accessControlAllowOrigins": [
+        "*"
+      ],
+      "accessControlAllowCredentials": true,
+      "accessControlAllowHeaders": [
+        "authorization",
+        "Access-Control-Allow-Origin",
+        "Content-Type",
+        "SOAPAction",
+        "apikey"
+      ],
+      "accessControlAllowMethods": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE",
+        "PATCH",
+        "OPTIONS"
+      ]
+    },
+    "endpointConfig": {
+      "endpoint_type": "http",
+      "sandbox_endpoints": {
+        "url": "http://%MODULE%:%PORT%"
+      },
+      "production_endpoints": {
+        "url": "http://%MODULE%:%PORT%"
+      }
+    },
+    "endpointImplementationType": "ENDPOINT",
+    "keyManagers": [
+      "all"
+    ]
+  }

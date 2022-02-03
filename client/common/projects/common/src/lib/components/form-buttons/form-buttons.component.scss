@@ -1,0 +1,53 @@
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media (max-width: 425px) {
+    .row {
+        justify-content: center;
+    }
+
+    .btn {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        margin: 5px 0 !important;
+    }
+}
+
+.btn {
+    max-width: 173px;
+    max-height: 43px;
+    margin: 0 5px;
+}
+
+.mr-0 {
+    margin-right: 0 !important;
+}
+
+.btn-back {
+    background: #EAEAF3 !important;
+    box-shadow: 0 3px 20px #0000000D !important;
+    border-radius: 3px !important;
+    color:  #212529 !important;
+}
+  
+.btn-back:hover {
+    background: #dddde0 !important;
+}
+
+.btn[disabled] {
+    cursor: not-allowed !important;
+}
+
+.btn[disabled]:hover {
+    background: #01121c;
+    opacity: 0.5;
+}
+
+.btn {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+}

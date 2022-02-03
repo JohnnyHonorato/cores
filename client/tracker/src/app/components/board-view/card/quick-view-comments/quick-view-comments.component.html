@@ -1,0 +1,45 @@
+<div class="quick-view fade open show" [ngStyle]="{'display': isDisplayed ? 'inline' : 'none'}"
+     (click)="onChangeDisplay()">
+    <div class="content-quick-view cursor-pointer">
+        <label id="quick-view-label" class="cursor-pointer m-0 pr-1" translate>tracker.quick-view</label>
+        <span id="close-icon" class="material-icons-outlined">close</span>
+    </div>
+    <div class="btn-group background-options"
+         [ngStyle]="{right: getRight(), bottom: getBottom(), top: getTop(), left: getLeft()}">
+        <div #dropDownMenu class="dropdown-menu d-block p-0 m-0" role="menu" (click)="$event.stopPropagation()">
+            <div *ngIf="trackerId" class="container-comment">
+                <common-loading [loading]="loading" [size]="'small'"></common-loading>
+                <div *ngIf="comments.length && !loading" [ngClass]="comments.length > 3 ? 'main-panel' : ''">
+                    <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+                         [infiniteScrollContainer]="'.main-panel'"
+                         [fromRoot]="true" (scrolled)="onScroll()">
+                        <div class="content-comment" *ngFor="let item of comments">
+                            <div class="col-12 pt-2 pr-2 pl-2">
+                                <p id="comment" class="text-truncate-custom mb-2">
+                                    <label class="m-0" id="user-label">{{getSimpleUsername(item.user)}}</label>
+                                    {{item.text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-no-comment" *ngIf="!comments.length && !loading">
+                    <p id="no-comment-label" class="m-0">{{'tracker.card.no-comments' | translate}}</p>
+                </div>
+            </div>
+            <hr class="m-0">
+            <div *ngIf="trackerId" class="form-group py-3 px-2 m-0">
+                <textarea id="text-area" placeholder="{{'tracker.card.insert-comment' | translate}}"
+                          class="form-control textarea-custom"
+                          [(ngModel)]="comment"
+                          [maxLength]="5000">
+                </textarea>
+                <div class="pull-right">
+                    <button id="save" [disabled]="!comment" type="submit"
+                            class="btn btn-primary btn-sm custom-button-textarea"
+                            (click)="save()" translate> system.submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+@import "../common/projects/common/src/assets/scss/variables.scss";
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    color: $primary-color;
+
+    th, td {
+        text-align: left;
+        padding: 8px 16px;
+    }
+}
+
+.table > thead > tr > th {
+    background: #F7F9FF;
+    border-bottom: 3px solid #ddd;
+}
+
+td {
+    background: white;
+}
+
+.actions-column-header {
+    min-width: 110px;
+}
+
+.actions-column {
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+    min-width: 120px;
+    display: table-cell;
+    text-align: center;
+}
+
+.btn-muted {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-muted:focus, .btn-muted:hover, .btn-muted:active, .btn-muted:active:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.btn-muted:disabled {
+    cursor: not-allowed;
+
+    i.fe {
+        color: lightgray;
+    }
+}
+
+i {
+    color: $primary-color;
+}
+
+
+.btn-primary {
+    width: 173px;
+    height: 44px;
+    color: #FFFFFF;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+}
+
+.color-red {
+    color: #BA2A2F;
+}
+
+.custom-table-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+
+    .btn-primary {
+        margin-bottom: 8px;
+        width: 53px !important;
+        height: 43px !important;
+    }
+}
+
+.custom-font-size {
+    font-size: 14px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}

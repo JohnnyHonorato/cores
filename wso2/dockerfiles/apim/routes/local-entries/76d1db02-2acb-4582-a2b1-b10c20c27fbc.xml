@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?><localEntry xmlns="http://ws.apache.org/ns/synapse" key="76d1db02-2acb-4582-a2b1-b10c20c27fbc">{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "way-core",
+    "version" : "v1"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "security" : [ {
+    "default" : [ ]
+  } ],
+  "paths" : {
+    "/modules" : {
+      "get" : {
+        "description" : "Get all modules with pagination",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "description" : "Save new module",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/modules/{moduleId}" : {
+      "get" : {
+        "description" : "Get module by id",
+        "parameters" : [ {
+          "name" : "moduleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "description" : "Update specific module by id",
+        "parameters" : [ {
+          "name" : "moduleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "description" : "Remove specific module by id",
+        "parameters" : [ {
+          "name" : "moduleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "description" : "Change specifics atributes by module id",
+        "parameters" : [ {
+          "name" : "moduleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/modules/permissions/{permissionId}" : {
+      "delete" : {
+        "description" : "Remove permission by id",
+        "parameters" : [ {
+          "name" : "permissionId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/modules/all" : {
+      "get" : {
+        "description" : "Get all modules without pagination",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/organizations" : {
+      "get" : {
+        "description" : "Get all organizations",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "description" : "Add new Organization",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/organizations/{organizationId}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/people" : {
+      "get" : {
+        "description" : "Get all people",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "description" : "Create new People",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/people/{peopleId}" : {
+      "get" : {
+        "description" : "Get specific people by id",
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "description" : "Update specific people by id",
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "description" : "Delete specific people by id",
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "description" : "update specifics people parameters object by id",
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/roles" : {
+      "get" : {
+        "description" : "Get all roles",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "description" : "Create new role",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/roles/{roleId}" : {
+      "get" : {
+        "description" : "Get Specific role by id",
+        "parameters" : [ {
+          "name" : "roleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "description" : "Update Specific role by id",
+        "parameters" : [ {
+          "name" : "roleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "description" : "Delete Specific role by id",
+        "parameters" : [ {
+          "name" : "roleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "description" : "Update Specific role atributes by id",
+        "parameters" : [ {
+          "name" : "roleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/users" : {
+      "get" : {
+        "description" : "Get all users",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/users/{userId}" : {
+      "get" : {
+        "description" : "Get Specific user by id",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "description" : "Update Specific user by id",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "description" : "Delete Specific user by id",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "description" : "Update Specific user atributes by id",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/contacts-info/{contactInfoId}" : {
+      "delete" : {
+        "description" : "Remove specific contact info by id",
+        "parameters" : [ {
+          "name" : "contactInfoId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/accounts/modules" : {
+      "get" : {
+        "description" : "Get all modules that the user is allowed to access",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/accounts/permissions" : {
+      "get" : {
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/members" : {
+      "get" : {
+        "description" : "Get all members",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "post" : {
+        "description" : "Create new member",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/members/{memberId}" : {
+      "get" : {
+        "description" : "Get specific member by id",
+        "parameters" : [ {
+          "name" : "memberId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "put" : {
+        "description" : "Update specific member by id",
+        "parameters" : [ {
+          "name" : "memberId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "delete" : {
+        "description" : "Delete specific member by id",
+        "parameters" : [ {
+          "name" : "memberId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      },
+      "patch" : {
+        "description" : "Update specific member atributes by member id",
+        "parameters" : [ {
+          "name" : "memberId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/organizations/cnpj/{cnpj}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "cnpj",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/organizations/{organizationId}/people/{peopleId}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/people/{peopleId}/organizations/{organizationId}" : {
+      "delete" : {
+        "parameters" : [ {
+          "name" : "peopleId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        }, {
+          "name" : "organizationId",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string",
+            "format" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ok"
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application &amp; Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "default" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "https://test.com",
+            "scopes" : { }
+          }
+        }
+      }
+    }
+  }
+}</localEntry>

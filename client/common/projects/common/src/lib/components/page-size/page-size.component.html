@@ -1,0 +1,6 @@
+<div class="page-size">
+    <span translate>system.show</span>
+    <select class="form-control input-sm form-select" id="page" (change)="setPageSize($event.target.value)">
+        <option id="page-item-{{i}}" [value]="item" *ngFor="let item of itemsPerPage; let i=index">{{item}}</option>
+    </select>
+</div>

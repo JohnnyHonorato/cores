@@ -1,0 +1,44 @@
+@import "node_modules/common/src/assets/scss/variables";
+
+.separator {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.add-label-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.list-labels-content {
+    padding-left: 11px;
+    padding-bottom: 7px;
+}
+
+.no-record-message {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+}
+
+.material-icons.icon-18 {
+    font-size: 18px;
+}
+
+.material-icons-outlined.icon-16 {
+    font-size: 16px;
+}
+
+.chk-tag:checked {
+    background-color: #142263 !important;
+    border-color: #142263 !important;
+}
+
+.check-input:checked {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.text-primary {
+    color: #4D66D3 !important;
+}
